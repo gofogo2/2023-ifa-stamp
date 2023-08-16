@@ -105,23 +105,7 @@ export default function App() {
 
   return (
     <>
-      {isLoading ? (
-        <div className="flex items-center justify-center">
-          <Loading />
-        </div>
-      ) : (
-        <div className="mt-10 bg-brand ">
-          <CTopText toggleDebug={toggleDebug}  />
-          <CStampPanal isEnble={isEnble} items={items} />
-          <CBottomText />
-
-          <div className="flex items-center justify-center my-10"></div>
-          {!isSuc && showPopup && <CStampCompleted />}
-          {isSuc && <CFinished />}
-          {isDebug && <CDebugPopup toggleDebug={toggleDebug} clearData={clearData}  fillData={fillData} changeFinish={changeFinish} />}
-          <div className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]" onClick={()=>toggleDebug()} ></div>
-        </div>
-      )}
+      
     </>
   );
 }
