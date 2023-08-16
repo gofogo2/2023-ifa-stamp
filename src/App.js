@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import CFinished from "./components/CFinished";
-import CStampCompleted from "./components/CStampCompleted";
 import CBottomText from "./components/CBottomText";
 import CStampPanal from "./components/CStampPanal";
 import CTopText from "./components/CTopText";
 import CDebugPanel from "./components/CDebugPanel";
+import CStampCompleted from "./components/CStampCompleted";
 
 export default function App() {
   const maxLength = 3;
@@ -117,7 +117,7 @@ export default function App() {
           <CBottomText />
 
           <div className="flex items-center justify-center my-10"></div>
-          {/* {showPopup && <CStampCompleted />} */}
+          {showPopup && <CStampCompleted />}
           {isSuc && <CFinished />}
         </div>
       )}
