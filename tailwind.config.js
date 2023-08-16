@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{html,js,jsx}"],
   theme: {
     extend: {
+      transitionProperty: {
+        'height': 'height',
+      },
       backgroundColor:{
         'brand':'#9affec',
       },
