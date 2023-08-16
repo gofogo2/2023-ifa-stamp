@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'one';
+    src: url('SamsungSharpSans-Bold_0.ttf') format('truetype');
+
+  }
+
+  @font-face {
+    font-family: 'mid';
+    src: url('SamsungSharpSans-Medium_0.ttf') format('truetype');
+  }
+
+  @font-face {
+    font-family: 'right';
+    src: url('SamsungSharpSans-Regular_0.ttf') format('truetype');
+  }
+
+  body{
+    font-family: 'one';
+  }
