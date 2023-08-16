@@ -175,22 +175,6 @@ export default function App() {
           </div>
 
           <div className="flex items-center justify-center my-10">
-            {isEnble ? (
-              <img
-                onMouseDown={handleGiveClick}
-                onMouseUp={handleGiveRelease}
-                onTouchStart={handleGiveClick}
-                onTouchEnd={handleGiveRelease}
-                src={`${
-                  isGiveClicked
-                    ? "btn_giveway_disable.png"
-                    : "btn_giveway_enble.png"
-                }`}
-                className="w-[80%]"
-              />
-            ) : (
-              <img src="btn_giveway_disable.png" className="w-[80%]" />
-            )}
           </div>
           {showPopup && (
             <div
