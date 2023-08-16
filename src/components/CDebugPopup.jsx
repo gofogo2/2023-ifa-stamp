@@ -18,11 +18,16 @@ const CDebugPopup = (props) => {
     }}
   >
      <div className='w-full' >
+     <div
+      className="py-5 text-center text-yellow-400 bg-gray-800 font-extralight"
+    >
+      version : 2.0.1b
+    </div>
     <div
     onClick={props.clearData}
       className="py-5 text-center text-red-400 bg-green-400 "
     >
-      ver:1.0.2b 클릭하면 데이터 초기화
+      클릭하면 데이터 초기화
     </div>
     <div
     onClick={props.fillData}
