@@ -4,8 +4,8 @@ import CFinished from "./components/CFinished";
 import CBottomText from "./components/CBottomText";
 import CStampPanal from "./components/CStampPanal";
 import CTopText from "./components/CTopText";
-import CDebugPanel from "./components/CDebugPanel";
 import CStampCompleted from "./components/CStampCompleted";
+import CDebugPopup from "./components/CDebugPopup";
 
 export default function App() {
   const maxLength = 3;
@@ -111,14 +111,15 @@ export default function App() {
         </div>
       ) : (
         <div className="mt-10 bg-brand ">
-          <CDebugPanel isDebug={isDebug} clearData={clearData}  fillData={fillData} changeFinish={changeFinish}  />
           <CTopText toggleDebug={toggleDebug}  />
           <CStampPanal isEnble={isEnble} items={items} />
           <CBottomText />
 
           <div className="flex items-center justify-center my-10"></div>
-          {showPopup && <CStampCompleted />}
+          {!isSuc && showPopup && <CStampCompleted />}
           {isSuc && <CFinished />}
+          {isDebug && <CDebugPopup toggleDebug={toggleDebug} clearData={clearData}  fillData={fillData} changeFinish={changeFinish} />}
+          <div className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]" onClick={()=>toggleDebug()} ></div>
         </div>
       )}
     </>
