@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
+
 export default function App() {
   const maxLength = 3;
   const [items, setItems] = useState([false, false, false]);
@@ -8,31 +9,18 @@ export default function App() {
   const [isEnble, SetIsEnble] = useState(false);
   const [isLoading, SetIsLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
-  const [isClicked, setIsClicked] = useState(false);
-  const [isShare, setIsShare] = useState(false);
-  const [isGiveClicked, setIsGiveClicked] = useState(false);
-  const handleClick = () => {
-    document.body.style.overflow = "unset";
-    setIsClicked(true);
-    setShowPopup(false);
 
-    setIsClicked(false);
-    setIsShare(false);
-  };
-
-  const handleRelease = () => {
-    setIsClicked(false);
-  };
-
-  const handleGiveClick = () => {
-    document.body.style.overflow = "hidden";
-    setShowPopup(true);
-  };
-
-  const handleGiveRelease = () => {};
-
-  const handleShareClick = () => {
-    setIsShare(true);
+  const copyToClipboard = () => {
+    navigator.clipboard
+      .writeText("복사할 텍스트")
+      .then(() => {
+        console.log("텍스트가 클립보드에 복사됐어!");
+        alert("텍스트가 클립보드에 복사됐어!");
+      })
+      .catch((err) => {
+        console.error("클립보드 복사 실패:", err);
+        alert("클립보드 복사 실패");
+      });
   };
 
   useEffect(() => {
@@ -72,8 +60,11 @@ export default function App() {
       }
     });
 
+    document.body.style.overflow = "unset";
+
     if (cnt >= maxLength) {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "hidden";
+      setShowPopup(true);
       SetIsEnble(true);
     }
 
@@ -146,21 +137,22 @@ export default function App() {
               SetIsDebug(!isDebug);
             }}
           >
-            <img src="top_text.png" className="w-[80%]" />
+            <img src="top_text.png" className="w-[80%]" alt="" />
           </div>
 
           <div>
             <div className="relative flex items-center justify-center mt-14">
               {isEnble ? (
-                <img src="stamp_panel_end.png" className="w-[80%]" />
+                <img src="stamp_panel_end.png" className="w-[80%]" alt="" />
               ) : (
-                <img src="stamp_panel.png" className="w-[80%]" />
+                <img src="stamp_panel.png" className="w-[80%]" alt="" />
               )}
 
               {items.map((val, i) => {
                 return val === true ? (
                   <img
                     key={i}
+                    alt=""
                     src={`${i + 1}.png`}
                     className={`absolute w-[80%] top-0 z-${+(i + 1) * 10} `}
                   />
@@ -171,11 +163,10 @@ export default function App() {
             </div>
           </div>
           <div className="flex items-center justify-center mt-10">
-            <img src="bottom_text.png" className="w-[80%]" />
+            <img alt="" src="bottom_text.png" className="w-[80%]" />
           </div>
 
-          <div className="flex items-center justify-center my-10">
-          </div>
+          <div className="flex items-center justify-center my-10"></div>
           {showPopup && (
             <div
               className="backdrop-blur-blur"
@@ -193,18 +184,9 @@ export default function App() {
               }}
             >
               <div
-                className={`flex-col items-center py-8 px-8 relative flex w-[90%] max-w-sm bg-white rounded-3xl`}
+                className={`flex-col items-center py-8 px-8 relative flex w-[100%] h-[100%] bg-white`}
               >
-                <div className="z-20 flex justify-end w-full">
-                  <img
-                    onTouchStart={handleClick}
-                    onTouchEnd={handleRelease}
-                    onMouseDown={handleClick}
-                    onMouseUp={handleRelease}
-                    className="w-10 h-10 "
-                    src={isClicked ? "btn_close_hover.png" : "btn_close.png"}
-                  ></img>
-                </div>
+                <div className="z-20 flex justify-end w-full"></div>
                 <div className="z-20">
                   <div className="mt-6">
                     <div className="text-lg text-center text-black ">
@@ -217,16 +199,18 @@ export default function App() {
                       get giveaway!
                     </div>
                   </div>
+
                   <div className="z-20 flex items-center justify-center w-full ">
-                    <img className="w-24 my-10 " src="present.png" />
+                    <img alt="" className="w-24 my-10 " src="present.png" />
                   </div>
                 </div>
                 <div className="z-20 flex flex-col items-center">
                   <img
+                    alt=""
                     className="w-[100%] my-4"
-                    src={`${isShare ? "sns_finished.png" : "sns.png"}`}
+                    src={`sns.png`}
                     onClick={() => {
-                      setIsShare(true);
+                      copyToClipboard();
                     }}
                   />
                 </div>
@@ -253,7 +237,7 @@ export default function App() {
                 className={`flex-col items-center py-8 px-8 relative flex w-[90%]  bg-[#00000000] rounded-3xl`}
               >
                 <div>
-                  <img src="success.png" />
+                  <img src="success.png" alt="" />
                 </div>
               </div>
             </div>
