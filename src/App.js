@@ -11,7 +11,7 @@ export default function App() {
   const maxLength = 3;
   const [items, setItems] = useState([false, false, false]);
   const [isSuc, SetIsSuc] = useState(false);
-  const [isDebug, setIsDebug] = useState(false);
+  const [isDebug, setIsDebug] = useState(true);
   const [isEnble, SetIsEnble] = useState(false);
   const [isLoading, SetIsLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
