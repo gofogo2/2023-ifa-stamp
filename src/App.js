@@ -99,10 +99,10 @@ export default function App() {
       case "4b9d8ac5":
         current = "3";
         break;
-      case "6f8b2e77":
+      case "8db8d264":
         current = "4";
         break;
-      case "8db8d264":
+      case "6f8b2e77":
         current = "5";
         break;
         default:
