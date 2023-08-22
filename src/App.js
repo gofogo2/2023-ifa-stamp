@@ -13,7 +13,7 @@ export default function App() {
   const [clicks, setClicks] = useState(0);
   const [items, setItems] = useState([false, false, false, false, false]);
   const [isSuc, SetIsSuc] = useState(false);
-  const [isDebug, setIsDebug] = useState(true);
+  const [isDebug, setIsDebug] = useState(false);
   const [isEnble, SetIsEnble] = useState(false);
   const [isLoading, SetIsLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
@@ -152,15 +152,7 @@ export default function App() {
       setShowPopup(true);
     }
   }, []);
-
-
-  const myStyle = {
-    width: '30px',
-    height: '30px',
-    backgroundColor:'red',
-    maxWidth:'30px',
-  };
-
+  
   return (
     <>
       {isLoading ? (
