@@ -8,7 +8,7 @@ import CStampCompleted from "./components/CStampCompleted";
 import CDebugPopup from "./components/CDebugPopup";
 
 export default function App() {
-  const maxLength = 3;
+  const maxLength = 5;
   let timer;
   const [clicks, setClicks] = useState(0);
   const [items, setItems] = useState([false, false, false, false, false]);
@@ -142,7 +142,6 @@ export default function App() {
     console.log(cnt >= maxLength);
 
     if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
-      console.log("aaaaaaaaaa");
       setShowPopup(true);
       SetIsSuc(true);
       return;
@@ -167,7 +166,7 @@ export default function App() {
             className="fixed top-0 left-0 w-28 h-28 bg-red-200 opacity-30 z-[10000]"
             onClick={handleClick}
           ></div>
-          <div  ></div>
+          <div></div>
           <div
             className="fixed top-0 right-0 w-28 h-28 bg-green-200 opacity-30 z-[10000]"
             onClick={debugClick}
