@@ -87,7 +87,7 @@ export default function App() {
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    let current = urlParams.get("current");
+    let current = urlParams.get("stp");
     console.log(current);
     switch (current) {
       case "0c7dd660":
