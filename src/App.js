@@ -83,7 +83,7 @@ export default function App() {
 
   useEffect(() => {
     
-    setTimeout(() => SetIsLoading(false), 1500);
+    setTimeout(() => SetIsLoading(false), 3000);
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
