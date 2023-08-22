@@ -16,7 +16,7 @@ const CStampPanal = (props) => {
             key={i}
             alt=""
             src={`new/${i + 1}.png`}
-            className={`absolute w-full top-0 z-${+(i + 1) * 10} `}
+            className={`absolute w-full sm:max-w-sm top-0 z-${+(i + 1) * 10} `}
           />
         ) : (
           ""
