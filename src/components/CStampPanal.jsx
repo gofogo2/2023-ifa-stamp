@@ -4,12 +4,7 @@ const CStampPanal = (props) => {
   return (
     <div>
     <div className="relative flex items-center justify-center">
-      {props.isEnble ? (
-        <img src="new/bg.png" className="w-full sm:max-w-sm" alt="" />
-      ) : (
-        <img src="new/bg.png" className="w-full sm:max-w-sm" alt="" />
-      )}
-
+    <img src="new/bg.png" className="w-full sm:max-w-sm" alt="" />
       {props.items.map((val, i) => {
         return val === true ? (
           <img

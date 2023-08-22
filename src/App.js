@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import Loading from "./Loading";
-import CFinished from "./components/CFinished";
-import CBottomText from "./components/CBottomText";
 import CStampPanal from "./components/CStampPanal";
-import CTopText from "./components/CTopText";
-import CStampCompleted from "./components/CStampCompleted";
 import CDebugPopup from "./components/CDebugPopup";
 
 export default function App() {
@@ -14,7 +10,6 @@ export default function App() {
   const [items, setItems] = useState([false, false, false, false, false]);
   const [isSuc, SetIsSuc] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
-  const [isEnble, SetIsEnble] = useState(false);
   const [isLoading, SetIsLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
 
@@ -187,7 +182,7 @@ export default function App() {
               )}
             </div>
           ) : (
-            <CStampPanal isEnble={isEnble} items={items} />
+            <CStampPanal items={items} />
           )}
           <div className="flex items-center justify-center"></div>
           {isDebug && (
