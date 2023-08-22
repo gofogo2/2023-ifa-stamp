@@ -3,11 +3,11 @@ import React from 'react'
 const CStampPanal = (props) => {
   return (
     <div>
-    <div className="relative flex items-center justify-center mt-14">
+    <div className="relative flex items-center justify-center">
       {props.isEnble ? (
-        <img src="stamp_panel_end.png" className="w-[80%]" alt="" />
+        <img src="new/bg.png" className="w-full sm:max-w-sm" alt="" />
       ) : (
-        <img src="stamp_panel.png" className="w-[80%]" alt="" />
+        <img src="new/bg.png" className="w-full sm:max-w-sm" alt="" />
       )}
 
       {props.items.map((val, i) => {
@@ -15,8 +15,8 @@ const CStampPanal = (props) => {
           <img
             key={i}
             alt=""
-            src={`${i + 1}.png`}
-            className={`absolute w-[80%] top-0 z-${+(i + 1) * 10} `}
+            src={`new/${i + 1}.png`}
+            className={`absolute w-full sm:max-w-sm top-0 z-${+(i + 1) * 10} `}
           />
         ) : (
           ""
