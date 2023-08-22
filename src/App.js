@@ -154,7 +154,7 @@ export default function App() {
           <Loading />
         </div>
       ) : (
-        <div className="bg-brand ">
+        <div className="bg-[#F5F5F5] ">
           
           {/* <div className="text-3xl text-gray-500 xxxs:text-red-500 xxs:text-green-500 xs:text-blue-500 sm:text-indigo-500 md:text-amber-600 lg:text-teal-950" >Helloworld</div> */}
           <div
