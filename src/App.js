@@ -13,7 +13,6 @@ export default function App() {
   const [isLoading, SetIsLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
   const [isError, setIsError] = useState(false);
-  
 
   const handleClick = () => {
     try {
@@ -37,10 +36,10 @@ export default function App() {
     }
   };
 
-  const setErrorFunc=()=>{
-    console.log('ssssssssss');
+  const setErrorFunc = () => {
+    console.log("ssssssssss");
     setIsError(true);
-  }
+  };
 
   const debugClick = () => {
     clearTimeout(timer);
@@ -68,7 +67,7 @@ export default function App() {
       window.location.href = "/";
     } catch (e) {
       console.error("clearData 오류:", e);
-      
+
       setErrorFunc();
     }
   };
@@ -107,7 +106,7 @@ export default function App() {
 
   useEffect(() => {
     try {
-           setTimeout(() => SetIsLoading(false), 3000);
+      setTimeout(() => SetIsLoading(false), 3000);
 
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
@@ -119,6 +118,14 @@ export default function App() {
       }
       console.log(current);
       switch (current) {
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+          current = "7777";
+          break;
+
         case "0c7dd660":
           current = "1";
           break;
@@ -137,7 +144,7 @@ export default function App() {
         default:
           break;
       }
-      
+
       console.log(current);
 
       var modifyItems = items;
@@ -188,7 +195,7 @@ export default function App() {
 
   return (
     <>
-      {(!isError)  ? (
+      {!isError ? (
         isLoading ? (
           <div className="flex items-center justify-center">
             <Loading />
@@ -245,7 +252,21 @@ export default function App() {
           </div>
         )
       ) : (
-        <div className="flex items-center justify-center w-screen h-screen bg-brand" ><div className="text-sm  bg-brand" > Cookie blocked or not normal access</div></div>
+        <div>
+          <div className="flex flex-col items-center justify-center w-screen h-screen bg-brand">
+            <div className=" text-md bg-brand">Access is denied. </div>
+
+            <div className="text-sm bg-brand">
+              {" "}
+              <br />
+              Please enable Cookies in your browser
+            </div>
+            <div className="text-sm bg-brand">
+              {" "}
+              or check your access is normal.
+            </div>
+          </div>
+        </div>
       )}
     </>
   );
