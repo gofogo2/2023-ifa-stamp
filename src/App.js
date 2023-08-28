@@ -14,11 +14,13 @@ export default function App() {
   const [showPopup, setShowPopup] = useState(false);
 
   const handleClick = () => {
+    try{
     clearTimeout(timer);
     setClicks(clicks + 1);
 
     if (clicks + 1 === 3) {
       // alert.log('0.5초 동안 3번 클릭했어!');
+     
       SetIsSuc(true);
       localStorage.setItem("finish", true);
       setClicks(0);
@@ -27,6 +29,9 @@ export default function App() {
         setClicks(0);
       }, 500);
     }
+  }catch (e) {
+    console.error("handleClick 오류:", e);
+  }
   };
 
   const debugClick = () => {
@@ -49,12 +54,17 @@ export default function App() {
   };
 
   const clearData = () => {
+    try{
     localStorage.clear();
     alert("all data clear");
     window.location.href = "/";
+    }catch(e){
+      console.error("clearData 오류:", e);
+    }
   };
 
   const fillData = () => {
+    try{
     localStorage.setItem("1", true);
     localStorage.setItem("2", true);
     localStorage.setItem("3", true);
@@ -63,9 +73,13 @@ export default function App() {
     localStorage.setItem("finish", false);
     alert("all data fill");
     window.location.href = "/";
+    }catch(e){
+      console.error("fillData 오류:", e);
+    }
   };
 
   const changeFinish = () => {
+    try{
     localStorage.setItem("1", true);
     localStorage.setItem("2", true);
     localStorage.setItem("3", true);
@@ -74,9 +88,19 @@ export default function App() {
     localStorage.setItem("finish", true);
     alert("go to finish");
     window.location.href = "/";
+  }catch(e){
+    console.error("fillData 오류:", e);
+  }
   };
 
   useEffect(() => {
+    try {
+    if (typeof Storage !== "undefined") {
+      // localStorage와 sessionStorage에 접근할 수 있음
+    } else {
+      // localStorage와 sessionStorage에 접근할 수 없음
+      alert('이 브라우저에서는 localStorage를 사용할 수 없어.');
+    }
     
     setTimeout(() => SetIsLoading(false), 3000);
 
@@ -145,6 +169,9 @@ export default function App() {
     if (cnt >= maxLength) {
       setShowPopup(true);
     }
+  }catch (e) {
+    console.error("useEffect 오류:", e);
+  }
   }, []);
   
   return (
