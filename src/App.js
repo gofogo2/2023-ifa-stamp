@@ -113,7 +113,7 @@ export default function App() {
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
       if (current === null) {
-        console.log(localStorage);
+        // console.log(localStorage);
         setErrorFunc();
         // return;
       }
@@ -245,7 +245,7 @@ export default function App() {
           </div>
         )
       ) : (
-        <div>Test</div>
+        <div className="flex items-center justify-center w-screen h-screen bg-brand" ><div className="text-sm  bg-brand" > Cookie blocked or not normal access</div></div>
       )}
     </>
   );
