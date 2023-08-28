@@ -12,8 +12,8 @@ export default function App() {
   const [isDebug, setIsDebug] = useState(false);
   const [isLoading, SetIsLoading] = useState(true);
   const [showPopup, setShowPopup] = useState(false);
-  // const [isError, setIsError] = useState(false);
-  let err = false;
+  const [isError, setIsError] = useState(false);
+  
 
   const handleClick = () => {
     try {
@@ -33,9 +33,14 @@ export default function App() {
       }
     } catch (e) {
       console.error("handleClick 오류:", e);
-      err = true;
+      setErrorFunc();
     }
   };
+
+  const setErrorFunc=()=>{
+    console.log('ssssssssss');
+    setIsError(true);
+  }
 
   const debugClick = () => {
     clearTimeout(timer);
@@ -64,7 +69,7 @@ export default function App() {
     } catch (e) {
       console.error("clearData 오류:", e);
       
-      err = true;
+      setErrorFunc();
     }
   };
 
@@ -80,7 +85,7 @@ export default function App() {
       window.location.href = "/";
     } catch (e) {
       console.error("fillData 오류:", e);
-      err = true;
+      setErrorFunc();
     }
   };
 
@@ -96,29 +101,20 @@ export default function App() {
       window.location.href = "/";
     } catch (e) {
       console.error("fillData 오류:", e);
-      
-      err =true;
+      setErrorFunc();
     }
   };
 
   useEffect(() => {
     try {
-      if (typeof Storage !== "undefined") {
-        // localStorage와 sessionStorage에 접근할 수 있음
-      } else {
-        // localStorage와 sessionStorage에 접근할 수 없음
-        alert("이 브라우저에서는 localStorage를 사용할 수 없어.");
-      }
-
-      setTimeout(() => SetIsLoading(false), 3000);
+           setTimeout(() => SetIsLoading(false), 3000);
 
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
       if (current === null) {
-        
-        err = true;
-        console.log('aaaa');
+        console.log(localStorage);
+        setErrorFunc();
         // return;
       }
       console.log(current);
@@ -186,13 +182,13 @@ export default function App() {
       }
     } catch (e) {
       console.error("useEffect 오류:", e);
-      err = true;
+      setErrorFunc();
     }
   }, []);
 
   return (
     <>
-      {(err)  ? (
+      {(!isError)  ? (
         isLoading ? (
           <div className="flex items-center justify-center">
             <Loading />
