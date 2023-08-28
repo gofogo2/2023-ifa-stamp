@@ -209,7 +209,7 @@ export default function App() {
             ></div> */}
             {/* <div></div> */}
             <div
-              className=" fixed top-[7%]   w-[80%] h-28 bg-red-200 opacity-50 z-[10000]"
+              className=" fixed top-[7%]   w-[80%] h-28 bg-red-200 opacity-0 z-[10000]"
               onClick={handleClick}
             ></div>
             {showPopup ? (
