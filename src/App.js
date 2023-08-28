@@ -64,7 +64,7 @@ export default function App() {
     try {
       localStorage.clear();
       alert("all data clear");
-      window.location.href = "/";
+      window.location.href = "/?stp=1";
     } catch (e) {
       console.error("clearData 오류:", e);
 
@@ -81,7 +81,7 @@ export default function App() {
       localStorage.setItem("5", true);
       localStorage.setItem("finish", false);
       alert("all data fill");
-      window.location.href = "/";
+      window.location.href = "/?stp=1";
     } catch (e) {
       console.error("fillData 오류:", e);
       setErrorFunc();
@@ -97,7 +97,7 @@ export default function App() {
       localStorage.setItem("5", true);
       localStorage.setItem("finish", true);
       alert("go to finish");
-      window.location.href = "/";
+      window.location.href = "/?stp=1";
     } catch (e) {
       console.error("fillData 오류:", e);
       setErrorFunc();
@@ -203,13 +203,13 @@ export default function App() {
         ) : (
           <div className="bg-[#F5F5F5] flex justify-center">
             {/* <div className="text-3xl text-gray-500 xxxs:text-red-500 xxs:text-green-500 xs:text-blue-500 sm:text-indigo-500 md:text-amber-600 lg:text-teal-950" >Helloworld</div> */}
-            {/* <div
-              className="fixed top-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
+            <div
+              className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
               onClick={debugClick}
-            ></div> */}
+            ></div>
             {/* <div></div> */}
             <div
-              className=" fixed top-[7%]   w-[80%] h-28 bg-red-200 opacity-0 z-[10000]"
+              className=" fixed top-[7%] w-[80%] h-28 bg-red-200 opacity-0 z-[10000]"
               onClick={handleClick}
             ></div>
             {showPopup ? (
