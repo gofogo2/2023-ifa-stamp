@@ -10,7 +10,7 @@ const CPopup = (props) => {
               {" "}
               <img
                 className="w-full sm:max-w-sm"
-                src="/new/received.png"
+                src="/stamp/received.png"
                 alt=""
               />
             </div>
@@ -19,7 +19,7 @@ const CPopup = (props) => {
               {" "}
               <img
                 className="w-full sm:max-w-sm"
-                src="/new/completed.png"
+                src="/stamp/completed.png"
                 alt=""
               />
             </div>

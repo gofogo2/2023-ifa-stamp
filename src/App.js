@@ -6,9 +6,10 @@ import CPopup from "./components/CPopup";
 
 export default function App() {
   const maxLength = 5;
+  const clickCount = 3;
   let timer;
   const [clicks, setClicks] = useState(0);
-  const [items, setItems] = useState([false, false, false, false, false]);
+  const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isSuc, SetIsSuc] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
@@ -19,7 +20,7 @@ export default function App() {
       clearTimeout(timer);
       setClicks(clicks + 1);
 
-      if (clicks + 1 === 3) {
+      if (clicks + 1 === clickCount) {
         SetIsSuc(true);
         localStorage.setItem("finish", true);
         setClicks(0);
@@ -42,8 +43,7 @@ export default function App() {
     clearTimeout(timer);
     setClicks(clicks + 1);
 
-    if (clicks + 1 === 3) {
-      // alert.log('0.5초 동안 3번 클릭했어!');
+    if (clicks + 1 === clickCount) {
       toggleDebug();
       setClicks(0);
     } else {
@@ -103,6 +103,7 @@ export default function App() {
 
   useEffect(() => {
     try {
+      setItems(new [maxLength]());
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
