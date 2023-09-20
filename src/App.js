@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import Loading from "./Loading";
 import CStampPanal from "./components/CStampPanal";
 import CDebugPopup from "./components/CDebugPopup";
+import CError from "./components/CError";
+import CPopup from "./components/CPopup";
 
 export default function App() {
   const maxLength = 5;
@@ -10,7 +11,6 @@ export default function App() {
   const [items, setItems] = useState([false, false, false, false, false]);
   const [isSuc, SetIsSuc] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
-  const [isLoading, SetIsLoading] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -20,8 +20,6 @@ export default function App() {
       setClicks(clicks + 1);
 
       if (clicks + 1 === 3) {
-        // alert.log('0.5초 동안 3번 클릭했어!');
-
         SetIsSuc(true);
         localStorage.setItem("finish", true);
         setClicks(0);
@@ -37,8 +35,7 @@ export default function App() {
   };
 
   const setErrorFunc = () => {
-    console.log("ssssssssss");
-    setIsError(true);
+    setIsError(false);
   };
 
   const debugClick = () => {
@@ -106,15 +103,11 @@ export default function App() {
 
   useEffect(() => {
     try {
-      setTimeout(() => SetIsLoading(false), 500);
-
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
       if (current === null) {
-        // console.log(localStorage);
         setErrorFunc();
-        // return;
       }
       console.log(current);
       switch (current) {
@@ -173,11 +166,6 @@ export default function App() {
         }
       });
 
-      console.log(cnt);
-      console.log(localStorage.getItem("finish"));
-      console.log(showPopup);
-      console.log(cnt >= maxLength);
-
       if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
         setShowPopup(true);
         SetIsSuc(true);
@@ -191,78 +179,39 @@ export default function App() {
       console.error("useEffect 오류:", e);
       setErrorFunc();
     }
-  }, []);
+  }, [items, showPopup]);
 
   return (
     <>
       {!isError ? (
-       (
-          <div className="bg-[#F5F5F5] flex justify-center">
-            {/* <div className="text-3xl text-gray-500 xxxs:text-red-500 xxs:text-green-500 xs:text-blue-500 sm:text-indigo-500 md:text-amber-600 lg:text-teal-950" >Helloworld</div> */}
-            <div
-              className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
-              onClick={debugClick}
-            ></div>
-            {/* <div></div> */}
-            <div
-              className=" fixed top-[7%] w-[80%] h-28 bg-red-200 opacity-0 z-[10000]"
-              onClick={handleClick}
-            ></div>
-            {showPopup ? (
-              <div>
-                {" "}
-                {isSuc ? (
-                  <div className="flex items-center justify-center">
-                    {" "}
-                    <img
-                      className="w-full sm:max-w-sm"
-                      src="/new/received.png"
-                    />
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center">
-                    {" "}
-                    <img
-                      className="w-full sm:max-w-sm"
-                      src="/new/completed.png"
-                    />
-                  </div>
-                )}
-              </div>
-            ) : (
-              <CStampPanal items={items} />
-            )}
-            <div className="flex items-center justify-center"></div>
-            {isDebug && (
-              <CDebugPopup
-                toggleDebug={toggleDebug}
-                clearData={clearData}
-                fillData={fillData}
-                changeFinish={changeFinish}
-              />
-            )}
-            <div
-              className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]"
-              onClick={() => toggleDebug()}
-            ></div>
-          </div>
-        )
-      ) : (
-        <div>
-          <div className="flex flex-col items-center justify-center w-screen h-screen bg-brand">
-            <div className=" text-md bg-brand">Access is denied. </div>
-
-            <div className="text-sm bg-brand">
-              {" "}
-              <br />
-              Please enable Cookies in your browser
-            </div>
-            <div className="text-sm bg-brand">
-              {" "}
-              or check your access is normal.
-            </div>
-          </div>
+        <div className="bg-[#F5F5F5] flex justify-center">
+          <div
+            className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
+            onClick={debugClick}
+          ></div>
+          <div
+            className=" fixed top-[7%] w-[80%] h-28 bg-red-200 opacity-0 z-[10000]"
+            onClick={handleClick}
+          ></div>
+          {showPopup ? <CPopup isSuc={isSuc} /> : (
+            <CStampPanal items={items} />
+          )}
+          <div className="flex items-center justify-center"></div>
+          {isDebug && (
+            <CDebugPopup
+              toggleDebug={toggleDebug}
+              clearData={clearData}
+              fillData={fillData}
+              changeFinish={changeFinish}
+            />
+          )}
+          <div
+            className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]"
+            onClick={() => toggleDebug()}
+          ></div>
         </div>
+      ) : (
+        <CError />
       )}
     </>
   );
