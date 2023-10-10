@@ -5,14 +5,17 @@ import CError from "./components/CError";
 import CPopup from "./components/CPopup";
 
 export default function App() {
+  //스탬프 카운트
   const maxLength = 5;
+
+  //debug 활성화를 위한 클릭
   const clickCount = 3;
   let timer;
   const [clicks, setClicks] = useState(0);
-  const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isSuc, SetIsSuc] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
 
   const handleClick = () => {
@@ -103,7 +106,7 @@ export default function App() {
 
   useEffect(() => {
     try {
-      setItems(new [maxLength]());
+      // setItems(new [maxLength]());
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
@@ -120,6 +123,7 @@ export default function App() {
           current = "7777";
           break;
 
+          //인덱스 암호화
         case "0c7dd660":
           current = "1";
           break;
@@ -180,7 +184,7 @@ export default function App() {
       console.error("useEffect 오류:", e);
       setErrorFunc();
     }
-  }, [items, showPopup]);
+  }, []);
 
   return (
     <>
