@@ -87,6 +87,20 @@ export default function App() {
     }
   };
 
+  const threeData = () => {
+    try {
+      localStorage.setItem("1", true);
+      localStorage.setItem("2", true);
+      localStorage.setItem("3", true);
+      localStorage.setItem("finish", false);
+      alert("all data fill");
+      window.location.href = "/?stp=1";
+    } catch (e) {
+      console.error("fillData 오류:", e);
+      setErrorFunc();
+    }
+  };
+
   const changeFinish = () => {
     try {
       localStorage.setItem("1", true);
@@ -201,6 +215,7 @@ export default function App() {
               toggleDebug={toggleDebug}
               clearData={clearData}
               fillData={fillData}
+              threeData={threeData}
               changeFinish={changeFinish}
             />
           )}
