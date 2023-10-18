@@ -192,7 +192,7 @@ export default function App() {
       console.error("useEffect 오류:", e);
       setErrorFunc();
     }
-  }, [items]);
+  }, []);
 
   return (
     <>
