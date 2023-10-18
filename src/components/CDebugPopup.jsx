@@ -30,6 +30,12 @@ const CDebugPopup = (props) => {
       클릭하면 데이터 초기화
     </div>
     <div
+    onClick={props.threeData}
+      className="py-5 text-center bg-teal-700 text-lime-500"
+    >
+      클릭하면 데이터 3개 채우기
+    </div>
+    <div
     onClick={props.fillData}
       className="py-5 text-center text-lime-500 bg-fuchsia-400"
     >
