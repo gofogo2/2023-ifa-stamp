@@ -18,6 +18,10 @@ const CStampPanal = (props) => {
         );
       })}
     </div>
+    {/* <div className='fixed top-0 left-0 flex flex-col w-screen h-screen bg-white ' >Registration
+    <button className='bg-green-100' >Continue</button>
+    
+    </div> */}
   </div>
   )
 }

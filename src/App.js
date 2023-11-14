@@ -63,7 +63,7 @@ export default function App() {
   const clearData = () => {
     try {
       localStorage.clear();
-      alert("all data clear");
+      // alert("all data clear");
       window.location.href = "/?stp=1";
     } catch (e) {
       console.error("clearData 오류:", e);
@@ -119,13 +119,20 @@ export default function App() {
   useEffect(() => {
     try {
       // setItems(new [maxLength]());
+
+      
+
+      if(localStorage.getItem("finish") === 'true'){
+        clearData();
+      }
+
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
       if (current === null) {
         setErrorFunc();
       }
-      console.log(current);
+      // console.log(current);
       switch (current) {
         case "1":
         case "2":
@@ -151,13 +158,13 @@ export default function App() {
           break;
       }
 
-      console.log(current);
+      // console.log(current);
 
       var modifyItems = items;
 
       items.forEach((val, i) => {
         const reval = localStorage.getItem(i + 1);
-        console.log(reval);
+        // console.log(reval);
         if (reval === null || reval === false) {
           modifyItems[i] = false;
         } else {
@@ -199,11 +206,11 @@ export default function App() {
       {!isError ? (
         <div className="bg-[#F5F5F5] flex justify-center">
           <div
-            className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
+            className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-50 z-[10000]"
             onClick={debugClick}
           ></div>
           <div
-            className=" fixed top-[7%] w-[80%] h-28 bg-red-200 opacity-0 z-[10000]"
+            className=" fixed top-[7%] w-[80%] h-28 bg-red-500 opacity-50 z-[10000]"
             onClick={handleClick}
           ></div>
           {showPopup ? <CPopup isSuc={isSuc} /> : (
