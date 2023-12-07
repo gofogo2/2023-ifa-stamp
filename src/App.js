@@ -3,6 +3,8 @@ import CStampPanal from "./components/CStampPanal";
 import CDebugPopup from "./components/CDebugPopup";
 import CError from "./components/CError";
 import CPopup from "./components/CPopup";
+import CRegisteration from "./components/CRegisteration";
+import CVerticle from "./components/CVerticle";
 
 export default function App() {
   //스탬프 카운트
@@ -17,6 +19,14 @@ export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [isVerticle,setIsVerticle] = useState(true);
+
+
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+});
 
   const handleClick = () => {
     try {
@@ -79,6 +89,7 @@ export default function App() {
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
       localStorage.setItem("finish", false);
+      localStorage.setItem("isLogin",true);
       alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -93,6 +104,7 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("finish", false);
+      localStorage.setItem("isLogin",true);
       alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -108,6 +120,7 @@ export default function App() {
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
       localStorage.setItem("finish", true);
+      localStorage.setItem("isLogin",true);
       alert("go to finish");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -117,10 +130,40 @@ export default function App() {
   };
 
   useEffect(() => {
+    const handleResize = () => {
+        setWindowSize({
+            width: window.innerWidth,
+            height: window.innerHeight,
+        });
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+}, []);
+
+// 화면 방향 변화 감지
+useEffect(() => {
+    if (windowSize.width > windowSize.height+200) {
+        // 가로 모드
+        // setIsVerticle(false);
+        // alert('세로모드를 이용해주세요');
+    } else {
+        // 세로 모드
+        // setIsVerticle(true);
+        
+    }
+}, [windowSize]);
+
+  useEffect(() => {
     try {
       // setItems(new [maxLength]());
 
-      
+      if(localStorage.getItem("isLogin")!== 'true'){
+        
+      }
 
       if(localStorage.getItem("finish") === 'true'){
         clearData();
@@ -203,14 +246,15 @@ export default function App() {
 
   return (
     <>
-      {!isError ? (
+    
+      {isVerticle?( isLogin?( !isError ? (
         <div className="bg-[#F5F5F5] flex justify-center">
           <div
-            className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-50 z-[10000]"
+            className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
             onClick={debugClick}
           ></div>
           <div
-            className=" fixed top-[7%] w-[80%] h-28 bg-red-500 opacity-50 z-[10000]"
+            className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
             onClick={handleClick}
           ></div>
           {showPopup ? <CPopup isSuc={isSuc} /> : (
@@ -233,7 +277,7 @@ export default function App() {
         </div>
       ) : (
         <CError />
-      )}
+      )):<CRegisteration />):<CVerticle/>}
     </>
   );
 }
