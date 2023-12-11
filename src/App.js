@@ -15,18 +15,12 @@ export default function App() {
   let timer;
   const [clicks, setClicks] = useState(0);
   const [isSuc, SetIsSuc] = useState(false);
+  const [isComplete, SetIsComplete] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
-  const [isVerticle,setIsVerticle] = useState(true);
-
-
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-});
 
   const handleClick = () => {
     try {
@@ -73,6 +67,7 @@ export default function App() {
   const clearData = () => {
     try {
       localStorage.clear();
+      localStorage.setItem("isLogin", true);
       // alert("all data clear");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -89,7 +84,7 @@ export default function App() {
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
       localStorage.setItem("finish", false);
-      localStorage.setItem("isLogin",true);
+      localStorage.setItem("isLogin", true);
       alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -104,7 +99,7 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("finish", false);
-      localStorage.setItem("isLogin",true);
+      localStorage.setItem("isLogin", true);
       alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -120,7 +115,7 @@ export default function App() {
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
       localStorage.setItem("finish", true);
-      localStorage.setItem("isLogin",true);
+      localStorage.setItem("isLogin", true);
       alert("go to finish");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -129,43 +124,32 @@ export default function App() {
     }
   };
 
-  useEffect(() => {
-    const handleResize = () => {
-        setWindowSize({
-            width: window.innerWidth,
-            height: window.innerHeight,
-        });
-    };
+  const loginTrue = () => {
+    setIsLogin(true);
+    localStorage.setItem("isLogin", true);
+  };
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-        window.removeEventListener('resize', handleResize);
-    };
-}, []);
-
-// 화면 방향 변화 감지
-useEffect(() => {
-    if (windowSize.width > windowSize.height+200) {
-        // 가로 모드
-        // setIsVerticle(false);
-        // alert('세로모드를 이용해주세요');
-    } else {
-        // 세로 모드
-        // setIsVerticle(true);
-        
-    }
-}, [windowSize]);
+  const loginFalse = () => {
+    setIsLogin(false);
+    localStorage.setItem("isLogin", false);
+  };
 
   useEffect(() => {
     try {
-      // setItems(new [maxLength]());
-
-      if(localStorage.getItem("isLogin")!== 'true'){
-        
+      if (localStorage.getItem("isLogin") === null) {
+        localStorage.setItem("isLogin", "false");
+        setIsLogin(false);
+      } else if (localStorage.getItem("isLogin") === "false") {
+        setIsLogin(false);
+      } else {
+        setIsLogin(true);
       }
 
-      if(localStorage.getItem("finish") === 'true'){
+      console.log(localStorage.getItem("isLogin"));
+      if (localStorage.getItem("isLogin") !== "true") {
+      }
+
+      if (localStorage.getItem("finish") === "true") {
         clearData();
       }
 
@@ -184,7 +168,7 @@ useEffect(() => {
           current = "7777";
           break;
 
-          //인덱스 암호화
+        //인덱스 암호화
         case "0c7dd660":
           current = "1";
           break;
@@ -246,38 +230,44 @@ useEffect(() => {
 
   return (
     <>
-    
-      {isVerticle?( isLogin?( !isError ? (
-        <div className="bg-[#F5F5F5] flex justify-center">
-          <div
-            className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
-            onClick={debugClick}
-          ></div>
-          <div
-            className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
-            onClick={handleClick}
-          ></div>
-          {showPopup ? <CPopup isSuc={isSuc} /> : (
-            <CStampPanal items={items} />
-          )}
-          <div className="flex items-center justify-center"></div>
-          {isDebug && (
-            <CDebugPopup
-              toggleDebug={toggleDebug}
-              clearData={clearData}
-              fillData={fillData}
-              threeData={threeData}
-              changeFinish={changeFinish}
-            />
-          )}
-          <div
-            className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]"
-            onClick={() => toggleDebug()}
-          ></div>
-        </div>
+      {isLogin ? (
+        !isError ? (
+          <div className="bg-[#F5F5F5] flex justify-center">
+            <div
+              className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
+              onClick={debugClick}
+            ></div>
+            <div
+              className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
+              onClick={handleClick}
+            ></div>
+            {showPopup ? (
+              <CPopup isSuc={isSuc} />
+            ) : (
+              <CStampPanal items={items} />
+            )}
+            <div className="flex items-center justify-center "></div>
+            {isDebug && (
+              <CDebugPopup
+                toggleDebug={toggleDebug}
+                clearData={clearData}
+                fillData={fillData}
+                threeData={threeData}
+                changeFinish={changeFinish}
+                loginFalse={loginFalse}
+              />
+            )}
+            <div
+              className="fixed top-0 z-[10000] w-5 h-5 bg-red-100"
+              onClick={() => toggleDebug()}
+            ></div>
+          </div>
+        ) : (
+          <CError />
+        )
       ) : (
-        <CError />
-      )):<CRegisteration />):<CVerticle/>}
+        <CRegisteration loginTrue={loginTrue} />
+      )}
     </>
   );
 }
