@@ -143,7 +143,7 @@ const CRegisteration = (props) => {
           )}
           {state !== 0 ? (
             policy === true && terms === true ? (
-              <img src="login/btn_agree.png" className="w-[90%]" alt="" onClick={()=>{props.loginTrue();
+              <img src="login/btn_agree.png" className="w-[90%]" alt="" onClick={()=>{props.loginTrue(email);
               //DB 아이디 업데이트
               }} />
             ) : (

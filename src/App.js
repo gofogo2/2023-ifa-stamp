@@ -124,9 +124,20 @@ export default function App() {
     }
   };
 
-  const loginTrue = () => {
-    setIsLogin(true);
-    localStorage.setItem("isLogin", true);
+  const loginTrue = (email) => {
+    fetch("http://localhost:3333/user/add", {
+      method: "POST",
+      body: JSON.stringify({ email: email, region: "france" }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLogin(true);
+        localStorage.setItem("isLogin", true);
+        return;
+      });
   };
 
   const loginFalse = () => {
