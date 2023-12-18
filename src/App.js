@@ -167,7 +167,10 @@ export default function App() {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
-      if (current === null) {
+      // if (current === null) {
+      //   setErrorFunc();
+      // }
+      if (current === "reset") {
         setErrorFunc();
       }
       // console.log(current);
