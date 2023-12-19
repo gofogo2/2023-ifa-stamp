@@ -21,6 +21,8 @@ export default function App() {
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
+  const [count, setCount] = useState(false);
+  const [isMainLang, setIsMainLang] = useState(true);
 
   const handleClick = () => {
     try {
@@ -147,6 +149,7 @@ export default function App() {
 
   useEffect(() => {
     try {
+      
       if (localStorage.getItem("isLogin") === null) {
         localStorage.setItem("isLogin", "false");
         setIsLogin(false);
@@ -155,6 +158,8 @@ export default function App() {
       } else {
         setIsLogin(true);
       }
+
+      console.log(localStorage);
 
       console.log(localStorage.getItem("isLogin"));
       if (localStorage.getItem("isLogin") !== "true") {
@@ -233,13 +238,16 @@ export default function App() {
         return;
       }
 
+      setCount(cnt);
+
       if (cnt >= maxLength) {
-        setShowPopup(true);
+        setShowPopup(false);
       }
     } catch (e) {
       console.error("useEffect 오류:", e);
       setErrorFunc();
     }
+    
   }, []);
 
   return (
@@ -247,6 +255,7 @@ export default function App() {
       {isLogin ? (
         !isError ? (
           <div className="bg-[#F5F5F5] flex justify-center">
+           
             <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
               onClick={debugClick}
@@ -259,9 +268,14 @@ export default function App() {
               <CPopup isSuc={isSuc} />
             ) : (
               <div>
-                 <img src="stamp2/KR_01_00.png" className="w-full sm:max-w-sm" alt="" />
+                
+                <div>{count}</div>                
+                <img src={`stamp2/${isMainLang?"KR":"EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
+                
+              
+
                 <div className="relative flex items-center justify-center" >
-                <img src="stamp2/plate.png"  className="w-full sm:max-w-sm"/>
+                <img src={`stamp2/${count === maxLength?"plate_full":"plate"}.png`}  className="w-full sm:max-w-sm"/>
                 <img src="stamp2/1.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
                 <img src="stamp2/2.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
                 <img src="stamp2/3.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
