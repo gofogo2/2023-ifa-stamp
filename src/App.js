@@ -125,7 +125,7 @@ export default function App() {
   };
 
   const loginTrue = (email) => {
-    fetch("http://localhost:3333/user/add", {
+    fetch("http://192.168.20.74:3333/user/add", {
       method: "POST",
       body: JSON.stringify({ email: email, region: "france" }),
       headers: {
@@ -258,7 +258,18 @@ export default function App() {
             {showPopup ? (
               <CPopup isSuc={isSuc} />
             ) : (
-              <CStampPanal items={items} />
+              <div>
+                 <img src="stamp2/KR_01_00.png" className="w-full sm:max-w-sm" alt="" />
+                <div className="relative flex items-center justify-center" >
+                <img src="stamp2/plate.png"  className="w-full sm:max-w-sm"/>
+                <img src="stamp2/1.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
+                <img src="stamp2/2.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
+                <img src="stamp2/3.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
+                <img src="stamp2/4.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
+                </div>
+                <img src="stamp2/btn_03.png"  className="w-full sm:max-w-sm" ></img>
+              </div>
+              // <CStampPanal items={items} />
             )}
             <div className="flex items-center justify-center "></div>
             {isDebug && (

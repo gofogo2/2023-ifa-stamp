@@ -1,0 +1,63 @@
+한국(유스) kr
+(reg)   http://kr.galaxyexperiencespace.com
+(1)     http://kr.galaxyexperiencespace.com?stp=0c7dd660
+(2)     http://kr.galaxyexperiencespace.com?stp=1c85f955
+(3)     http://kr.galaxyexperiencespace.com?stp=4b9d8ac5
+(4)     http://kr.galaxyexperiencespace.com?stp=6f8b2e77
+(reset) http://kr.galaxyexperiencespace.com?stp=reset
+
+미국(ILP) us
+(reg)   http://us.galaxyexperiencespace.com
+(1)     http://us.galaxyexperiencespace.com?stp=0c7dd660
+(2)     http://us.galaxyexperiencespace.com?stp=1c85f955
+(3)     http://us.galaxyexperiencespace.com?stp=4b9d8ac5
+(4)     http://us.galaxyexperiencespace.com?stp=6f8b2e77
+(reset) http://us.galaxyexperiencespace.com?stp=reset
+
+독일(ILP-S) de
+(reg)   http://de.galaxyexperiencespace.com
+(1)     http://de.galaxyexperiencespace.com?stp=0c7dd660
+(2)     http://de.galaxyexperiencespace.com?stp=1c85f955
+(3)     http://de.galaxyexperiencespace.com?stp=4b9d8ac5
+(4)     http://de.galaxyexperiencespace.com?stp=6f8b2e77
+(reset) http://de.galaxyexperiencespace.com?stp=reset
+
+프랑스(ILP-S) fr
+(reg)   http://fr.galaxyexperiencespace.com
+(1)     http://fr.galaxyexperiencespace.com?stp=0c7dd660
+(2)     http://fr.galaxyexperiencespace.com?stp=1c85f955
+(3)     http://fr.galaxyexperiencespace.com?stp=4b9d8ac5
+(4)     http://fr.galaxyexperiencespace.com?stp=6f8b2e77
+(reset) http://fr.galaxyexperiencespace.com?stp=reset
+
+태국(ILP-S) th
+(reg)   http://th.galaxyexperiencespace.com
+(1)     http://th.galaxyexperiencespace.com?stp=0c7dd660
+(2)     http://th.galaxyexperiencespace.com?stp=1c85f955
+(3)     http://th.galaxyexperiencespace.com?stp=4b9d8ac5
+(4)     http://th.galaxyexperiencespace.com?stp=6f8b2e77
+(reset) http://th.galaxyexperiencespace.com?stp=reset
+
+아랍에미레이트(ILP-S) uae
+(reg)   http://uae.galaxyexperiencespace.com
+(1)     http://uae.galaxyexperiencespace.com?stp=0c7dd660
+(2)     http://uae.galaxyexperiencespace.com?stp=1c85f955
+(3)     http://uae.galaxyexperiencespace.com?stp=4b9d8ac5
+(4)     http://uae.galaxyexperiencespace.com?stp=6f8b2e77
+(reset) http://uae.galaxyexperiencespace.com?stp=reset
+
+영국(ILP-S) gb
+(reg)   http://gb.galaxyexperiencespace.com
+(1)     http://gb.galaxyexperiencespace.com?stp=0c7dd660
+(2)     http://gb.galaxyexperiencespace.com?stp=1c85f955
+(3)     http://gb.galaxyexperiencespace.com?stp=4b9d8ac5
+(4)     http://gb.galaxyexperiencespace.com?stp=6f8b2e77
+(reset) http://gb.galaxyexperiencespace.com?stp=reset
+
+스페인(ILP-S) es
+(reg)   http://es.galaxyexperiencespace.com
+(1)     http://es.galaxyexperiencespace.com?stp=0c7dd660
+(2)     http://es.galaxyexperiencespace.com?stp=1c85f955
+(3)     http://es.galaxyexperiencespace.com?stp=4b9d8ac5
+(4)     http://es.galaxyexperiencespace.com?stp=6f8b2e77
+(reset) http://es.galaxyexperiencespace.com?stp=reset
