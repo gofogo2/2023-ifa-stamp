@@ -252,7 +252,7 @@ export default function App() {
 
   return (
     <>
-      {isLogin ? (
+      { (
         !isError ? (
           <div className="bg-[#F5F5F5] flex justify-center">
            
@@ -304,8 +304,6 @@ export default function App() {
         ) : (
           <CError />
         )
-      ) : (
-        <CRegisteration loginTrue={loginTrue} />
       )}
     </>
   );
