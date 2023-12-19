@@ -20,7 +20,7 @@ export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const [count, setCount] = useState(false);
   const [isMainLang, setIsMainLang] = useState(true);
 
