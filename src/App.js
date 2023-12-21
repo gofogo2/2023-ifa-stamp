@@ -8,14 +8,13 @@ import CVerticle from "./components/CVerticle";
 
 export default function App() {
   //스탬프 카운트
-  const maxLength = 4;
+  const maxLength = 5;
 
   //debug 활성화를 위한 클릭
   const clickCount = 3;
   let timer;
   const [clicks, setClicks] = useState(0);
   const [isSuc, SetIsSuc] = useState(false);
-  const [isComplete, SetIsComplete] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [items, setItems] = useState(new Array(maxLength).fill(false));
@@ -43,6 +42,11 @@ export default function App() {
       setErrorFunc();
     }
   };
+
+  const goToFinished = () => {
+    setShowPopup(true);
+    localStorage.setItem("finish", true);
+  }
 
   const setErrorFunc = () => {
     setIsError(false);
@@ -85,6 +89,7 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
+      localStorage.setItem("5", true);
       localStorage.setItem("finish", false);
       localStorage.setItem("isLogin", true);
       alert("all data fill");
@@ -116,8 +121,11 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
+      localStorage.setItem("5", true);
       localStorage.setItem("finish", true);
       localStorage.setItem("isLogin", true);
+      localStorage.setItem("isReset", false);
+      localStorage.setItem("lang", true);
       alert("go to finish");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -144,12 +152,20 @@ export default function App() {
 
   const loginFalse = () => {
     setIsLogin(false);
+    clearData();
     localStorage.setItem("isLogin", false);
   };
 
   useEffect(() => {
     try {
-      
+      if(localStorage.getItem("lang") !== null){
+         if(localStorage.getItem("lang") == 'false'){
+          setIsMainLang(false);
+         }
+      }
+
+
+      // 로그인 로직
       if (localStorage.getItem("isLogin") === null) {
         localStorage.setItem("isLogin", "false");
         setIsLogin(false);
@@ -159,31 +175,39 @@ export default function App() {
         setIsLogin(true);
       }
 
-      console.log(localStorage);
-
       console.log(localStorage.getItem("isLogin"));
-      if (localStorage.getItem("isLogin") !== "true") {
-      }
 
-      if (localStorage.getItem("finish") === "true") {
-        clearData();
-      }
+
+
+      // if (localStorage.getItem("finish") === "true") {
+      //   clearData();
+      // }
 
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
+
+
+
+
+
+      if (localStorage.getItem("reset") === 'true' && current !== "reset") {
+        clearData();
+      }
+
       // if (current === null) {
       //   setErrorFunc();
       // }
-      if (current === "reset") {
-        setErrorFunc();
-      }
+      // if (current === "reset") {
+      //   setErrorFunc();
+      // }
       // console.log(current);
       switch (current) {
         case "1":
         case "2":
         case "3":
         case "4":
+        case "5":
           current = "7777";
           break;
 
@@ -199,6 +223,9 @@ export default function App() {
           break;
         case "6f8b2e77":
           current = "4";
+          break;
+        case "7d8a2kv6":
+          current = "5";
           break;
         default:
           break;
@@ -232,13 +259,19 @@ export default function App() {
         }
       });
 
-      if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
-        setShowPopup(true);
+      setCount(cnt);
+
+      if (current === "reset" && cnt >= maxLength) {
         SetIsSuc(true);
-        return;
+        localStorage.setItem('reset', true);
       }
 
-      setCount(cnt);
+
+      if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
+        setShowPopup(true);
+        // SetIsSuc(true);
+        return;
+      }
 
       if (cnt >= maxLength) {
         setShowPopup(false);
@@ -247,15 +280,15 @@ export default function App() {
       console.error("useEffect 오류:", e);
       setErrorFunc();
     }
-    
+
   }, []);
 
   return (
     <>
-      { (
+      {isLogin ? (
         !isError ? (
           <div className="bg-[#F5F5F5] flex justify-center">
-           
+
             <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
               onClick={debugClick}
@@ -265,23 +298,35 @@ export default function App() {
               onClick={handleClick}
             ></div>
             {showPopup ? (
-              <CPopup isSuc={isSuc} />
+              <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
-              <div>
-                
-                <div>{count}</div>                
-                <img src={`stamp2/${isMainLang?"KR":"EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
-                
-              
+              <div className="relative" >
+                <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
+                <img className="absolute top-0" onClick={() => {
+                  localStorage.setItem("lang", !isMainLang);
+                  setIsMainLang(!isMainLang);
+                }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} />
+
+
 
                 <div className="relative flex items-center justify-center" >
-                <img src={`stamp2/${count === maxLength?"plate_full":"plate"}.png`}  className="w-full sm:max-w-sm"/>
-                <img src="stamp2/1.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
-                <img src="stamp2/2.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
-                <img src="stamp2/3.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
-                <img src="stamp2/4.png"  className="absolute top-0 z-10 w-full sm:max-w-sm" />
+                  <img src={`stamp2/${count === maxLength ? "plate_full" : "plate"}.png`} className="w-full sm:max-w-sm" />
+
+                  {items.map((val, i) => {
+                    return val === true ? (
+                      <img
+                        key={i}
+                        alt=""
+                        src={`stamp2/${i + 1}.png`}
+                        className={`absolute w-full sm:max-w-sm top-0 z-${+(i + 1) * 10} `}
+                      />
+                    ) : (
+                      ""
+                    );
+                  })}
                 </div>
-                <img src="stamp2/btn_03.png"  className="w-full sm:max-w-sm" ></img>
+                {count === 5 ? <img onClick={() => { goToFinished() }} src={`stamp2/btn_05_${isMainLang ? "KR" : "EN"}.png`} className="w-full sm:max-w-sm" ></img> : <img src={`stamp2/btn_0${count}.png`} className="w-full sm:max-w-sm" ></img>}
+
               </div>
               // <CStampPanal items={items} />
             )}
@@ -304,6 +349,8 @@ export default function App() {
         ) : (
           <CError />
         )
+      ) : (
+        <CRegisteration isMainLang={isMainLang} loginTrue={loginTrue} />
       )}
     </>
   );
