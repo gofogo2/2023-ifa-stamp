@@ -135,9 +135,9 @@ export default function App() {
   };
 
   const loginTrue = (email) => {
-    fetch(`http://${process.env.URI}:3333/user/add`, {
+    fetch(`http://${process.env.REACT_APP_URI}:3333/user/add`, {
       method: "POST",
-      body: JSON.stringify({ email: email, region: process.env.REGION }),
+      body: JSON.stringify({ email: email, region: process.env.REACT_APP_REGION }),
       headers: {
         "Content-Type": "application/json",
       },
