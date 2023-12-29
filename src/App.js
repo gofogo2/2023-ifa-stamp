@@ -23,29 +23,10 @@ export default function App() {
   const [count, setCount] = useState(false);
   const [isMainLang, setIsMainLang] = useState(true);
 
-  const handleClick = () => {
-    try {
-      clearTimeout(timer);
-      setClicks(clicks + 1);
-
-      if (clicks + 1 === clickCount) {
-        SetIsSuc(true);
-        localStorage.setItem("finish", true);
-        setClicks(0);
-      } else {
-        timer = setTimeout(() => {
-          setClicks(0);
-        }, 500);
-      }
-    } catch (e) {
-      console.error("handleClick 오류:", e);
-      setErrorFunc();
-    }
-  };
-
   const goToFinished = () => {
     setShowPopup(true);
     localStorage.setItem("finish", true);
+    document.body.style.backgroundColor = '#F4F7F5';
   }
 
   const setErrorFunc = () => {
@@ -146,6 +127,7 @@ export default function App() {
       .then((data) => {
         setIsLogin(true);
         localStorage.setItem("isLogin", true);
+        document.body.style.backgroundColor = '#f5f5f5';
         return;
       });
   };
@@ -169,10 +151,13 @@ export default function App() {
       if (localStorage.getItem("isLogin") === null) {
         localStorage.setItem("isLogin", "false");
         setIsLogin(false);
+        document.body.style.backgroundColor = '#ffffff';
       } else if (localStorage.getItem("isLogin") === "false") {
         setIsLogin(false);
+        document.body.style.backgroundColor = '#ffffff';
       } else {
         setIsLogin(true);
+        document.body.style.backgroundColor = '#f5f5f5';
       }
 
       console.log(localStorage.getItem("isLogin"));
@@ -263,12 +248,14 @@ export default function App() {
 
       if (current === "reset" && cnt >= maxLength) {
         SetIsSuc(true);
+        document.body.style.backgroundColor = '#A0D6B4';
         localStorage.setItem('reset', true);
       }
 
 
       if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
         setShowPopup(true);
+        document.body.style.backgroundColor = '#A0D6B4';
         // SetIsSuc(true);
         return;
       }
@@ -295,7 +282,6 @@ export default function App() {
             ></div>
             <div
               className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
-              onClick={handleClick}
             ></div>
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
@@ -324,8 +310,9 @@ export default function App() {
                       ""
                     );
                   })}
+                  {count === 5 ? <img onClick={() => { goToFinished()}} src={`stamp2/btn_05_${isMainLang ? "KR" : "EN"}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img>}
                 </div>
-                {count === 5 ? <img onClick={() => { goToFinished() }} src={`stamp2/btn_05_${isMainLang ? "KR" : "EN"}.png`} className="w-full sm:max-w-sm" ></img> : <img src={`stamp2/btn_0${count}.png`} className="w-full sm:max-w-sm" ></img>}
+                
 
               </div>
               // <CStampPanal items={items} />
@@ -342,7 +329,7 @@ export default function App() {
               />
             )}
             <div
-              className="fixed top-0 z-[10000] w-5 h-5 bg-red-100"
+              className="fixed -top-1 z-[10000] w-5 h-5 bg-red-100"
               onClick={() => toggleDebug()}
             ></div>
           </div>
