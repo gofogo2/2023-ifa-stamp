@@ -8,7 +8,7 @@ import CVerticle from "./components/CVerticle";
 
 export default function App() {
   //스탬프 카운트
-  const maxLength = 5;
+  const maxLength = 4;
 
   //debug 활성화를 위한 클릭
   const clickCount = 3;
@@ -26,7 +26,7 @@ export default function App() {
   const goToFinished = () => {
     setShowPopup(true);
     localStorage.setItem("finish", true);
-    document.body.style.backgroundColor = '#F4F7F5';
+    document.body.style.backgroundColor = '#ffffff';
   }
 
   const setErrorFunc = () => {
@@ -70,7 +70,6 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
-      localStorage.setItem("5", true);
       localStorage.setItem("finish", false);
       localStorage.setItem("isLogin", true);
       alert("all data fill");
@@ -102,7 +101,6 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
-      localStorage.setItem("5", true);
       localStorage.setItem("finish", true);
       localStorage.setItem("isLogin", true);
       localStorage.setItem("isReset", false);
@@ -127,7 +125,7 @@ export default function App() {
       .then((data) => {
         setIsLogin(true);
         localStorage.setItem("isLogin", true);
-        document.body.style.backgroundColor = '#f5f5f5';
+        document.body.style.backgroundColor = '#ffffff';
         return;
       });
   };
@@ -157,7 +155,7 @@ export default function App() {
         document.body.style.backgroundColor = '#ffffff';
       } else {
         setIsLogin(true);
-        document.body.style.backgroundColor = '#f5f5f5';
+        document.body.style.backgroundColor = '#ffffff';
       }
 
       console.log(localStorage.getItem("isLogin"));
@@ -248,14 +246,14 @@ export default function App() {
 
       if (current === "reset" && cnt >= maxLength) {
         SetIsSuc(true);
-        document.body.style.backgroundColor = '#A0D6B4';
+        document.body.style.backgroundColor = '#ffffff';
         localStorage.setItem('reset', true);
       }
 
 
       if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
         setShowPopup(true);
-        document.body.style.backgroundColor = '#A0D6B4';
+        document.body.style.backgroundColor = '#ffffff';
         // SetIsSuc(true);
         return;
       }
@@ -274,8 +272,7 @@ export default function App() {
     <>
       {isLogin ? (
         !isError ? (
-          <div className="bg-[#F5F5F5] flex justify-center">
-
+          <div className="relative bg-[#F5F5F5] flex justify-center">
             <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
               onClick={debugClick}
@@ -288,10 +285,10 @@ export default function App() {
             ) : (
               <div className="relative" >
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
-                <img className="absolute top-0" onClick={() => {
+                {/* <img className="absolute top-0" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
                   setIsMainLang(!isMainLang);
-                }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} />
+                }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} /> */}
 
 
 
@@ -304,13 +301,13 @@ export default function App() {
                         key={i}
                         alt=""
                         src={`stamp2/${i + 1}.png`}
-                        className={`absolute w-full sm:max-w-sm top-0 z-${+(i + 1) * 10} `}
+                        className={`absolute w-full sm:max-w-sm top-0 z-${+(i + 1) * 2} `}
                       />
                     ) : (
                       ""
                     );
                   })}
-                  {count === 5 ? <img onClick={() => { goToFinished()}} src={`stamp2/btn_05_${isMainLang ? "KR" : "EN"}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img>}
+                  {count === maxLength ? <img onClick={() => {goToFinished()}} src={`stamp2/btn_04.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm" ></img>}
                 </div>
                 
 
@@ -329,7 +326,7 @@ export default function App() {
               />
             )}
             <div
-              className="fixed -top-1 z-[10000] w-5 h-5 bg-red-100"
+              className="fixed top-0 z-[10000] w-5 h-5 bg-red-100"
               onClick={() => toggleDebug()}
             ></div>
           </div>

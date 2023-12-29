@@ -24,14 +24,16 @@ const CRegisteration = (props) => {
       <div className="grid grid-cols-1 grid-rows-4 md:grid-rows-1 md:grid-cols-2">
         <div className="">
           {state === 0 ? (
-            <img src={`login/${props.isMainLang?"KR":"EN"}_reg_01.png `} className="w-full" alt="" />
+            <img src={`login/${props.isMainLang ? "KR" : "EN"}_reg_01.png `} className="w-full" alt="" />
           ) : (
-            <img src={`login/${props.isMainLang?"KR":"EN"}_reg_02.png `} className="w-full" alt="" />
+            <img src={`login/${props.isMainLang ? "KR" : "EN"}_reg_02.png `} className="w-full" alt="" />
           )}
+
         </div>
 
         {state === 0 ? (
-          <div className="flex flex-col items-center justify-center ">
+          <div className="relative flex flex-col items-center justify-center ">
+
             <input
               value={email}
               onChange={handleInputChange}
@@ -40,11 +42,14 @@ const CRegisteration = (props) => {
             />
             {!isVaild ? (
               <div className="m-0 w-[90%]">
-                <img className="w-[30%] mt-2" src={`login/${props.isMainLang?"KR":"EN"}_invalid.png`}/>
-                </div>
+                <img className="w-[30%] mt-2" src={`login/${props.isMainLang ? "KR" : "EN"}_invalid.png`} />
+              </div>
             ) : (
               ""
             )}
+            <div className="w-full flex " >
+              <img className="absolute top-12 w-[50%] ml-[6%]" src="login/signin.png" />
+            </div>
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center ">
@@ -52,7 +57,7 @@ const CRegisteration = (props) => {
               {" "}
               {policy === true && terms === true ? (
                 <img
-                src={`login/${props.isMainLang?"KR":"EN"}_agree_all.png `}
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_all.png `}
                   onClick={() => {
                     setPolicy(false);
                     setTerms(false);
@@ -61,7 +66,7 @@ const CRegisteration = (props) => {
                 />
               ) : (
                 <img
-                src={`login/${props.isMainLang?"KR":"EN"}_agree_all_off.png `}
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_all_off.png `}
                   onClick={() => {
                     setPolicy(true);
                     setTerms(true);
@@ -73,11 +78,11 @@ const CRegisteration = (props) => {
             <div className="flex flex-row items-center w-[90%] relative">
               <div
                 className="absolute top-0 h-full left-20  w-[80%]"
-                onClick={() => {setPopupPolicy(true)}}
+                onClick={() => { setPopupPolicy(true) }}
               ></div>
               {policy === true ? (
                 <img
-                src={`login/${props.isMainLang?"KR":"EN"}_agree_privacy.png `}
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_privacy.png `}
                   onClick={() => {
                     setPolicy(false);
                   }}
@@ -86,7 +91,7 @@ const CRegisteration = (props) => {
                 />
               ) : (
                 <img
-                src={`login/${props.isMainLang?"KR":"EN"}_agree_privacy_off.png `}
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_privacy_off.png `}
                   onClick={() => {
                     setPolicy(true);
                   }}
@@ -98,11 +103,11 @@ const CRegisteration = (props) => {
             <div className="flex flex-row items-center w-[90%] relative">
               <div
                 className="absolute top-0 h-full left-20  w-[80%]"
-                onClick={() => {setPopupTerms(true)}}
+                onClick={() => { setPopupTerms(true) }}
               ></div>
               {terms === true ? (
                 <img
-                src={`login/${props.isMainLang?"KR":"EN"}_agree_terms.png `}
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_terms.png `}
                   onClick={() => {
                     setTerms(false);
                   }}
@@ -111,7 +116,7 @@ const CRegisteration = (props) => {
                 />
               ) : (
                 <img
-                src={`login/${props.isMainLang?"KR":"EN"}_agree_terms_off.png `}
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_terms_off.png `}
                   onClick={() => {
                     setTerms(true);
                   }}
@@ -127,7 +132,7 @@ const CRegisteration = (props) => {
           {state === 0 ? (
             isVaild ? (
               <img
-              src={`login/${props.isMainLang?"KR":"EN"}_btn_next.png `}
+                src={`login/${props.isMainLang ? "KR" : "EN"}_btn_next.png `}
                 onClick={() => {
                   setState(1);
                   setIsVailed(false);
@@ -136,47 +141,48 @@ const CRegisteration = (props) => {
                 alt=""
               />
             ) : (
-              <img src={`login/${props.isMainLang?"KR":"EN"}_btn_next_off.png `} className="w-[90%]" alt="" />
+              <img src={`login/${props.isMainLang ? "KR" : "EN"}_btn_next_off.png `} className="w-[90%]" alt="" />
             )
           ) : (
             ""
           )}
           {state !== 0 ? (
             policy === true && terms === true ? (
-              <img src={`login/${props.isMainLang?"KR":"EN"}_btn_agree.png `} className="w-[90%]" alt="" onClick={()=>{props.loginTrue(email);
-              //DB 아이디 업데이트
+              <img src={`login/${props.isMainLang ? "KR" : "EN"}_btn_agree.png `} className="w-[90%]" alt="" onClick={() => {
+                props.loginTrue(email);
+                //DB 아이디 업데이트
               }} />
             ) : (
-              <img src={`login/${props.isMainLang?"KR":"EN"}_btn_agree_off.png `} className="w-[90%]" alt="" />
+              <img src={`login/${props.isMainLang ? "KR" : "EN"}_btn_agree_off.png `} className="w-[90%]" alt="" />
             )
           ) : (
             ""
           )}
         </div>
       </div>
-      {popupTerms === true ? (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-green-100">
-        <div className="mt-7">
-          <div className="w-[100%] flex justify-center items-center"  onClick={()=>{setPopupTerms(false)}}>
-            <img className="w-[90%]" src={`login/${props.isMainLang?"KR":"EN"}_title_privacy.png `} />
+      {popupPolicy === true ? (
+        <div className="fixed top-0 left-0 flex flex-col items-center w-screen h-screen bg-white">
+          <div className="mt-7">
+            <div className="w-[100%] flex justify-center items-center" onClick={() => { setPopupPolicy(false) }}>
+              <img className="w-[80%]" src={`login/${props.isMainLang ? "KR" : "EN"}_title_privacy.png `} />
+            </div>
+          </div>
+          <div className="w-[80%] h-[80%] overflow-scroll mt-10">
+            <img src="login/KR_privacy.png" />
           </div>
         </div>
-        <div className="w-[90%] h-[80%] overflow-scroll mt-7">
-          <img src="login/terms_content.png" />
-        </div>
-      </div>
       ) : (
         ""
       )}
-      {popupPolicy === true ? (
-        <div className="fixed top-0 left-0 flex flex-col items-center w-screen h-screen bg-green-100">
+      {popupTerms === true ? (
+        <div className="fixed top-0 left-0 flex flex-col items-center w-screen h-screen bg-white">
           <div className="mt-7">
-            <div className="w-[100%] flex justify-center items-center"  onClick={()=>{setPopupPolicy(false)}}>
-              <img className="w-[90%]" src={`login/${props.isMainLang?"KR":"EN"}_title_terms.png `} />
+            <div className="w-[100%] flex justify-center items-center" onClick={() => { setPopupTerms(false) }}>
+              <img className="w-[80%]" src={`login/${props.isMainLang ? "KR" : "EN"}_title_terms.png `} />
             </div>
           </div>
-          <div className="w-[90%] h-[80%] overflow-scroll mt-7">
-            <img src="login/terms_content.png" />
+          <div className="w-[80%] h-[80%] overflow-scroll mt-10">
+            <img src="login/KR_terms.png" />
           </div>
         </div>
       ) : (
