@@ -21,6 +21,7 @@ const CRegisteration = (props) => {
 
   return (
     <div className="bg-white" >
+       <div className="top-0 fixed left-0 z-[10000] bg-red-100" >{navigator.language}</div>
       <div className="grid grid-cols-1 grid-rows-4 md:grid-rows-1 md:grid-cols-2">
         <div className="">
           {state === 0 ? (
@@ -154,29 +155,29 @@ const CRegisteration = (props) => {
           )}
         </div>
       </div>
-      {popupTerms === true ? (
-        <div className="fixed top-0 left-0 w-screen h-screen bg-green-100">
-        <div className="mt-7">
-          <div className="w-[100%] flex justify-center items-center"  onClick={()=>{setPopupTerms(false)}}>
-            <img className="w-[90%]" src={`login/${props.isMainLang?"KR":"EN"}_title_privacy.png `} />
+      {popupPolicy === true ? (
+        <div className="fixed top-0 left-0 flex flex-col items-center w-screen h-screen bg-white">
+          <div className="mt-7">
+            <div className="w-[100%] flex justify-center items-center" onClick={() => { setPopupPolicy(false) }}>
+              <img className="w-[80%]" src={`login/${props.isMainLang ? "KR" : "EN"}_title_privacy.png `} />
+            </div>
+          </div>
+          <div className="w-[80%] h-[80%] overflow-scroll mt-10">
+            <img src="login/KR_privacy.png" />
           </div>
         </div>
-        <div className="w-[90%] h-[80%] overflow-scroll mt-7">
-          <img src="login/terms_content.png" />
-        </div>
-      </div>
       ) : (
         ""
       )}
-      {popupPolicy === true ? (
-        <div className="fixed top-0 left-0 flex flex-col items-center w-screen h-screen bg-green-100">
+      {popupTerms === true ? (
+        <div className="fixed top-0 left-0 flex flex-col items-center w-screen h-screen bg-white">
           <div className="mt-7">
-            <div className="w-[100%] flex justify-center items-center"  onClick={()=>{setPopupPolicy(false)}}>
-              <img className="w-[90%]" src={`login/${props.isMainLang?"KR":"EN"}_title_terms.png `} />
+            <div className="w-[100%] flex justify-center items-center" onClick={() => { setPopupTerms(false) }}>
+              <img className="w-[80%]" src={`login/${props.isMainLang ? "KR" : "EN"}_title_terms.png `} />
             </div>
           </div>
-          <div className="w-[90%] h-[80%] overflow-scroll mt-7">
-            <img src="login/terms_content.png" />
+          <div className="w-[80%] h-[80%] overflow-scroll mt-10">
+            <img src="login/KR_terms.png" />
           </div>
         </div>
       ) : (
