@@ -138,12 +138,23 @@ export default function App() {
     localStorage.setItem("isLogin", false);
   };
 
+  const broswerLang=()=>{
+    console.log(navigator.language);
+  }
+
   useEffect(() => {
     try {
+      broswerLang();
       if(localStorage.getItem("lang") !== null){
-         if(localStorage.getItem("lang") == 'false'){
+         if(localStorage.getItem("lang") === 'false'){
           setIsMainLang(false);
          }
+      }
+      else
+      {
+          if(navigator.language === 'en'){
+            setIsMainLang(false);
+          }
       }
 
 
@@ -288,7 +299,7 @@ export default function App() {
             ) : (
               <div className="relative" >
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
-                <img className="absolute top-0" onClick={() => {
+                <img className="absolute top-0 bg-red-100" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
                   setIsMainLang(!isMainLang);
                 }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} />
