@@ -326,7 +326,7 @@ export default function App() {
               />
             )}
             <div
-              className="fixed top-0 z-[10000] w-5 h-5 bg-red-100"
+              className="fixed top-0 z-[10000] w-5 h-5 opacity-0"
               onClick={() => toggleDebug()}
             ></div>
           </div>
