@@ -78,31 +78,6 @@ const CRegisteration = (props) => {
             <div className="flex flex-row items-center w-[90%] relative">
               <div
                 className="absolute top-0 h-full left-20  w-[80%]"
-                onClick={() => { setPopupPolicy(true) }}
-              ></div>
-              {policy === true ? (
-                <img
-                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_privacy.png `}
-                  onClick={() => {
-                    setPolicy(false);
-                  }}
-                  className=""
-                  alt=""
-                />
-              ) : (
-                <img
-                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_privacy_off.png `}
-                  onClick={() => {
-                    setPolicy(true);
-                  }}
-                  className=""
-                  alt=""
-                />
-              )}
-            </div>
-            <div className="flex flex-row items-center w-[90%] relative">
-              <div
-                className="absolute top-0 h-full left-20  w-[80%]"
                 onClick={() => { setPopupTerms(true) }}
               ></div>
               {terms === true ? (
@@ -125,6 +100,32 @@ const CRegisteration = (props) => {
                 />
               )}
             </div>
+            <div className="flex flex-row items-center w-[90%] relative">
+              <div
+                className="absolute top-0 h-full left-20  w-[80%]"
+                onClick={() => { setPopupPolicy(true) }}
+              ></div>
+              {policy === true ? (
+                <img
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_privacy.png `}
+                  onClick={() => {
+                    setPolicy(false);
+                  }}
+                  className=""
+                  alt=""
+                />
+              ) : (
+                <img
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_privacy_off.png `}
+                  onClick={() => {
+                    setPolicy(true);
+                  }}
+                  className=""
+                  alt=""
+                />
+              )}
+            </div>
+          
           </div>
         )}
 

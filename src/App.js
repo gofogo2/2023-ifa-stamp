@@ -272,7 +272,7 @@ export default function App() {
     <>
       {isLogin ? (
         !isError ? (
-          <div className="relative bg-[#F5F5F5] flex justify-center">
+          <div className="relative bg-white flex justify-center">
             <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
               onClick={debugClick}
@@ -292,7 +292,7 @@ export default function App() {
 
 
 
-                <div className="relative flex items-center justify-center" >
+                <div className="relative flex items-center justify-center mb-10" >
                   <img src={`stamp2/${count === maxLength ? "plate_full" : "plate"}.png`} className="w-full sm:max-w-sm" />
 
                   {items.map((val, i) => {
