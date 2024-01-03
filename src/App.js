@@ -298,7 +298,7 @@ export default function App() {
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
               <div className="relative" >
-                <div className="top-0 fixed left-0 z-[10000] bg-red-100" >{navigator.language}</div>
+                {/* <div className="top-0 fixed left-0 z-[10000] bg-red-100" >{navigator.language}</div> */}
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 <img className="absolute top-0" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);

@@ -21,7 +21,7 @@ const CRegisteration = (props) => {
 
   return (
     <div className="bg-white" >
-       <div className="top-0 fixed left-0 z-[10000] bg-red-100" >{navigator.language}</div>
+       {/* <div className="top-0 fixed left-0 z-[10000] bg-red-100" >{navigator.language}</div> */}
       <div className="grid grid-cols-1 grid-rows-4 md:grid-rows-1 md:grid-cols-2">
         <div className="">
           {state === 0 ? (
