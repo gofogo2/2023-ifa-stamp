@@ -16,7 +16,7 @@ const CLogin = (props) => {
 
               e.preventDefault();
               const pw = document.getElementById('password').value;
-              if(pw==='240117'){
+              if(pw==='galaxy2424'){
                 console.log('success');
                 props.setLoginTrue();
               }
