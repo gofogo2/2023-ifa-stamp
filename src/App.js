@@ -20,6 +20,7 @@ export default function App() {
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
+  const [isLoading,setIsLoading] = useState(true);
   const [count, setCount] = useState(false);
   const [isMainLang, setIsMainLang] = useState(true);
 
@@ -54,9 +55,9 @@ export default function App() {
   const clearData = () => {
     try {
       localStorage.clear();
-      localStorage.setItem("isLogin", true);
+      localStorage.setItem("isLogin", false);
       // alert("all data clear");
-      window.location.href = "/?stp=1";
+      window.location.href = "/";
     } catch (e) {
       console.error("clearData 오류:", e);
 
@@ -113,7 +114,16 @@ export default function App() {
     }
   };
 
+  const LoadingIndicator=()=> {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
+
   const loginTrue = (email) => {
+    LoadingShow();
     fetch(`http://${process.env.REACT_APP_URI}:3333/user/add`, {
       method: "POST",
       body: JSON.stringify({ email: email, region: process.env.REACT_APP_REGION }),
@@ -136,39 +146,52 @@ export default function App() {
     localStorage.setItem("isLogin", false);
   };
 
+  const LoadingShow=()=>{
+    setIsLoading(true);
+    setTimeout(()=>{
+      setIsLoading(false);
+    },1500);
+  }
+
   useEffect(() => {
+
+    LoadingShow();
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
     try {
-      if(localStorage.getItem("lang") !== null){
-         if(localStorage.getItem("lang") == 'false'){
+      if (localStorage.getItem("lang") !== null) {
+        if (localStorage.getItem("lang") == 'false') {
           setIsMainLang(false);
-         }
+        }
       }
 
+      let current = urlParams.get("stp");
 
-      // 로그인 로직
-      if (localStorage.getItem("isLogin") === null) {
+      if (current === null) {
+        console.log('첨부터');
         localStorage.setItem("isLogin", "false");
         setIsLogin(false);
-        document.body.style.backgroundColor = '#ffffff';
-      } else if (localStorage.getItem("isLogin") === "false") {
-        setIsLogin(false);
-        document.body.style.backgroundColor = '#ffffff';
-      } else {
-        setIsLogin(true);
-        document.body.style.backgroundColor = '#ffffff';
+      }
+      else {
+        // 로그인 로직
+        if (localStorage.getItem("isLogin") === null) {
+          localStorage.setItem("isLogin", "false");
+          setIsLogin(false);
+          document.body.style.backgroundColor = '#ffffff';
+        } else if (localStorage.getItem("isLogin") === "false") {
+          setIsLogin(false);
+          document.body.style.backgroundColor = '#ffffff';
+        } else {
+          setIsLogin(true);
+          document.body.style.backgroundColor = '#ffffff';
+        }
+
+        console.log(localStorage.getItem("isLogin"));
       }
 
-      console.log(localStorage.getItem("isLogin"));
 
 
-
-      // if (localStorage.getItem("finish") === "true") {
-      //   clearData();
-      // }
-
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      let current = urlParams.get("stp");
 
 
 
@@ -270,7 +293,8 @@ export default function App() {
 
   return (
     <>
-      {isLogin ? (
+
+      {isLoading?LoadingIndicator(): isLogin ? (
         !isError ? (
           <div className="relative bg-white flex justify-center">
             <div
@@ -307,9 +331,9 @@ export default function App() {
                       ""
                     );
                   })}
-                  {count === maxLength ? <img onClick={() => {goToFinished()}} src={`stamp2/btn_04.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm" ></img>}
+                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/btn_04.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm" ></img>}
                 </div>
-                
+
 
               </div>
               // <CStampPanal items={items} />
