@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import CStampPanal from "./components/CStampPanal";
 import CDebugPopup from "./components/CDebugPopup";
-import CError from "./components/CError";
+import CLogin from "./components/CLogin";
 import CPopup from "./components/CPopup";
 
 export default function App() {
@@ -16,7 +16,8 @@ export default function App() {
   const [isDebug, setIsDebug] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
   const [items, setItems] = useState(new Array(maxLength).fill(false));
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
 
   const handleClick = () => {
     try {
@@ -25,7 +26,7 @@ export default function App() {
 
       if (clicks + 1 === clickCount) {
         SetIsSuc(true);
-        localStorage.setItem("finish", true);
+        setLoginTrue();
         setClicks(0);
       } else {
         timer = setTimeout(() => {
@@ -40,6 +41,16 @@ export default function App() {
 
   const setErrorFunc = () => {
     setIsError(false);
+  };
+
+  const setLoginTrue = () => {
+    console.log('aaaaaaaaaa');
+    setIsLogin(true);
+    localStorage.setItem('islogin','true');
+  };
+
+  const setLoginFalse = () => {
+    setIsLogin(false);
   };
 
   const debugClick = () => {
@@ -64,6 +75,7 @@ export default function App() {
     try {
       localStorage.clear();
       alert("all data clear");
+      setLoginFalse();
       window.location.href = "/?stp=1";
     } catch (e) {
       console.error("clearData 오류:", e);
@@ -123,7 +135,7 @@ export default function App() {
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
       if (current === null) {
-        setErrorFunc();
+        // setErrorFunc();
       }
       console.log(current);
       switch (current) {
@@ -154,6 +166,15 @@ export default function App() {
       console.log(current);
 
       var modifyItems = items;
+
+
+      if(localStorage.getItem('islogin') === null || localStorage.getItem('islogin') === 'false'){
+        setIsLogin(false);
+      }
+      else
+      {
+        setIsLogin(true);
+      }
 
       items.forEach((val, i) => {
         const reval = localStorage.getItem(i + 1);
@@ -196,7 +217,7 @@ export default function App() {
 
   return (
     <>
-      {!isError ? (
+      {isLogin ? (
         <div className="bg-[#F5F5F5] flex justify-center">
           <div
             className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
@@ -225,7 +246,7 @@ export default function App() {
           ></div>
         </div>
       ) : (
-        <CError />
+        <CLogin setLoginTrue={setLoginTrue} />
       )}
     </>
   );
