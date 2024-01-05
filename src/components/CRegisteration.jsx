@@ -79,9 +79,9 @@ const CRegisteration = (props) => {
               )}
             </div>
            
-            <div className="flex flex-row items-center w-[90%] relative">
+            <div className="flex flex-row items-center w-[90%] relative mt-5">
               <div
-                className="absolute top-0 h-full left-20  w-[80%]"
+                className="absolute top-0 h-full left-20   w-[80%]"
                 onClick={() => { setPopupPolicy(true) }}
               ></div>
               {policy === true ? (
