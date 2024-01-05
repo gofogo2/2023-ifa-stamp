@@ -41,7 +41,7 @@ const CRegisteration = (props) => {
             />
             {!isVaild ? (
               <div className="m-0 w-[90%]">
-                <img className="w-[30%] mt-2" src={`login/${props.isMainLang?"KR":"EN"}${"_invalid.png".toLowerCase()}`}/>
+                <img className="w-[30%] mt-2" src={`login/${props.isMainLang?"KR":"EN"}${"_inv.png"}`}/>
                 </div>
             ) : (
               ""
