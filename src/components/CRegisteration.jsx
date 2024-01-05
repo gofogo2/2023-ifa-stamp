@@ -6,6 +6,7 @@ const CRegisteration = (props) => {
   const [policy, setPolicy] = useState([false]);
   const [popupTerms, setPopupTerms] = useState([false]);
   const [popupPolicy, setPopupPolicy] = useState([false]);
+  const [isFocused,setIsFocused] = useState(false);
 
   const [email, setEmail] = useState("");
 
@@ -15,6 +16,7 @@ const CRegisteration = (props) => {
     return re.test(String(email).toLowerCase());
   }
   const handleInputChange = (e) => {
+    setIsFocused(true);
     setEmail(e.target.value);
     setIsVailed(validateEmail(e.target.value));
   };
@@ -38,9 +40,10 @@ const CRegisteration = (props) => {
               value={email}
               onChange={handleInputChange}
               type="text"
+              id="ip_email"
               className="w-[90%] h-8  border-b-2 border-[#F4F7F5] outline-none text-xl"
             />
-            {!isVaild ? (
+            {!isVaild&&isFocused ? (
               <div className="m-0 w-[90%]">
                 <img className="w-[30%] mt-2" src={`login/${props.isMainLang ? "KR" : "EN"}_invalid.png`} />
               </div>
@@ -75,31 +78,7 @@ const CRegisteration = (props) => {
                 />
               )}
             </div>
-            <div className="flex flex-row items-center w-[90%] relative">
-              <div
-                className="absolute top-0 h-full left-20  w-[80%]"
-                onClick={() => { setPopupTerms(true) }}
-              ></div>
-              {terms === true ? (
-                <img
-                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_terms.png `}
-                  onClick={() => {
-                    setTerms(false);
-                  }}
-                  className=""
-                  alt=""
-                />
-              ) : (
-                <img
-                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_terms_off.png `}
-                  onClick={() => {
-                    setTerms(true);
-                  }}
-                  className=""
-                  alt=""
-                />
-              )}
-            </div>
+           
             <div className="flex flex-row items-center w-[90%] relative">
               <div
                 className="absolute top-0 h-full left-20  w-[80%]"
@@ -125,13 +104,37 @@ const CRegisteration = (props) => {
                 />
               )}
             </div>
-          
+            <div className="flex flex-row items-center w-[90%] relative">
+              <div
+                className="absolute top-0 h-full left-20  w-[80%]"
+                onClick={() => { setPopupTerms(true) }}
+              ></div>
+              {terms === true ? (
+                <img
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_terms.png `}
+                  onClick={() => {
+                    setTerms(false);
+                  }}
+                  className=""
+                  alt=""
+                />
+              ) : (
+                <img
+                  src={`login/${props.isMainLang ? "KR" : "EN"}_agree_terms_off.png `}
+                  onClick={() => {
+                    setTerms(true);
+                  }}
+                  className=""
+                  alt=""
+                />
+              )}
+            </div>
           </div>
         )}
 
         <div className="fixed flex items-end justify-center bottom-10 md:static md:col-start-2">
           {state === 0 ? (
-            isVaild ? (
+            isVaild&&isFocused ? (
               <img
                 src={`login/${props.isMainLang ? "KR" : "EN"}_btn_next.png `}
                 onClick={() => {
