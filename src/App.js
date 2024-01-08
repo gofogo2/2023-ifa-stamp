@@ -39,6 +39,12 @@ export default function App() {
     }
   };
 
+  
+
+  const setShowPopupTrue=()=>{
+    setShowPopup(true);
+  }
+
   const setErrorFunc = () => {
     setIsError(false);
   };
@@ -206,7 +212,7 @@ export default function App() {
         return;
       }
 
-      if (cnt >= maxLength) {
+      if (cnt > maxLength) {
         setShowPopup(true);
       }
     } catch (e) {
@@ -217,7 +223,7 @@ export default function App() {
 
   return (
     <>
-      {isLogin ? (
+      {true ? (
         <div className="bg-[#F5F5F5] flex justify-center">
           <div
             className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
@@ -228,7 +234,7 @@ export default function App() {
             onClick={handleClick}
           ></div>
           {showPopup ? <CPopup isSuc={isSuc} /> : (
-            <CStampPanal items={items} />
+            <CStampPanal items={items} setShowPopupTrue={setShowPopupTrue} />
           )}
           <div className="flex items-center justify-center"></div>
           {isDebug && (
