@@ -9,7 +9,7 @@ const CStampPanal = (props) => {
         newCount += 1;
       }
     });
-  
+
     setCount(prevCount => newCount);
   }, [props.items]); // 의존성 배열에 props.items 추가
 
@@ -32,9 +32,13 @@ const CStampPanal = (props) => {
         })}
       </div>
 
-      <div className='flex items-center justify-center  w-[100%]' > 
-      {count === 0 ? <img src="stamp/btn_off.png" className="absolute bottom-5 w-[90%] z-[100000]" /> :
-        <img src="stamp/btn.png" onClick={()=>{props.setShowPopupTrue()}} className="absolute bottom-5 w-[90%] z-[100000]" />}
+      <div className='flex items-center justify-center  w-[100%]' >
+        {count === 0 ? <img src="stamp/btn_off.png" className="absolute bottom-5 w-[90%] z-[100000]" /> :
+          <img src="stamp/btn.png" onClick={() => {
+            // 
+            window.open('https://www.samsung.com/sec/event/galaxy-s24/galaxystudio/survey/', '_blank');
+            props.setShowPopupTrue();
+          }} className="absolute bottom-5 w-[90%] z-[100000]" />}
       </div>
     </div>
   )
