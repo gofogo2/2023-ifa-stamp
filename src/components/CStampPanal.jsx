@@ -37,7 +37,7 @@ const CStampPanal = (props) => {
           <img src="stamp/btn.png" onClick={() => {
             // 
             window.open('https://www.samsung.com/sec/event/galaxy-s24/galaxystudio/survey/', '_blank');
-            props.setShowPopupTrue();
+            // props.setShowPopupTrue();
           }} className="absolute bottom-5 w-[90%] z-[100000]" />}
       </div>
     </div>
