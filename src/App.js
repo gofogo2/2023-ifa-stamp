@@ -170,7 +170,7 @@ export default function App() {
 
       items.forEach((val, i) => {
         const reval = localStorage.getItem(i + 1);
-        console.log(reval);
+        
         if (reval === null || reval === false) {
           modifyItems[i] = false;
         } else {
@@ -182,7 +182,6 @@ export default function App() {
           localStorage.setItem(current, true);
         }
       });
-
       setItems([...modifyItems]);
 
       let cnt = 0;
@@ -192,8 +191,8 @@ export default function App() {
         }
       });
 
-
-      if (cnt > maxLength) {
+console.log('a:'+cnt);
+      if (cnt >= maxLength) {
         setShowPopup(true);
       }
     } catch (e) {
