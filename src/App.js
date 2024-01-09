@@ -20,6 +20,7 @@ export default function App() {
   const [isLogin, setIsLogin] = useState(false);
 
   const setShowPopupTrue = () => {
+    fillData();
     setShowPopup(true);
   }
 
@@ -58,9 +59,9 @@ export default function App() {
   const clearData = () => {
     try {
       localStorage.clear();
-      alert("all data clear");
+      // alert("all data clear");
       setLoginFalse();
-      window.location.href = "/?stp=1";
+      window.location.href = "/";
     } catch (e) {
       console.error("clearData 오류:", e);
 
@@ -75,7 +76,7 @@ export default function App() {
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
       // localStorage.setItem("finish", false);
-      alert("all data fill");
+      // alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
       console.error("fillData 오류:", e);
@@ -89,7 +90,7 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       // localStorage.setItem("finish", false);
-      alert("all data fill");
+      // alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
       console.error("fillData 오류:", e);
@@ -104,7 +105,7 @@ export default function App() {
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
       // localStorage.setItem("finish", true);
-      alert("go to finish");
+      // alert("go to finish");
       window.location.href = "/?stp=1";
     } catch (e) {
       console.error("fillData 오류:", e);
