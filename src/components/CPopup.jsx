@@ -15,6 +15,7 @@ const CPopup = (props) => {
               />
             </div>
           ) : (
+            <div className='relative flex items-center justify-center' >
             <div className="flex items-center justify-center">
               {" "}
               <img
@@ -22,6 +23,12 @@ const CPopup = (props) => {
                 src="/stamp/completed.png"
                 alt=""
               />
+            </div>
+            <img className="absolute bottom-5 w-[90%] z-[100000]" src="/stamp/btn.png" onClick={() => {
+            // 
+            window.open('https://www.samsung.com/sec/event/galaxy-s24/galaxystudio/survey/', '_blank');
+            // props.setShowPopupTrue();
+          }} />
             </div>
           )}
         </div>
