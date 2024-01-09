@@ -32,7 +32,7 @@ const CStampPanal = (props) => {
         })}
       </div>
 
-      <div className='flex items-center justify-center  w-screen' > 
+      <div className='flex items-center justify-center  w-[100%]' > 
       {count === 0 ? <img src="stamp/btn_off.png" className="absolute bottom-5 w-[90%] z-[100000]" /> :
         <img src="stamp/btn.png" onClick={()=>{props.setShowPopupTrue()}} className="absolute bottom-5 w-[90%] z-[100000]" />}
       </div>

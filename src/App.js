@@ -19,29 +19,7 @@ export default function App() {
   const [isError, setIsError] = useState(true);
   const [isLogin, setIsLogin] = useState(false);
 
-  const handleClick = () => {
-    try {
-      clearTimeout(timer);
-      setClicks(clicks + 1);
-
-      if (clicks + 1 === clickCount) {
-        SetIsSuc(true);
-        setLoginTrue();
-        setClicks(0);
-      } else {
-        timer = setTimeout(() => {
-          setClicks(0);
-        }, 500);
-      }
-    } catch (e) {
-      console.error("handleClick 오류:", e);
-      setErrorFunc();
-    }
-  };
-
-  
-
-  const setShowPopupTrue=()=>{
+  const setShowPopupTrue = () => {
     setShowPopup(true);
   }
 
@@ -50,9 +28,9 @@ export default function App() {
   };
 
   const setLoginTrue = () => {
-    console.log('aaaaaaaaaa');
     setIsLogin(true);
-    localStorage.setItem('islogin','true');
+    localStorage.setItem('islogin', 'true');
+    
   };
 
   const setLoginFalse = () => {
@@ -96,7 +74,7 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
-      localStorage.setItem("finish", false);
+      // localStorage.setItem("finish", false);
       alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -110,7 +88,7 @@ export default function App() {
       localStorage.setItem("1", true);
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
-      localStorage.setItem("finish", false);
+      // localStorage.setItem("finish", false);
       alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -125,7 +103,7 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
-      localStorage.setItem("finish", true);
+      // localStorage.setItem("finish", true);
       alert("go to finish");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -143,6 +121,15 @@ export default function App() {
       if (current === null) {
         // setErrorFunc();
       }
+
+      if (current === 'reset') {
+        SetIsSuc(true);
+        setShowPopup(true);
+        localStorage.clear();
+        setLoginTrue();
+        return;
+      }
+
       console.log(current);
       switch (current) {
         case "1":
@@ -152,7 +139,7 @@ export default function App() {
           current = "7777";
           break;
 
-          //인덱스 암호화
+        //인덱스 암호화
         case "0c7dd660":
           current = "1";
           break;
@@ -174,11 +161,10 @@ export default function App() {
       var modifyItems = items;
 
 
-      if(localStorage.getItem('islogin') === null || localStorage.getItem('islogin') === 'false'){
+      if (localStorage.getItem('islogin') === null || localStorage.getItem('islogin') === 'false') {
         setIsLogin(false);
       }
-      else
-      {
+      else {
         setIsLogin(true);
       }
 
@@ -206,11 +192,6 @@ export default function App() {
         }
       });
 
-      if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
-        setShowPopup(true);
-        SetIsSuc(true);
-        return;
-      }
 
       if (cnt > maxLength) {
         setShowPopup(true);
@@ -223,15 +204,11 @@ export default function App() {
 
   return (
     <>
-      {true ? (
+      {isLogin ? (
         <div className="bg-[#F5F5F5] flex justify-center">
           <div
             className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
             onClick={debugClick}
-          ></div>
-          <div
-            className=" fixed top-[7%] w-[80%] h-28 bg-red-200 opacity-0 z-[10000]"
-            onClick={handleClick}
           ></div>
           {showPopup ? <CPopup isSuc={isSuc} /> : (
             <CStampPanal items={items} setShowPopupTrue={setShowPopupTrue} />
