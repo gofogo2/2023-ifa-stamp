@@ -308,13 +308,13 @@ export default function App() {
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
-              <div className="relative w-[85%]" >
+              <div className="relative w-[85%] flex flex-col items-center justify-center" >
                 {console.log(localStorage)}
                 <div className=" flex items-center justify-center" >
 
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
-                <img className="absolute top-0 w-full sm:max-w-sm z-[10010]" onClick={() => {
+                <img className=" absolute top-0 w-full sm:max-w-sm z-[10010]" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
                   setIsMainLang(!isMainLang);
                 }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} />
