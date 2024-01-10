@@ -42,7 +42,7 @@ const [currentBrower,setCurrentBrower] = useState(browserLanguage);
           onClick={props.threeData}
           className="py-5 text-center bg-teal-700 text-lime-500"
         >
-          클릭하면 데이터 3개 채우기
+          클릭하면 데이터 2개 채우기
         </div>
         <div
           onClick={props.fillData}

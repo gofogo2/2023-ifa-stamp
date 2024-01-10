@@ -8,7 +8,7 @@ import CVerticle from "./components/CVerticle";
 
 export default function App() {
   //스탬프 카운트
-  const maxLength = 4;
+  const maxLength = 3;
 
   //debug 활성화를 위한 클릭
   const clickCount = 3;
@@ -70,7 +70,6 @@ export default function App() {
       localStorage.setItem("1", true);
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
-      localStorage.setItem("4", true);
       localStorage.setItem("finish", false);
       localStorage.setItem("isLogin", true);
       // alert("all data fill");
@@ -85,7 +84,6 @@ export default function App() {
     try {
       localStorage.setItem("1", true);
       localStorage.setItem("2", true);
-      localStorage.setItem("3", true);
       localStorage.setItem("finish", false);
       localStorage.setItem("isLogin", true);
       // alert("all data fill");
@@ -101,7 +99,6 @@ export default function App() {
       localStorage.setItem("1", true);
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
-      localStorage.setItem("4", true);
       localStorage.setItem("finish", true);
       localStorage.setItem("isLogin", true);
       localStorage.setItem("isReset", false);
@@ -123,6 +120,7 @@ export default function App() {
   }
 
   const loginTrue = (email) => {
+    console.log(email);
     LoadingShow();
     fetch(`http://${process.env.REACT_APP_URI}:3333/user/add`, {
       method: "POST",
@@ -182,18 +180,20 @@ export default function App() {
 
       let current = urlParams.get("stp");
 
-      if (current === null) {
-        console.log('첨부터');
-        localStorage.setItem("isLogin", "false");
-        setIsLogin(false);
-      }
-      else {
+      // if (current === null) {
+      //   console.log('첨부터');
+      //   localStorage.setItem("isLogin", "false");
+      //   setIsLogin(false);
+      // }
+      // else {
         // 로그인 로직
         if (localStorage.getItem("isLogin") === null) {
+          console.log('aaa');
           localStorage.setItem("isLogin", "false");
           setIsLogin(false);
           document.body.style.backgroundColor = '#ffffff';
         } else if (localStorage.getItem("isLogin") === "false") {
+          console.log('aaa');
           setIsLogin(false);
           document.body.style.backgroundColor = '#ffffff';
         } else {
@@ -202,16 +202,10 @@ export default function App() {
         }
 
         console.log(localStorage.getItem("isLogin"));
-      }
-
-
-
-
-
-
-
+      // }
 
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
+        console.log('aaa');
         clearData();
       }
 
@@ -221,13 +215,11 @@ export default function App() {
       // if (current === "reset") {
       //   setErrorFunc();
       // }
-      // console.log(current);
+      console.log(current);
       switch (current) {
         case "1":
         case "2":
         case "3":
-        case "4":
-        case "5":
           current = "7777";
           break;
 
@@ -240,12 +232,6 @@ export default function App() {
           break;
         case "4b9d8ac5":
           current = "3";
-          break;
-        case "0c7dd660":
-          current = "4";
-          break;
-        case "7d8a2kv6":
-          current = "5";
           break;
         default:
           break;
@@ -279,6 +265,7 @@ export default function App() {
         }
       });
 
+      console.log(cnt);
       setCount(cnt);
 
       if (current === "reset" && cnt >= maxLength) {
@@ -322,7 +309,7 @@ export default function App() {
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
               <div className="relative w-[85%]" >
-                
+                {console.log(localStorage)}
                 <div className=" flex items-center justify-center" >
 
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
@@ -335,24 +322,22 @@ export default function App() {
 
 
                 <div className="relative flex items-center justify-center" >
-                  <img src={`stamp2/${count === maxLength ? "plate_full" : "plate"}.png`} className="w-full sm:max-w-sm" />
+                  <img src={`stamp2/${isMainLang ? "KR" : "EN"}_plate.png`} className="w-full sm:max-w-sm" />
 
                   {items.map((val, i) => {
                     return val === true ? (
                       <img
                         key={i}
                         alt=""
-                        src={`stamp2/${i + 1}.png`}
+                        src={`stamp2/${isMainLang ? "KR" : "EN"}_${i + 1}.png`}
                         className={`absolute w-full sm:max-w-sm top-0 z-${+(i + 1) * 2} `}
                       />
                     ) : (
                       ""
                     );
                   })}
-                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/btn_04.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm" ></img>}
+                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/${isMainLang ? "KR" : "EN"}_btn_03.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm" ></img>}
                 </div>
-
-                  독일
               </div>
               // <CStampPanal items={items} />
             )}
