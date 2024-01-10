@@ -293,7 +293,7 @@ export default function App() {
 
   return (
     <>
-
+{/* {false?LoadingIndicator(): true ? (  */}
       {isLoading?LoadingIndicator(): isLogin ? (
         !isError ? (
           <div className="relative bg-white flex justify-center">
@@ -307,8 +307,10 @@ export default function App() {
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
-              <div className="relative w-[82%]" >
+              <div className="relative w-[85%]" >
+                <div className=" flex items-center justify-center" >
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
+                </div>
                 {/* <img className="absolute top-0" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
                   setIsMainLang(!isMainLang);
@@ -316,7 +318,7 @@ export default function App() {
 
 
 
-                <div className="relative flex items-center justify-center mb-10" >
+                <div className="relative flex items-center justify-center" >
                   <img src={`stamp2/${count === maxLength ? "plate_full" : "plate"}.png`} className="w-full sm:max-w-sm" />
 
                   {items.map((val, i) => {
