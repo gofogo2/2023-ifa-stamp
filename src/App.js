@@ -153,17 +153,31 @@ export default function App() {
     },1500);
   }
 
-  useEffect(() => {
+  const broswerLang=()=>{
+    console.log(navigator.language);
+  }
 
+  useEffect(() => {
+   
     LoadingShow();
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     try {
+      broswerLang();
       if (localStorage.getItem("lang") !== null) {
         if (localStorage.getItem("lang") == 'false') {
           setIsMainLang(false);
         }
+      }
+      else
+      {
+          if(navigator.language.includes('de')){
+            setIsMainLang(true);
+          }else
+          {
+            setIsMainLang(false);
+          }
       }
 
       let current = urlParams.get("stp");
@@ -308,7 +322,9 @@ export default function App() {
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
               <div className="relative w-[85%]" >
+                
                 <div className=" flex items-center justify-center" >
+
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
                 {/* <img className="absolute top-0" onClick={() => {

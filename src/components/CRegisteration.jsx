@@ -23,8 +23,10 @@ const CRegisteration = (props) => {
 
   return (
     <div className="bg-white" >
+    
       <div className="grid grid-cols-1 grid-rows-4 md:grid-rows-1 md:grid-cols-2">
         <div className="relative">
+        {/* {navigator.language} */}
           {state === 0 ? (
             <img src={`login/${props.isMainLang ? "KR" : "EN"}_reg_01.png `} className="w-full" alt="" />
           ) : (
@@ -33,6 +35,7 @@ const CRegisteration = (props) => {
               <div className="w-full flex " >
               <img className="absolute -bottom-5 w-[50%] ml-[6%]" src={`login/${props.isMainLang ? "KR" : "EN"}_signin.png`} />
             </div>
+            
         </div>
 
         {state === 0 ? (
