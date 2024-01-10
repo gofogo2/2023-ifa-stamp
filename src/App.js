@@ -299,7 +299,7 @@ export default function App() {
         !isError ? (
           <div className="relative bg-white flex justify-center">
             <div
-              className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
+              className="fixed bottom-0 left-0 w-28 h-28  z-[10020]"
               onClick={debugClick}
             ></div>
             <div
@@ -314,10 +314,10 @@ export default function App() {
 
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
-                {/* <img className="absolute top-0" onClick={() => {
+                <img className="absolute top-0 w-full sm:max-w-sm z-[10010]" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
                   setIsMainLang(!isMainLang);
-                }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} /> */}
+                }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} />
 
 
 
