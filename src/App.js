@@ -170,7 +170,7 @@ export default function App() {
       }
       else
       {
-          if(navigator.language.includes('de')){
+          if(navigator.language.includes('fr')){
             setIsMainLang(true);
           }else
           {
@@ -299,7 +299,7 @@ export default function App() {
         !isError ? (
           <div className="relative bg-white flex justify-center">
             <div
-              className="fixed bottom-0 left-0 w-28 h-28  z-[10020]"
+              className="fixed top-0 w-28 h-28  z-[10020]"
               onClick={debugClick}
             ></div>
             <div
