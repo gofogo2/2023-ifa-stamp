@@ -80,14 +80,7 @@ const CRegisteration = (props) => {
             </div>
            
             <div className="flex flex-row items-center w-[90%] relative mt-5">
-              <div
-                className="absolute top-0 h-full left-20   w-[80%]"
-                onClick={() => { setPopupPolicy(true) }}
-              ></div>
-             
-            </div>
-            <div className="flex flex-row items-center w-[90%] relative">
-              <div
+            <div
                 className="absolute top-0 h-full left-20  w-[80%]"
                 onClick={() => { setPopupTerms(true) }}
               ></div>
@@ -110,7 +103,13 @@ const CRegisteration = (props) => {
                   alt=""
                 />
               )}
-               {policy === true ? (
+            </div>
+            <div className="flex flex-row items-center w-[90%] relative">
+            <div
+                className="absolute top-0 h-full left-20   w-[80%]"
+                onClick={() => { setPopupPolicy(true) }}
+              ></div>
+              {policy === true ? (
                 <img
                   src={`login/${props.isMainLang ? "KR" : "EN"}_agree_privacy.png `}
                   onClick={() => {
@@ -129,6 +128,7 @@ const CRegisteration = (props) => {
                   alt=""
                 />
               )}
+            
             </div>
           </div>
         )}
