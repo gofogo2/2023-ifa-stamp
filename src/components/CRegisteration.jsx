@@ -24,17 +24,19 @@ const CRegisteration = (props) => {
   return (
     <div className="bg-white" >
       <div className="grid grid-cols-1 grid-rows-4 md:grid-rows-1 md:grid-cols-2">
-        <div className="">
+        <div className="relative">
           {state === 0 ? (
             <img src={`login/${props.isMainLang ? "KR" : "EN"}_reg_01.png `} className="w-full" alt="" />
           ) : (
             <img src={`login/${props.isMainLang ? "KR" : "EN"}_reg_02.png `} className="w-full" alt="" />
           )}
-
+              <div className="w-full flex " >
+              <img className="absolute -bottom-5 w-[50%] ml-[6%]" src={`login/${props.isMainLang ? "KR" : "EN"}_signin.png`} />
+            </div>
         </div>
 
         {state === 0 ? (
-          <div className="relative flex flex-col items-center justify-center ">
+          <div className="relative flex flex-col items-center justify-start pt-10 ">
 
             <input
               value={email}
@@ -50,9 +52,9 @@ const CRegisteration = (props) => {
             ) : (
               ""
             )}
-            <div className="w-full flex " >
-              <img className="absolute top-12 w-[50%] ml-[6%]" src="login/signin.png" />
-            </div>
+            {/* <div className="w-full flex " >
+              <img className="absolute w-[50%] ml-[6%]" src={`login/${props.isMainLang ? "KR" : "EN"}_signin.png`} />
+            </div> */}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center ">

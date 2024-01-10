@@ -73,7 +73,7 @@ export default function App() {
       localStorage.setItem("4", true);
       localStorage.setItem("finish", false);
       localStorage.setItem("isLogin", true);
-      alert("all data fill");
+      // alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
       console.error("fillData 오류:", e);
@@ -88,7 +88,7 @@ export default function App() {
       localStorage.setItem("3", true);
       localStorage.setItem("finish", false);
       localStorage.setItem("isLogin", true);
-      alert("all data fill");
+      // alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
       console.error("fillData 오류:", e);
@@ -106,7 +106,7 @@ export default function App() {
       localStorage.setItem("isLogin", true);
       localStorage.setItem("isReset", false);
       localStorage.setItem("lang", true);
-      alert("go to finish");
+      // alert("go to finish");
       window.location.href = "/?stp=1";
     } catch (e) {
       console.error("fillData 오류:", e);
