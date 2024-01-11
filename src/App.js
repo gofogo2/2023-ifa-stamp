@@ -170,7 +170,7 @@ export default function App() {
       }
       else
       {
-          if(navigator.language.includes('fr')){
+          if(navigator.language.includes('th')){
             setIsMainLang(true);
           }else
           {
