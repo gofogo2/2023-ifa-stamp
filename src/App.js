@@ -224,7 +224,7 @@ export default function App() {
           break;
 
         //인덱스 암호화
-        case "6f8b2e77":
+        case "0c7dd660":
           current = "1";
           break;
         case "1c85f955":
@@ -308,7 +308,7 @@ export default function App() {
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
-              <div className="relative w-[85%] flex flex-col items-center justify-center" >
+              <div className="relative w-[100%] flex flex-col items-center justify-center" >
                 {console.log(localStorage)}
                 <div className=" flex items-center justify-center" >
 
@@ -336,7 +336,7 @@ export default function App() {
                       ""
                     );
                   })}
-                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/${isMainLang ? "KR" : "EN"}_btn_03.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm" ></img>}
+                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/${isMainLang ? "KR" : "EN"}_btn_03.png`} className="absolute bottom-10 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-14 w-[85%] sm:max-w-sm" ></img>}
                 </div>
               </div>
               // <CStampPanal items={items} />
