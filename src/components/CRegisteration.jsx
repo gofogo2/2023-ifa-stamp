@@ -37,7 +37,7 @@ const CRegisteration = (props) => {
           </div> : ""}
 
         </div>
-
+아랍에미레이트
         {state === 0 ? (
           <div className="relative flex flex-col items-center justify-start pt-10 ">
 

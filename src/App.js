@@ -170,7 +170,7 @@ export default function App() {
       }
       else
       {
-          if(navigator.language.includes('th')){
+          if(navigator.language.includes('sdfgjgsfgsajfgjhasgfh')){
             setIsMainLang(true);
           }else
           {
@@ -310,6 +310,7 @@ export default function App() {
             ) : (
               <div className="relative flex flex-col items-center justify-center" >
                 {console.log(localStorage)}
+                아랍에미레이트
                 <div className=" flex items-center justify-center" >
 
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
