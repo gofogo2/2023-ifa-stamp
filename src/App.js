@@ -200,25 +200,16 @@ export default function App() {
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
         clearData();
       }
-
-      // if (current === null) {
-      //   setErrorFunc();
-      // }
-      // if (current === "reset") {
-      //   setErrorFunc();
-      // }
-      // console.log(current);
       switch (current) {
         case "1":
         case "2":
         case "3":
         case "4":
-        case "5":
           current = "7777";
           break;
 
         //인덱스 암호화
-        case "6f8b2e77":
+        case "0c7dd660":
           current = "1";
           break;
         case "1c85f955":
@@ -227,11 +218,8 @@ export default function App() {
         case "4b9d8ac5":
           current = "3";
           break;
-        case "0c7dd660":
+        case "6f8b2e77":
           current = "4";
-          break;
-        case "7d8a2kv6":
-          current = "5";
           break;
         default:
           break;
@@ -297,17 +285,17 @@ export default function App() {
       {isLoading?LoadingIndicator(): isLogin ? (
         !isError ? (
           <div className="relative bg-white flex justify-center">
-            <div
+            {/* <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
               onClick={debugClick}
-            ></div>
+            ></div> */}
             <div
               className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
             ></div>
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
-              <div className="relative w-[85%]" >
+              <div className="relative w-full" >
                 <div className=" flex items-center justify-center" >
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
@@ -333,7 +321,7 @@ export default function App() {
                       ""
                     );
                   })}
-                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/btn_04.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm" ></img>}
+                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/btn_04.png`} className="absolute bottom-14 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-14 w-[85%] sm:max-w-sm" ></img>}
                 </div>
 
 
@@ -351,10 +339,10 @@ export default function App() {
                 loginFalse={loginFalse}
               />
             )}
-            <div
+            {/* <div
               className="fixed top-0 z-[10000] w-5 h-5 opacity-0"
               onClick={() => toggleDebug()}
-            ></div>
+            ></div> */}
           </div>
         ) : (
           <CError />
