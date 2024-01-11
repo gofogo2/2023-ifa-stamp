@@ -297,17 +297,17 @@ export default function App() {
       {isLoading?LoadingIndicator(): isLogin ? (
         !isError ? (
           <div className="relative bg-white flex justify-center">
-            <div
+            {/* <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
               onClick={debugClick}
-            ></div>
+            ></div> */}
             <div
               className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
             ></div>
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
-              <div className="relative w-[85%]" >
+              <div className="relative" >
                 <div className=" flex items-center justify-center" >
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
@@ -333,7 +333,7 @@ export default function App() {
                       ""
                     );
                   })}
-                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/btn_04.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-[85%] sm:max-w-sm" ></img>}
+                  {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/btn_04.png`} className="absolute bottom-14 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-14 w-[85%] sm:max-w-sm" ></img>}
                 </div>
 
 
@@ -351,10 +351,10 @@ export default function App() {
                 loginFalse={loginFalse}
               />
             )}
-            <div
+            {/* <div
               className="fixed top-0 z-[10000] w-5 h-5 opacity-0"
               onClick={() => toggleDebug()}
-            ></div>
+            ></div> */}
           </div>
         ) : (
           <CError />
