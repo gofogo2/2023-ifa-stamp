@@ -267,21 +267,21 @@ export default function App() {
 
       setCount(cnt);
 
-      if (current === "reset" && cnt >= maxLength) {
+      if (current === "reset" && cnt >= (maxLength-1)) {
         SetIsSuc(true);
         document.body.style.backgroundColor = '#ffffff';
         localStorage.setItem('reset', true);
       }
 
 
-      if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
+      if (localStorage.getItem("finish") === "true" && cnt >= (maxLength-1)) {
         setShowPopup(true);
         document.body.style.backgroundColor = '#ffffff';
         // SetIsSuc(true);
         return;
       }
 
-      if (cnt >= maxLength) {
+      if (cnt >= (maxLength-1)) {
         setShowPopup(false);
       }
     } catch (e) {
