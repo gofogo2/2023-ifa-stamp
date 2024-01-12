@@ -25,9 +25,14 @@ export default function App() {
   const [isMainLang, setIsMainLang] = useState(true);
 
   const goToFinished = () => {
-    setShowPopup(true);
-    localStorage.setItem("finish", true);
+    if((localStorage.getItem("1") === "true")&&(localStorage.getItem("1") === "true")&&(localStorage.getItem("1") === "true")&&(localStorage.getItem("1") === "true")){
+      setShowPopup(true);
+      localStorage.setItem("finish", true);
     document.body.style.backgroundColor = '#ffffff';
+    }else
+    {
+      window.location.reload();
+    }    
   }
 
   const setErrorFunc = () => {
