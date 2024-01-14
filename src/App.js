@@ -224,13 +224,13 @@ export default function App() {
           break;
 
         //인덱스 암호화
-        case "6f8b2e77":
+        case "0c7dd660":
           current = "1";
           break;
         case "1c85f955":
           current = "2";
           break;
-        case "4b9d8ac5":
+        case "6f8b2e77":
           current = "3";
           break;
         default:
