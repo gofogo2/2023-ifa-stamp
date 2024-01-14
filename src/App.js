@@ -230,7 +230,7 @@ export default function App() {
         case "1c85f955":
           current = "2";
           break;
-        case "4b9d8ac5":
+        case "6f8b2e77":
           current = "3";
           break;
         default:
