@@ -40,6 +40,7 @@ const CRegisteration = (props) => {
               value={email}
               onChange={handleInputChange}
               type="text"
+              maxLength={150}
               id="ip_email"
               className="w-[90%] h-8  border-b-2 border-[#F4F7F5] outline-none text-xl"
             />
