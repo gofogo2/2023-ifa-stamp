@@ -197,7 +197,16 @@ console.log('a:'+cnt);
         setShowPopup(true);
       }
 
-      // window.location.href = "http://galaxys24studio-stamp.com/"
+      
+
+      if(current === null){
+        console.log('true');
+      }
+      else
+      {
+        if(current !== 'reset')
+        window.location.href='/';
+      }
 
     } catch (e) {
       console.error("useEffect 오류:", e);
