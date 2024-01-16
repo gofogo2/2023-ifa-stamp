@@ -280,12 +280,15 @@ export default function App() {
     let current = urlParams.get("stp");
     if (localStorage.getItem("lang") !== null) {
       if (localStorage.getItem("lang") == 'false') {
-        setIsMainLang(false);
+        setIsMainLang(false); 
       }
     }
+    setUrlCurrent(current);    
+    
+    if(current === null){
+      current = "1";
+    }
 
-   
-    setUrlCurrent(current);
     if (current === null) {
       console.log('첨부터');
       localStorage.setItem("isLogin", "false");
@@ -297,12 +300,15 @@ export default function App() {
         localStorage.setItem("isLogin", "false");
         setIsLogin(false);
         document.body.style.backgroundColor = '#ffffff';
+        console.log('a');
       } else if (localStorage.getItem("isLogin") === "false") {
         setIsLogin(false);
         document.body.style.backgroundColor = '#ffffff';
+        console.log('b');
       } else {
         setIsLogin(true);
         document.body.style.backgroundColor = '#ffffff';
+        console.log('c');
       }
 
       console.log(localStorage.getItem("isLogin"));
