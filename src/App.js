@@ -266,7 +266,7 @@ export default function App() {
         // else
         // {
           if(current !== 'reset')
-          window.location.href='/';
+          window.location.href='/stp=1';
         // }
         
       }
