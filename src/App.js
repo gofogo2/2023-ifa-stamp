@@ -353,7 +353,7 @@ export default function App() {
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
               <div className="relative w-full" >
-                {aa}
+               <div className="fixed top-0 left-10" > aaa{aa}</div>
                 <div className=" flex items-center justify-center" >
                   <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
