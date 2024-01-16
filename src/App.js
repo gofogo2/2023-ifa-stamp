@@ -265,6 +265,7 @@ export default function App() {
         // }
         // else
         // {
+          alert(current);
           if((current !== '1')||(current !== 'reset')){
             window.location.href='/?stp='+current;  
           }
