@@ -265,10 +265,16 @@ export default function App() {
         // }
         // else
         // {
-          if(current !== 'reset')
-          window.location.href='/stp=1';
+          if(current !== '1'&&current !== 'reset'){
+            window.location.href='/stp='+current;  
+          }
+
+          // if(current !== 'reset')
+          // window.location.href='/stp='+current;
         // }
         
+      }else{
+        window.location.href='/stp=1';
       }
     };
 
