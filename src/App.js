@@ -64,6 +64,92 @@ export default function App() {
     }
   };
 
+  const load=(current)=>{
+    try {
+      if (localStorage.getItem("reset") === 'true' && current !== "reset") {
+        clearData();
+      }
+
+      switch (current) {
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+          current = "7777";
+          break;
+
+        //인덱스 암호화
+        case "6f8b2e77":
+          current = "1";
+          break;
+        case "1c85f955":
+          current = "2";
+          break;
+        case "4b9d8ac5":
+          current = "3";
+          break;
+        case "0c7dd660":
+          current = "4";
+          break;
+        case "7d8a2kv6":
+          current = "5";
+          break;
+        default:
+          break;
+      }
+
+      var modifyItems = items;
+
+      items.forEach((val, i) => {
+        const reval = localStorage.getItem(i + 1);
+        // console.log(reval);
+        if (reval === null || reval === false) {
+          modifyItems[i] = false;
+        } else {
+          modifyItems[i] = true;
+        }
+
+        if (current === (i + 1).toString()) {
+          modifyItems[i] = true;
+          localStorage.setItem(current, true);
+        }
+      });
+
+      setItems([...modifyItems]);
+
+      let cnt = 0;
+      modifyItems.forEach((val, i) => {
+        if (val === true) {
+          cnt++;
+        }
+      });
+
+      setCount(cnt);
+
+      if (current === "reset" && cnt >= maxLength) {
+        SetIsSuc(true);
+        document.body.style.backgroundColor = '#A0D6B4';
+        localStorage.setItem('reset', true);
+      }
+
+
+      if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
+        setShowPopup(true);
+        document.body.style.backgroundColor = '#A0D6B4';
+        // SetIsSuc(true);
+        return;
+      }
+
+      if (cnt >= maxLength) {
+        setShowPopup(false);
+      }
+    } catch (e) {
+      console.error("useEffect 오류:", e);
+      setErrorFunc();
+    }
+  }
+
   const fillData = () => {
     try {
       localStorage.setItem("1", true);
@@ -142,8 +228,29 @@ export default function App() {
     console.log(navigator.language);
   }
 
+  
   useEffect(() => {
-    try {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let current = urlParams.get("stp");
+        load(current);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+
+  useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let current = urlParams.get("stp");
       broswerLang();
       if(localStorage.getItem("lang") !== null){
          if(localStorage.getItem("lang") === 'false'){
@@ -173,111 +280,8 @@ export default function App() {
 
       console.log(localStorage.getItem("isLogin"));
 
-
-
-      // if (localStorage.getItem("finish") === "true") {
-      //   clearData();
-      // }
-
-      const queryString = window.location.search;
-      const urlParams = new URLSearchParams(queryString);
-      let current = urlParams.get("stp");
-
-
-
-
-
-      if (localStorage.getItem("reset") === 'true' && current !== "reset") {
-        clearData();
-      }
-
-      // if (current === null) {
-      //   setErrorFunc();
-      // }
-      // if (current === "reset") {
-      //   setErrorFunc();
-      // }
-      // console.log(current);
-      switch (current) {
-        case "1":
-        case "2":
-        case "3":
-        case "4":
-        case "5":
-          current = "7777";
-          break;
-
-        //인덱스 암호화
-        case "6f8b2e77":
-          current = "1";
-          break;
-        case "1c85f955":
-          current = "2";
-          break;
-        case "4b9d8ac5":
-          current = "3";
-          break;
-        case "0c7dd660":
-          current = "4";
-          break;
-        case "7d8a2kv6":
-          current = "5";
-          break;
-        default:
-          break;
-      }
-
-      // console.log(current);
-
-      var modifyItems = items;
-
-      items.forEach((val, i) => {
-        const reval = localStorage.getItem(i + 1);
-        // console.log(reval);
-        if (reval === null || reval === false) {
-          modifyItems[i] = false;
-        } else {
-          modifyItems[i] = true;
-        }
-
-        if (current === (i + 1).toString()) {
-          modifyItems[i] = true;
-          localStorage.setItem(current, true);
-        }
-      });
-
-      setItems([...modifyItems]);
-
-      let cnt = 0;
-      modifyItems.forEach((val, i) => {
-        if (val === true) {
-          cnt++;
-        }
-      });
-
-      setCount(cnt);
-
-      if (current === "reset" && cnt >= maxLength) {
-        SetIsSuc(true);
-        document.body.style.backgroundColor = '#A0D6B4';
-        localStorage.setItem('reset', true);
-      }
-
-
-      if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
-        setShowPopup(true);
-        document.body.style.backgroundColor = '#A0D6B4';
-        // SetIsSuc(true);
-        return;
-      }
-
-      if (cnt >= maxLength) {
-        setShowPopup(false);
-      }
-    } catch (e) {
-      console.error("useEffect 오류:", e);
-      setErrorFunc();
-    }
+      load(current);
+      
 
   }, []);
 
@@ -291,9 +295,9 @@ export default function App() {
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
               onClick={debugClick}
             ></div>
-            <div
+            {/* <div
               className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
-            ></div>
+            ></div> */}
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
