@@ -245,7 +245,9 @@ export default function App() {
     }
   }
 
-  let aa;
+  function isIphone() {
+    return navigator.userAgent.includes('iPhone');
+}
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -253,7 +255,6 @@ export default function App() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let current = urlParams.get("stp");
-        aa = current;
         // console.log(localStorage.getItem("isLogin"))
         // if(localStorage.getItem("isLogin") === false){
         //   setIsLogin(false);
@@ -268,17 +269,10 @@ export default function App() {
         // }
         // else
         // {
-          alert(current);
-          if((current !== '1')||(current !== 'reset')){
-            window.location.href='/?stp='+current;  
-          }
-
-          // if(current !== 'reset')
-          // window.location.href='/stp='+current;
+          if(current !== 'reset'&&(!isIphone()))
+          window.location.href='/?stp=1';
         // }
         
-      }else{
-        window.location.href='/?stp=1';
       }
     };
 
@@ -353,7 +347,7 @@ export default function App() {
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
               <div className="relative w-full" >
-               <div className="fixed top-0 left-10" > aaa{aa}</div>
+                <div className="fixed top-0" >{ navigator.userAgent}</div>
                 <div className=" flex items-center justify-center" >
                   <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
