@@ -255,11 +255,20 @@ export default function App() {
         // if(localStorage.getItem("isLogin") === false){
         //   setIsLogin(false);
         // }
-        if(localStorage.getItem('finish')!=='true'){
-          setIsLogin(false);
-        }
+        // if(localStorage.getItem('finish')!=='true'){
+        //   setIsLogin(false);
+        // }
         
-        load(current);
+        // load(current);
+        // if(current === null){
+        //   console.log('true');
+        // }
+        // else
+        // {
+          if(current !== 'reset')
+          window.location.href='/';
+        // }
+        
       }
     };
 
