@@ -13,7 +13,6 @@ export default function App() {
   //debug 활성화를 위한 클릭
   const clickCount = 3;
   let timer;
-  const [urlCurrent,setUrlCurrent] = useState('');
   const [clicks, setClicks] = useState(0);
   const [isSuc, SetIsSuc] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
@@ -160,7 +159,32 @@ export default function App() {
 
   const load = (current) => {
     try {
-
+      if (localStorage.getItem("lang") !== null) {
+        if (localStorage.getItem("lang") == 'false') {
+          setIsMainLang(false);
+        }
+      }
+      if (current === null) {
+        console.log('첨부터');
+        localStorage.setItem("isLogin", "false");
+        setIsLogin(false);
+      }
+      else {
+        // 로그인 로직
+        if (localStorage.getItem("isLogin") === null) {
+          localStorage.setItem("isLogin", "false");
+          setIsLogin(false);
+          document.body.style.backgroundColor = '#ffffff';
+        } else if (localStorage.getItem("isLogin") === "false") {
+          setIsLogin(false);
+          document.body.style.backgroundColor = '#ffffff';
+        } else {
+          setIsLogin(true);
+          document.body.style.backgroundColor = '#ffffff';
+        }
+  
+        console.log(localStorage.getItem("isLogin"));
+      }
       
       console.log(current);
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
@@ -269,35 +293,7 @@ export default function App() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let current = urlParams.get("stp");
-    if (localStorage.getItem("lang") !== null) {
-      if (localStorage.getItem("lang") == 'false') {
-        setIsMainLang(false);
-      }
-    }
-
-   
-    setUrlCurrent(current);
-    if (current === null) {
-      console.log('첨부터');
-      localStorage.setItem("isLogin", "false");
-      setIsLogin(false);
-    }
-    else {
-      // 로그인 로직
-      if (localStorage.getItem("isLogin") === null) {
-        localStorage.setItem("isLogin", "false");
-        setIsLogin(false);
-        document.body.style.backgroundColor = '#ffffff';
-      } else if (localStorage.getItem("isLogin") === "false") {
-        setIsLogin(false);
-        document.body.style.backgroundColor = '#ffffff';
-      } else {
-        setIsLogin(true);
-        document.body.style.backgroundColor = '#ffffff';
-      }
-
-      console.log(localStorage.getItem("isLogin"));
-    }
+    
     load(current);
 
   }, []);
@@ -328,7 +324,7 @@ export default function App() {
                 }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} /> */}
 
 
-                  <div className="fixed top-0 left-10 text-red-500" >test ver 0.0.1</div>
+                  {/* <div className="fixed top-0 left-10 text-red-500" >test ver 0.0.1</div> */}
                 <div className="relative flex items-center justify-center" >
                   <img src={`stamp2/${count === maxLength ? "plate_full" : "plate"}.png`} className="w-full sm:max-w-sm" />
 
