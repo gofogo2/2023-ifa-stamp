@@ -13,6 +13,7 @@ export default function App() {
   //debug 활성화를 위한 클릭
   const clickCount = 3;
   let timer;
+  const [urlCurrent,setUrlCurrent] = useState('');
   const [clicks, setClicks] = useState(0);
   const [isSuc, SetIsSuc] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
@@ -20,18 +21,18 @@ export default function App() {
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
-  const [isLoading,setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useState(false);
   const [isMainLang, setIsMainLang] = useState(true);
 
   const goToFinished = () => {
     console.log('goto FNS');
-    if((localStorage.getItem("1") === "true")&&(localStorage.getItem("1") === "true")&&(localStorage.getItem("1") === "true")&&(localStorage.getItem("1") === "true")){
+    if ((localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true")) {
       setShowPopup(true);
       localStorage.setItem("finish", true);
-    document.body.style.backgroundColor = '#ffffff';
+      document.body.style.backgroundColor = '#ffffff';
     }
-      window.location.reload();    
+    window.location.reload();
   }
 
   const setErrorFunc = () => {
@@ -118,7 +119,7 @@ export default function App() {
     }
   };
 
-  const LoadingIndicator=()=> {
+  const LoadingIndicator = () => {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
@@ -150,70 +151,18 @@ export default function App() {
     localStorage.setItem("isLogin", false);
   };
 
-  const LoadingShow=()=>{
+  const LoadingShow = () => {
     setIsLoading(true);
-    setTimeout(()=>{
+    setTimeout(() => {
       setIsLoading(false);
-    },1500);
+    }, 1500);
   }
-  // useEffect(() => {
-  //   const handleVisibilityChange = () => {
-  //     if (document.visibilityState === 'visible') {
-  //       window.location.reload();
-  //     }
-  //   };
 
-  //   document.addEventListener("visibilitychange", handleVisibilityChange);
-
-  //   return () => {
-  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
-  //   };
-  // }, []);
-
-  useEffect(() => {
-
-    LoadingShow();
-
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
+  const load = (current) => {
     try {
-      if (localStorage.getItem("lang") !== null) {
-        if (localStorage.getItem("lang") == 'false') {
-          setIsMainLang(false);
-        }
-      }
 
-      let current = urlParams.get("stp");
-
-      if (current === null) {
-        console.log('첨부터');
-        localStorage.setItem("isLogin", "false");
-        setIsLogin(false);
-      }
-      else {
-        // 로그인 로직
-        if (localStorage.getItem("isLogin") === null) {
-          localStorage.setItem("isLogin", "false");
-          setIsLogin(false);
-          document.body.style.backgroundColor = '#ffffff';
-        } else if (localStorage.getItem("isLogin") === "false") {
-          setIsLogin(false);
-          document.body.style.backgroundColor = '#ffffff';
-        } else {
-          setIsLogin(true);
-          document.body.style.backgroundColor = '#ffffff';
-        }
-
-        console.log(localStorage.getItem("isLogin"));
-      }
-
-
-
-
-
-
-
-
+      
+      console.log(current);
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
         clearData();
       }
@@ -293,13 +242,70 @@ export default function App() {
       console.error("useEffect 오류:", e);
       setErrorFunc();
     }
+  }
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let current = urlParams.get("stp");
+        load(current);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
+
+
+    LoadingShow();
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let current = urlParams.get("stp");
+    if (localStorage.getItem("lang") !== null) {
+      if (localStorage.getItem("lang") == 'false') {
+        setIsMainLang(false);
+      }
+    }
+
+   
+    setUrlCurrent(current);
+    if (current === null) {
+      console.log('첨부터');
+      localStorage.setItem("isLogin", "false");
+      setIsLogin(false);
+    }
+    else {
+      // 로그인 로직
+      if (localStorage.getItem("isLogin") === null) {
+        localStorage.setItem("isLogin", "false");
+        setIsLogin(false);
+        document.body.style.backgroundColor = '#ffffff';
+      } else if (localStorage.getItem("isLogin") === "false") {
+        setIsLogin(false);
+        document.body.style.backgroundColor = '#ffffff';
+      } else {
+        setIsLogin(true);
+        document.body.style.backgroundColor = '#ffffff';
+      }
+
+      console.log(localStorage.getItem("isLogin"));
+    }
+    load(current);
 
   }, []);
 
   return (
     <>
-{/* {false?LoadingIndicator(): true ? (  */}
-      {isLoading?LoadingIndicator(): isLogin ? (
+      {/* {false?LoadingIndicator(): true ? (  */}
+      {isLoading ? LoadingIndicator() : isLogin ? (
         !isError ? (
           <div className="relative bg-white flex justify-center">
             {/* <div
@@ -314,7 +320,7 @@ export default function App() {
             ) : (
               <div className="relative w-full" >
                 <div className=" flex items-center justify-center" >
-                <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
+                  <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
                 {/* <img className="absolute top-0" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
