@@ -255,7 +255,9 @@ export default function App() {
         // if(localStorage.getItem("isLogin") === false){
         //   setIsLogin(false);
         // }
-        setIsLogin(false);
+        if(localStorage.getItem('finish')!=='true'){
+          setIsLogin(false);
+        }
         load(current);
       }
     };
