@@ -251,7 +251,7 @@ export default function App() {
 
 useEffect(() => {
   const handleBlur = () => {
-      alert('');
+      // alert('');
   };
 
   window.addEventListener('blur', handleBlur);
