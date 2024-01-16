@@ -258,6 +258,7 @@ export default function App() {
         if(localStorage.getItem('finish')!=='true'){
           setIsLogin(false);
         }
+        
         load(current);
       }
     };
