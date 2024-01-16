@@ -164,6 +164,7 @@ export default function App() {
       
       console.log(current);
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
+        console.log('clear data');
         clearData();
       }
       switch (current) {
@@ -250,6 +251,11 @@ export default function App() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let current = urlParams.get("stp");
+        // console.log(localStorage.getItem("isLogin"))
+        // if(localStorage.getItem("isLogin") === false){
+        //   setIsLogin(false);
+        // }
+        setIsLogin(false);
         load(current);
       }
     };
@@ -310,7 +316,7 @@ export default function App() {
           <div className="relative bg-white flex justify-center">
             {/* <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
-              onClick={debugClick}
+              onClick={debugClick}f
             ></div> */}
             <div
               className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
@@ -328,7 +334,7 @@ export default function App() {
                 }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} /> */}
 
 
-                  <div className="fixed top-0 left-10 text-red-500" >test ver 0.0.1</div>
+                  {/* <div className="fixed top-0 left-10 text-red-500" >test ver 0.0.1</div> */}
                 <div className="relative flex items-center justify-center" >
                   <img src={`stamp2/${count === maxLength ? "plate_full" : "plate"}.png`} className="w-full sm:max-w-sm" />
 
