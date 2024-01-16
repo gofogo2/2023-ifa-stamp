@@ -266,7 +266,7 @@ export default function App() {
         // else
         // {
           if((current !== '1')||(current !== 'reset')){
-            window.location.href='/stp='+current;  
+            window.location.href='/?stp='+current;  
           }
 
           // if(current !== 'reset')
@@ -274,7 +274,7 @@ export default function App() {
         // }
         
       }else{
-        window.location.href='/stp=1';
+        window.location.href='/?stp=1';
       }
     };
 
