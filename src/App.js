@@ -245,39 +245,39 @@ export default function App() {
     }
   }
 
-  // useEffect(() => {
-  //   const handleVisibilityChange = () => {
-  //     if (document.visibilityState === 'visible') {
-  //       const queryString = window.location.search;
-  //       const urlParams = new URLSearchParams(queryString);
-  //       let current = urlParams.get("stp");
-  //       // console.log(localStorage.getItem("isLogin"))
-  //       // if(localStorage.getItem("isLogin") === false){
-  //       //   setIsLogin(false);
-  //       // }
-  //       // if(localStorage.getItem('finish')!=='true'){
-  //       //   setIsLogin(false);
-  //       // }
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let current = urlParams.get("stp");
+        // console.log(localStorage.getItem("isLogin"))
+        // if(localStorage.getItem("isLogin") === false){
+        //   setIsLogin(false);
+        // }
+        // if(localStorage.getItem('finish')!=='true'){
+        //   setIsLogin(false);
+        // }
         
-  //       // load(current);
-  //       // if(current === null){
-  //       //   console.log('true');
-  //       // }
-  //       // else
-  //       // {
-  //         if(current !== 'reset')
-  //         window.location.href='/stp=1';
-  //       // }
+        // load(current);
+        // if(current === null){
+        //   console.log('true');
+        // }
+        // else
+        // {
+          if(current !== 'reset')
+          window.location.href='/stp=1';
+        // }
         
-  //     }
-  //   };
+      }
+    };
 
-  //   document.addEventListener("visibilitychange", handleVisibilityChange);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
 
-  //   return () => {
-  //     document.removeEventListener("visibilitychange", handleVisibilityChange);
-  //   };
-  // }, []);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
 
   useEffect(() => {
 
