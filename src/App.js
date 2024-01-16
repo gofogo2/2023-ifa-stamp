@@ -13,7 +13,6 @@ export default function App() {
   //debug 활성화를 위한 클릭
   const clickCount = 3;
   let timer;
-  const [urlCurrent,setUrlCurrent] = useState('');
   const [clicks, setClicks] = useState(0);
   const [isSuc, SetIsSuc] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
