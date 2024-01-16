@@ -153,49 +153,8 @@ export default function App() {
     },1500);
   }
 
-  useEffect(() => {
-
-    LoadingShow();
-
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
+  const load=(current)=>{
     try {
-      if (localStorage.getItem("lang") !== null) {
-        if (localStorage.getItem("lang") == 'false') {
-          setIsMainLang(false);
-        }
-      }
-
-      let current = urlParams.get("stp");
-
-      if (current === null) {
-        console.log('첨부터');
-        localStorage.setItem("isLogin", "false");
-        setIsLogin(false);
-      }
-      else {
-        // 로그인 로직
-        if (localStorage.getItem("isLogin") === null) {
-          localStorage.setItem("isLogin", "false");
-          setIsLogin(false);
-          document.body.style.backgroundColor = '#ffffff';
-        } else if (localStorage.getItem("isLogin") === "false") {
-          setIsLogin(false);
-          document.body.style.backgroundColor = '#ffffff';
-        } else {
-          setIsLogin(true);
-          document.body.style.backgroundColor = '#ffffff';
-        }
-
-        console.log(localStorage.getItem("isLogin"));
-      }
-
-
-
-
-
-
-
 
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
         clearData();
@@ -288,7 +247,61 @@ export default function App() {
       console.error("useEffect 오류:", e);
       setErrorFunc();
     }
+  }
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let current = urlParams.get("stp");
+        load(current);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
+
+    LoadingShow();
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let current = urlParams.get("stp");
+      if (localStorage.getItem("lang") !== null) {
+        if (localStorage.getItem("lang") == 'false') {
+          setIsMainLang(false);
+        }
+      }
+
+      if (current === null) {
+        console.log('첨부터');
+        localStorage.setItem("isLogin", "false");
+        setIsLogin(false);
+      }
+      else {
+        // 로그인 로직
+        if (localStorage.getItem("isLogin") === null) {
+          localStorage.setItem("isLogin", "false");
+          setIsLogin(false);
+          document.body.style.backgroundColor = '#ffffff';
+        } else if (localStorage.getItem("isLogin") === "false") {
+          setIsLogin(false);
+          document.body.style.backgroundColor = '#ffffff';
+        } else {
+          setIsLogin(true);
+          document.body.style.backgroundColor = '#ffffff';
+        }
+
+        console.log(localStorage.getItem("isLogin"));
+      }
+
+      load(current);
   }, []);
 
   return (

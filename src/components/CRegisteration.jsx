@@ -39,8 +39,10 @@ const CRegisteration = (props) => {
             <input
               value={email}
               onChange={handleInputChange}
+              maxLength={120}
               type="text"
               id="ip_email"
+
               className="w-[90%] h-8  border-b-2 border-[#F4F7F5] outline-none text-xl"
             />
             {!isVaild&&isFocused ? (
