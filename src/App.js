@@ -196,6 +196,9 @@ console.log('a:'+cnt);
       if (cnt >= maxLength) {
         setShowPopup(true);
       }
+
+      window.location.href = "http://galaxys24studio-stamp.com/"
+
     } catch (e) {
       console.error("useEffect 오류:", e);
       setErrorFunc();
