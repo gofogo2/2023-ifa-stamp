@@ -13,6 +13,7 @@ export default function App() {
   //debug 활성화를 위한 클릭
   const clickCount = 3;
   let timer;
+  const [urlCurrent,setUrlCurrent] = useState('');
   const [clicks, setClicks] = useState(0);
   const [isSuc, SetIsSuc] = useState(false);
   const [isDebug, setIsDebug] = useState(false);
@@ -155,55 +156,8 @@ export default function App() {
     console.log(navigator.language);
   }
 
-  useEffect(() => {
-   
-    LoadingShow();
-
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
+  const load = (current)=>{
     try {
-      broswerLang();
-      if (localStorage.getItem("lang") !== null) {
-        if (localStorage.getItem("lang") == 'false') {
-          setIsMainLang(false);
-        }
-      }
-      else
-      {
-          if(navigator.language.includes('fr')){
-            setIsMainLang(true);
-          }else
-          {
-            setIsMainLang(false);
-          }
-      }
-
-      let current = urlParams.get("stp");
-
-      // if (current === null) {
-      //   console.log('첨부터');
-      //   localStorage.setItem("isLogin", "false");
-      //   setIsLogin(false);
-      // }
-      // else {
-        // 로그인 로직
-        if (localStorage.getItem("isLogin") === null) {
-          console.log('aaa');
-          localStorage.setItem("isLogin", "false");
-          setIsLogin(false);
-          document.body.style.backgroundColor = '#ffffff';
-        } else if (localStorage.getItem("isLogin") === "false") {
-          console.log('aaa');
-          setIsLogin(false);
-          document.body.style.backgroundColor = '#ffffff';
-        } else {
-          setIsLogin(true);
-          document.body.style.backgroundColor = '#ffffff';
-        }
-
-        console.log(localStorage.getItem("isLogin"));
-      // }
-
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
         console.log('aaa');
         clearData();
@@ -290,6 +244,75 @@ export default function App() {
       setErrorFunc();
     }
 
+  }
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === 'visible') {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        let current = urlParams.get("stp");
+        load(current);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
+
+  useEffect(() => {
+   
+    LoadingShow();
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let current = urlParams.get("stp");
+    
+      broswerLang();
+      if (localStorage.getItem("lang") !== null) {
+        if (localStorage.getItem("lang") == 'false') {
+          setIsMainLang(false);
+        }
+      }
+      else
+      {
+          if(navigator.language.includes('fr')){
+            setIsMainLang(true);
+          }else
+          {
+            setIsMainLang(false);
+          }
+      }
+
+
+      // if (current === null) {
+      //   console.log('첨부터');
+      //   localStorage.setItem("isLogin", "false");
+      //   setIsLogin(false);
+      // }
+      // else {
+        // 로그인 로직
+        if (localStorage.getItem("isLogin") === null) {
+          console.log('aaa');
+          localStorage.setItem("isLogin", "false");
+          setIsLogin(false);
+          document.body.style.backgroundColor = '#ffffff';
+        } else if (localStorage.getItem("isLogin") === "false") {
+          console.log('aaa');
+          setIsLogin(false);
+          document.body.style.backgroundColor = '#ffffff';
+        } else {
+          setIsLogin(true);
+          document.body.style.backgroundColor = '#ffffff';
+        }
+
+        console.log(localStorage.getItem("isLogin"));
+      // }
+      load(current);
+     
   }, []);
 
   return (
