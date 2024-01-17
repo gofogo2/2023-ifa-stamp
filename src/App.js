@@ -227,6 +227,11 @@ export default function App() {
         SetIsSuc(true);
         document.body.style.backgroundColor = '#ffffff';
         localStorage.setItem('reset', true);
+        localStorage.localStorage.setItem("finish",false);
+        localStorage.localStorage.setItem("1",false);
+        localStorage.localStorage.setItem("2",false);
+        localStorage.localStorage.setItem("3",false);
+        localStorage.localStorage.setItem("4",false);
       }
 
 
