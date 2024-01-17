@@ -265,6 +265,7 @@ export default function App() {
             console.log(localStorage.getItem("isLogin"));
           }
           load(current);
+          if(current !== 'reset')
           window.location.href = '/?stp=1';
         } else if (isIphone() && current === '1') {
           LoadingShow();
