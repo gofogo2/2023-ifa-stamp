@@ -54,7 +54,7 @@ export default function App() {
   const clearData = () => {
     try {
       localStorage.clear();
-      localStorage.setItem("isLogin", true);
+      // localStorage.setItem("isLogin", true);
       // alert("all data clear");
       window.location.href = "/?stp=1";
     } catch (e) {
