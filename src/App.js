@@ -223,22 +223,15 @@ export default function App() {
       setCount(cnt);
 
       if (current === "reset" && cnt >= maxLength&&(localStorage.getItem("finish") === "true")) {
-        console.log('a');
         SetIsSuc(true);
         document.body.style.backgroundColor = '#ffffff';
         localStorage.setItem('reset', true);
-        localStorage.localStorage.setItem("finish",false);
-        localStorage.localStorage.setItem("1",false);
-        localStorage.localStorage.setItem("2",false);
-        localStorage.localStorage.setItem("3",false);
-        localStorage.localStorage.setItem("4",false);
       }
 
 
       if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
         setShowPopup(true);
         document.body.style.backgroundColor = '#ffffff';
-        // SetIsSuc(true);
         return;
       }
 
@@ -372,7 +365,6 @@ export default function App() {
     checkData();
     function checkData() {
       const today = new Date().toDateString();
-      
       const savedDate = localStorage.getItem('dateSaved');
       
       if (today !== savedDate) {
