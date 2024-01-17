@@ -342,6 +342,9 @@ export default function App() {
     }
     load(current);
 
+    window.location.replace("/");
+
+
   }, []);
 
   return (
