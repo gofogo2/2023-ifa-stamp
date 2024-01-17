@@ -244,6 +244,16 @@ export default function App() {
     }
 
   }
+  checkData();
+  function checkData() {
+    const today = new Date().toDateString();
+    const savedDate = localStorage.getItem('dateSaved');
+    
+    if (today !== savedDate) {
+      console.log('날짜변경되어 초기화');
+        localStorage.clear();
+        localStorage.setItem('dateSaved', today);
+    }
 
   useEffect(() => {
     const handleVisibilityChange = () => {
