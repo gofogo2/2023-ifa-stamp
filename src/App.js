@@ -212,11 +212,6 @@ export default function App() {
       setErrorFunc();
     }
   }
-
-  
-  function isIphone() {
-    return navigator.userAgent.includes('iPhone');
-}
   
 
   useEffect(() => {
@@ -240,7 +235,7 @@ export default function App() {
               setIsMainLang(false); 
             }
           }
-          setUrlCurrent(current);    
+          // setUrlCurrent(current);    
           
           if(current === null){
             current = "1";
@@ -284,7 +279,7 @@ export default function App() {
               setIsMainLang(false); 
             }
           }
-          setUrlCurrent(current);    
+          // setUrlCurrent(current);    
           
           if(current === null){
             current = "1";
@@ -329,16 +324,10 @@ export default function App() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
-  checkData();
-  function checkData() {
-    const today = new Date().toDateString();
-    const savedDate = localStorage.getItem('dateSaved');
-    
-    if (today !== savedDate) {
-      console.log('날짜변경되어 초기화');
-        localStorage.clear();
-        localStorage.setItem('dateSaved', today);
-    }
+
+  function isIphone() {
+    return navigator.userAgent.includes('iPhone');
+}
 
   const loginTrue = (email) => {
     console.log(email);
@@ -401,10 +390,10 @@ export default function App() {
           }
       }
 
-   
       if(current === null){
         current = "1";
       }
+
       if (current === null) {
         console.log('첨부터');
         localStorage.setItem("isLogin", "false");
@@ -440,13 +429,13 @@ export default function App() {
       {isLoading?LoadingIndicator(): isLogin ? (
         !isError ? (
           <div className="relative bg-white flex justify-center">
-            <div
+            {/* <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10020]"
               onClick={debugClick}
             ></div>
             <div
               className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
-            ></div>
+            ></div> */}
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
