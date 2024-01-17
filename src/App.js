@@ -382,7 +382,7 @@ export default function App() {
       }
       else
       {
-          if(navigator.language.includes('de')){
+          if(navigator.language.includes('fr')){
             setIsMainLang(true);
           }else
           {
@@ -390,14 +390,16 @@ export default function App() {
           }
       }
 
-   
+      if(current === null){
+        current = "1";
+      }
 
-      // if (current === null) {
-      //   console.log('첨부터');
-      //   localStorage.setItem("isLogin", "false");
-      //   setIsLogin(false);
-      // }
-      // else {
+      if (current === null) {
+        console.log('첨부터');
+        localStorage.setItem("isLogin", "false");
+        setIsLogin(false);
+      }
+      else {
         // 로그인 로직
         if (localStorage.getItem("isLogin") === null) {
           console.log('aaa');
@@ -414,7 +416,7 @@ export default function App() {
         }
 
         console.log(localStorage.getItem("isLogin"));
-      // }
+      }
 
       load(current);
     
