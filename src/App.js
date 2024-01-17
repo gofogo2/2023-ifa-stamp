@@ -223,6 +223,7 @@ export default function App() {
       setCount(cnt);
 
       if (current === "reset" && cnt >= maxLength) {
+        console.log('a');
         SetIsSuc(true);
         document.body.style.backgroundColor = '#ffffff';
         localStorage.setItem('reset', true);
@@ -249,22 +250,20 @@ export default function App() {
     return navigator.userAgent.includes('iPhone');
 }
 
-useEffect(() => {
-  const handleBlur = () => {
-      // alert('');
-  };
+// useEffect(() => {
+//   const handleBlur = () => {
+//       // alert('');
+//   };
 
-  window.addEventListener('blur', handleBlur);
+//   window.addEventListener('blur', handleBlur);
 
-  // 컴포넌트가 언마운트 될 때 이벤트 리스너를 제거
-  return () => {
-      window.removeEventListener('blur', handleBlur);
-  };
-}, []); 
+//   // 컴포넌트가 언마운트 될 때 이벤트 리스너를 제거
+//   return () => {
+//       window.removeEventListener('blur', handleBlur);
+//   };
+// }, []); 
 
   useEffect(() => {
-
-
     const handleVisibilityChange = () => {
       if (document.visibilityState === 'visible') {
         const queryString = window.location.search;
