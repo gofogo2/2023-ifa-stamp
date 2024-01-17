@@ -216,7 +216,7 @@ console.log('a:'+cnt);
 
   return (
     <>
-      {isLogin ? (
+      {true ? (
         <div className="bg-[#F5F5F5] flex justify-center">
           <div
             className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
