@@ -266,6 +266,7 @@ export default function App() {
             console.log(localStorage.getItem("isLogin"));
           }
           load(current);      
+          if(current !== 'reset')  
           window.location.href='/?stp=1';
         }else if(isIphone()&&current==='1')
         {
@@ -419,7 +420,12 @@ export default function App() {
       }
 
       load(current);
-    
+      if (current !== 'reset') {
+        if (isIphone()) {
+          if (current !== "1")
+            window.location.href = "/?stp=1";
+        }
+      }
 
   }, []);
 
