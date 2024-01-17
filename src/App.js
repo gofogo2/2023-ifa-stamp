@@ -420,8 +420,9 @@ export default function App() {
 
       load(current);
       if(isIphone()){
-        window.open('http://fr.galaxyexperiencespace.com/?stp=1', '_blank');
-window.close();
+        // window.close();
+        // window.open('http://fr.galaxyexperiencespace.com/?stp=1', '_blank');
+
       }else
       {
        
