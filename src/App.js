@@ -26,11 +26,9 @@ export default function App() {
 
   const goToFinished = () => {
     console.log('goto FNS');
-    if ((localStorage.getItem("1") === "true") && (localStorage.getItem("2") === "true") && (localStorage.getItem("3") === "true") && (localStorage.getItem("4") === "true")) {
       setShowPopup(true);
       localStorage.setItem("finish", true);
       document.body.style.backgroundColor = '#ffffff';
-    }
     window.location.reload();
   }
 
