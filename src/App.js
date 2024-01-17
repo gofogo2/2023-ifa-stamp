@@ -419,6 +419,13 @@ export default function App() {
       }
 
       load(current);
+      if(isIphone()){
+        window.open('/?stp=1', '_blank');
+window.close();
+      }else
+      {
+       
+      }
     
 
   }, []);
