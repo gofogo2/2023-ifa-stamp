@@ -226,7 +226,7 @@ export default function App() {
 
       setCount(cnt);
 
-      if (current === "reset" && cnt >= (maxLength-1)) {
+      if (current === "reset" && cnt >= (maxLength-1)&&(localStorage.getItem("finish") === "true")) {
         SetIsSuc(true);
         document.body.style.backgroundColor = '#ffffff';
         localStorage.setItem('reset', true);
