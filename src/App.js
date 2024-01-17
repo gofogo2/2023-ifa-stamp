@@ -248,9 +248,6 @@ export default function App() {
       setErrorFunc();
     }
   }
-  function isIphone() {
-    return navigator.userAgent.includes('iPhone');
-}
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -258,103 +255,9 @@ export default function App() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let current = urlParams.get("stp");
-        
-          if(current !== 'reset'&&(!isIphone()))
-          window.location.href='/?stp=1';
-        else if(isIphone()&&current!=='1')
-        {
-          LoadingShow();
-
-          const queryString = window.location.search;
-          const urlParams = new URLSearchParams(queryString);
-          let current = urlParams.get("stp");
-          if (localStorage.getItem("lang") !== null) {
-            if (localStorage.getItem("lang") == 'false') {
-              setIsMainLang(false); 
-            }
-          }
-          // setUrlCurrent(current);    
-          
-          if(current === null){
-            current = "1";
-          }
-      
-          if (current === null) {
-            console.log('첨부터');
-            localStorage.setItem("isLogin", "false");
-            setIsLogin(false);
-          }
-          else {
-            // 로그인 로직
-            if (localStorage.getItem("isLogin") === null) {
-              localStorage.setItem("isLogin", "false");
-              setIsLogin(false);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('a');
-            } else if (localStorage.getItem("isLogin") === "false") {
-              setIsLogin(false);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('b');
-            } else {
-              setIsLogin(true);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('c');
-            }
-      
-            console.log(localStorage.getItem("isLogin"));
-          }
-          load(current);      
-          window.location.href='/?stp=1';
-        }else if(isIphone()&&current==='1')
-        {
-          LoadingShow();
-
-          const queryString = window.location.search;
-          const urlParams = new URLSearchParams(queryString);
-          let current = urlParams.get("stp");
-          if (localStorage.getItem("lang") !== null) {
-            if (localStorage.getItem("lang") == 'false') {
-              setIsMainLang(false); 
-            }
-          }
-          // setUrlCurrent(current);    
-          
-          if(current === null){
-            current = "1";
-          }
-      
-          if (current === null) {
-            console.log('첨부터');
-            localStorage.setItem("isLogin", "false");
-            setIsLogin(false);
-          }
-          else {
-            // 로그인 로직
-            if (localStorage.getItem("isLogin") === null) {
-              localStorage.setItem("isLogin", "false");
-              setIsLogin(false);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('a');
-            } else if (localStorage.getItem("isLogin") === "false") {
-              setIsLogin(false);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('b');
-            } else {
-              setIsLogin(true);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('c');
-            }
-      
-            console.log(localStorage.getItem("isLogin"));
-          }
-          load(current); 
-        }
-        // }
-
-        
+        load(current);
       }
     };
-
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -421,10 +324,10 @@ export default function App() {
                 <div className=" flex items-center justify-center" >
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
-                {/* <img className="absolute top-0" onClick={() => {
+                <img className="absolute top-0" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
                   setIsMainLang(!isMainLang);
-                }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} /> */}
+                }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} />
 
 
 
