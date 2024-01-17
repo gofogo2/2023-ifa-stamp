@@ -250,7 +250,7 @@ export default function App() {
           window.location.href='/?stp=1';
         else if(isIphone()&&current!=='1')
         {
-          LoadingShow();
+          // LoadingShow();
 
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
@@ -260,7 +260,7 @@ export default function App() {
               setIsMainLang(false); 
             }
           }
-          setUrlCurrent(current);    
+          // setUrlCurrent(current);    
           
           if(current === null){
             current = "1";
@@ -294,7 +294,7 @@ export default function App() {
           window.location.href='/?stp=1';
         }else if(isIphone()&&current==='1')
         {
-          LoadingShow();
+          // LoadingShow();
 
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
@@ -304,7 +304,7 @@ export default function App() {
               setIsMainLang(false); 
             }
           }
-          setUrlCurrent(current);    
+          // setUrlCurrent(current);    
           
           if(current === null){
             current = "1";
