@@ -25,9 +25,13 @@ export default function App() {
   const [isMainLang, setIsMainLang] = useState(true);
 
   const goToFinished = () => {
-    setShowPopup(true);
-    localStorage.setItem("finish", true);
-    document.body.style.backgroundColor = '#ffffff';
+    console.log('goto FNS');
+    if ((localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true")) {
+      setShowPopup(true);
+      localStorage.setItem("finish", true);
+      document.body.style.backgroundColor = '#ffffff';
+    }
+    window.location.reload();
   }
 
   const setErrorFunc = () => {
@@ -119,44 +123,9 @@ export default function App() {
     );
   }
 
-  const loginTrue = (email) => {
-    console.log(email);
-    LoadingShow();
-    fetch(`http://${process.env.REACT_APP_URI}:3333/user/add`, {
-      method: "POST",
-      body: JSON.stringify({ email: email, region: process.env.REACT_APP_REGION }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLogin(true);
-        localStorage.setItem("isLogin", true);
-        document.body.style.backgroundColor = '#ffffff';
-        return;
-      });
-  };
-
-  const loginFalse = () => {
-    setIsLogin(false);
-    clearData();
-    localStorage.setItem("isLogin", false);
-  };
-
-  const LoadingShow=()=>{
-    setIsLoading(true);
-    setTimeout(()=>{
-      setIsLoading(false);
-    },1500);
-  }
-
-  const broswerLang=()=>{
-    console.log(navigator.language);
-  }
-
   const load=(current)=>{
     try {
+
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
         console.log('aaa');
         clearData();
@@ -243,6 +212,7 @@ export default function App() {
       setErrorFunc();
     }
   }
+  
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -250,9 +220,103 @@ export default function App() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let current = urlParams.get("stp");
-        load(current);
+        
+          if(current !== 'reset'&&(!isIphone()))
+          window.location.href='/?stp=1';
+        else if(isIphone()&&current!=='1')
+        {
+          LoadingShow();
+
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          let current = urlParams.get("stp");
+          if (localStorage.getItem("lang") !== null) {
+            if (localStorage.getItem("lang") == 'false') {
+              setIsMainLang(false); 
+            }
+          }
+          // setUrlCurrent(current);    
+          
+          if(current === null){
+            current = "1";
+          }
+      
+          if (current === null) {
+            console.log('첨부터');
+            localStorage.setItem("isLogin", "false");
+            setIsLogin(false);
+          }
+          else {
+            // 로그인 로직
+            if (localStorage.getItem("isLogin") === null) {
+              localStorage.setItem("isLogin", "false");
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('a');
+            } else if (localStorage.getItem("isLogin") === "false") {
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('b');
+            } else {
+              setIsLogin(true);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('c');
+            }
+      
+            console.log(localStorage.getItem("isLogin"));
+          }
+          load(current);      
+          window.location.href='/?stp=1';
+        }else if(isIphone()&&current==='1')
+        {
+          LoadingShow();
+
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          let current = urlParams.get("stp");
+          if (localStorage.getItem("lang") !== null) {
+            if (localStorage.getItem("lang") == 'false') {
+              setIsMainLang(false); 
+            }
+          }
+          // setUrlCurrent(current);    
+          
+          if(current === null){
+            current = "1";
+          }
+      
+          if (current === null) {
+            console.log('첨부터');
+            localStorage.setItem("isLogin", "false");
+            setIsLogin(false);
+          }
+          else {
+            // 로그인 로직
+            if (localStorage.getItem("isLogin") === null) {
+              localStorage.setItem("isLogin", "false");
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('a');
+            } else if (localStorage.getItem("isLogin") === "false") {
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('b');
+            } else {
+              setIsLogin(true);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('c');
+            }
+      
+            console.log(localStorage.getItem("isLogin"));
+          }
+          load(current); 
+        }
+        // }
+
+        
       }
     };
+
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -261,6 +325,46 @@ export default function App() {
     };
   }, []);
 
+  function isIphone() {
+    return navigator.userAgent.includes('iPhone');
+}
+
+  const loginTrue = (email) => {
+    console.log(email);
+    LoadingShow();
+    fetch(`http://${process.env.REACT_APP_URI}:3333/user/add`, {
+      method: "POST",
+      body: JSON.stringify({ email: email, region: process.env.REACT_APP_REGION }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setIsLogin(true);
+        localStorage.setItem("isLogin", true);
+        document.body.style.backgroundColor = '#ffffff';
+        return;
+      });
+  };
+
+  const loginFalse = () => {
+    setIsLogin(false);
+    clearData();
+    localStorage.setItem("isLogin", false);
+  };
+
+  const LoadingShow=()=>{
+    setIsLoading(true);
+    setTimeout(()=>{
+      setIsLoading(false);
+    },1500);
+  }
+
+  const broswerLang=()=>{
+    console.log(navigator.language);
+  }
+
   useEffect(() => {
    
     LoadingShow();
@@ -268,6 +372,8 @@ export default function App() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let current = urlParams.get("stp");
+
+   
       broswerLang();
       if (localStorage.getItem("lang") !== null) {
         if (localStorage.getItem("lang") == 'false') {
@@ -276,7 +382,7 @@ export default function App() {
       }
       else
       {
-          if(navigator.language.includes('th')){
+          if(navigator.language.includes('de')){
             setIsMainLang(true);
           }else
           {
@@ -284,14 +390,16 @@ export default function App() {
           }
       }
 
-     
+      if(current === null){
+        current = "1";
+      }
 
-      // if (current === null) {
-      //   console.log('첨부터');
-      //   localStorage.setItem("isLogin", "false");
-      //   setIsLogin(false);
-      // }
-      // else {
+      if (current === null) {
+        console.log('첨부터');
+        localStorage.setItem("isLogin", "false");
+        setIsLogin(false);
+      }
+      else {
         // 로그인 로직
         if (localStorage.getItem("isLogin") === null) {
           console.log('aaa');
@@ -308,8 +416,10 @@ export default function App() {
         }
 
         console.log(localStorage.getItem("isLogin"));
-      // }
+      }
+
       load(current);
+    
 
   }, []);
 
@@ -320,16 +430,16 @@ export default function App() {
         !isError ? (
           <div className="relative bg-white flex justify-center">
             {/* <div
-              className="fixed top-0 w-28 h-28  z-[10020]"
+              className="fixed bottom-0 left-0 w-28 h-28  z-[10020]"
               onClick={debugClick}
-            ></div> */}
+            ></div>
             <div
               className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
-            ></div>
+            ></div> */}
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
-              <div className="relative flex flex-col items-center justify-center" >
+              <div className="relative w-[100%] flex flex-col items-center justify-center" >
                 {console.log(localStorage)}
                 <div className=" flex items-center justify-center" >
 
@@ -359,7 +469,6 @@ export default function App() {
                   })}
                   {count === maxLength ? <img onClick={() => { goToFinished() }} src={`stamp2/${isMainLang ? "KR" : "EN"}_btn_03.png`} className="absolute bottom-14 w-[85%] sm:max-w-sm z-[10000]" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-14 w-[85%] sm:max-w-sm" ></img>}
                 </div>
-                <div className="mb-10" />
               </div>
               // <CStampPanal items={items} />
             )}
@@ -386,5 +495,4 @@ export default function App() {
         <CRegisteration isMainLang={isMainLang} loginTrue={loginTrue} />
       )}
     </>
-  );
-}
+  );}
