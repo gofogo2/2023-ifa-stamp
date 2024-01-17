@@ -227,7 +227,9 @@ export default function App() {
   const broswerLang=()=>{
     console.log(navigator.language);
   }
-
+  function isIphone() {
+    return navigator.userAgent.includes('iPhone');
+}
   
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -235,7 +237,9 @@ export default function App() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let current = urlParams.get("stp");
-        load(current);
+        // load(current);
+        if(current !== 'reset'&&(!isIphone()))
+        window.location.href='/?stp=1';
       }
     };
 
