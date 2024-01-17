@@ -20,7 +20,7 @@ export default function App() {
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
-  const [isLoading,setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useState(false);
   const [isMainLang, setIsMainLang] = useState(true);
 
@@ -115,7 +115,7 @@ export default function App() {
     }
   };
 
-  const LoadingIndicator=()=> {
+  const LoadingIndicator = () => {
     return (
       <div className="flex justify-center items-center h-screen">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
@@ -123,7 +123,7 @@ export default function App() {
     );
   }
 
-  const load=(current)=>{
+  const load = (current) => {
     try {
 
       if (localStorage.getItem("reset") === 'true' && current !== "reset") {
@@ -190,7 +190,7 @@ export default function App() {
       console.log(cnt);
       setCount(cnt);
 
-      if (current === "reset" && cnt >= maxLength&&(localStorage.getItem("finish") === "true")) {
+      if (current === "reset" && cnt >= maxLength && (localStorage.getItem("finish") === "true")) {
         SetIsSuc(true);
         document.body.style.backgroundColor = '#ffffff';
         localStorage.setItem('reset', true);
@@ -212,7 +212,7 @@ export default function App() {
       setErrorFunc();
     }
   }
-  
+
 
   useEffect(() => {
     const handleVisibilityChange = () => {
@@ -220,11 +220,10 @@ export default function App() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let current = urlParams.get("stp");
-        
-          if(current !== 'reset'&&(!isIphone()))
-          window.location.href='/?stp=1';
-        else if(isIphone()&&current!=='1')
-        {
+
+        if (current !== 'reset' && (!isIphone()))
+          window.location.href = '/?stp=1';
+        else if (isIphone() && current !== '1') {
           LoadingShow();
 
           const queryString = window.location.search;
@@ -232,15 +231,15 @@ export default function App() {
           let current = urlParams.get("stp");
           if (localStorage.getItem("lang") !== null) {
             if (localStorage.getItem("lang") == 'false') {
-              setIsMainLang(false); 
+              setIsMainLang(false);
             }
           }
           // setUrlCurrent(current);    
-          
-          if(current === null){
+
+          if (current === null) {
             current = "1";
           }
-      
+
           if (current === null) {
             console.log('첨부터');
             localStorage.setItem("isLogin", "false");
@@ -262,13 +261,12 @@ export default function App() {
               document.body.style.backgroundColor = '#ffffff';
               console.log('c');
             }
-      
+
             console.log(localStorage.getItem("isLogin"));
           }
-          load(current);      
-          window.location.href='/?stp=1';
-        }else if(isIphone()&&current==='1')
-        {
+          load(current);
+          window.location.href = '/?stp=1';
+        } else if (isIphone() && current === '1') {
           LoadingShow();
 
           const queryString = window.location.search;
@@ -276,15 +274,15 @@ export default function App() {
           let current = urlParams.get("stp");
           if (localStorage.getItem("lang") !== null) {
             if (localStorage.getItem("lang") == 'false') {
-              setIsMainLang(false); 
+              setIsMainLang(false);
             }
           }
           // setUrlCurrent(current);    
-          
-          if(current === null){
+
+          if (current === null) {
             current = "1";
           }
-      
+
           if (current === null) {
             console.log('첨부터');
             localStorage.setItem("isLogin", "false");
@@ -306,14 +304,14 @@ export default function App() {
               document.body.style.backgroundColor = '#ffffff';
               console.log('c');
             }
-      
+
             console.log(localStorage.getItem("isLogin"));
           }
-          load(current); 
+          load(current);
         }
         // }
 
-        
+
       }
     };
 
@@ -327,7 +325,7 @@ export default function App() {
 
   function isIphone() {
     return navigator.userAgent.includes('iPhone');
-}
+  }
 
   const loginTrue = (email) => {
     console.log(email);
@@ -354,83 +352,83 @@ export default function App() {
     localStorage.setItem("isLogin", false);
   };
 
-  const LoadingShow=()=>{
+  const LoadingShow = () => {
     setIsLoading(true);
-    setTimeout(()=>{
+    setTimeout(() => {
       setIsLoading(false);
-    },1500);
+    }, 1500);
   }
 
-  const broswerLang=()=>{
+  const broswerLang = () => {
     console.log(navigator.language);
   }
 
   useEffect(() => {
-   
+
     LoadingShow();
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let current = urlParams.get("stp");
 
-   
-      broswerLang();
-      if (localStorage.getItem("lang") !== null) {
-        if (localStorage.getItem("lang") == 'false') {
-          setIsMainLang(false);
-        }
-      }
-      else
-      {
-          if(navigator.language.includes('fr')){
-            setIsMainLang(true);
-          }else
-          {
-            setIsMainLang(false);
-          }
-      }
 
-      if(current === null){
-        current = "1";
+    broswerLang();
+    if (localStorage.getItem("lang") !== null) {
+      if (localStorage.getItem("lang") == 'false') {
+        setIsMainLang(false);
       }
+    }
+    else {
+      if (navigator.language.includes('fr')) {
+        setIsMainLang(true);
+      } else {
+        setIsMainLang(false);
+      }
+    }
 
-      if (current === null) {
-        console.log('첨부터');
+    if (current === null) {
+      current = "1";
+    }
+
+    if (current === null) {
+      console.log('첨부터');
+      localStorage.setItem("isLogin", "false");
+      setIsLogin(false);
+    }
+    else {
+      // 로그인 로직
+      if (localStorage.getItem("isLogin") === null) {
+        console.log('aaa');
         localStorage.setItem("isLogin", "false");
         setIsLogin(false);
-      }
-      else {
-        // 로그인 로직
-        if (localStorage.getItem("isLogin") === null) {
-          console.log('aaa');
-          localStorage.setItem("isLogin", "false");
-          setIsLogin(false);
-          document.body.style.backgroundColor = '#ffffff';
-        } else if (localStorage.getItem("isLogin") === "false") {
-          console.log('aaa');
-          setIsLogin(false);
-          document.body.style.backgroundColor = '#ffffff';
-        } else {
-          setIsLogin(true);
-          document.body.style.backgroundColor = '#ffffff';
-        }
-
-        console.log(localStorage.getItem("isLogin"));
+        document.body.style.backgroundColor = '#ffffff';
+      } else if (localStorage.getItem("isLogin") === "false") {
+        console.log('aaa');
+        setIsLogin(false);
+        document.body.style.backgroundColor = '#ffffff';
+      } else {
+        setIsLogin(true);
+        document.body.style.backgroundColor = '#ffffff';
       }
 
-      load(current);
-      if(isIphone()){
-        if(current !== "1")
-        window.location.href = "/?stp=1";
+      console.log(localStorage.getItem("isLogin"));
+    }
+
+    load(current);
+    if (current !== 'reset') {
+      if (isIphone()) {
+        if (current !== "1")
+          window.location.href = "/?stp=1";
       }
-    
+    }
+
 
   }, []);
 
   return (
     <>
-{/* {false?LoadingIndicator(): true ? (  */}
-      {isLoading?LoadingIndicator(): isLogin ? (
+      {/* {false?LoadingIndicator(): true ? (  */}
+      {isLoading ? LoadingIndicator() : isLogin ? (
         !isError ? (
           <div className="relative bg-white flex justify-center">
             {/* <div
@@ -447,7 +445,7 @@ export default function App() {
                 {console.log(localStorage)}
                 <div className=" flex items-center justify-center" >
 
-                <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
+                  <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
                 <img className=" absolute top-0 w-full sm:max-w-sm z-[10010]" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
@@ -499,4 +497,5 @@ export default function App() {
         <CRegisteration isMainLang={isMainLang} loginTrue={loginTrue} />
       )}
     </>
-  );}
+  );
+}
