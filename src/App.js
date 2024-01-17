@@ -25,9 +25,13 @@ export default function App() {
   const [isMainLang, setIsMainLang] = useState(true);
 
   const goToFinished = () => {
-    setShowPopup(true);
-    localStorage.setItem("finish", true);
-    document.body.style.backgroundColor = '#ffffff';
+    console.log('goto FNS');
+    if ((localStorage.getItem("1") === "true") && (localStorage.getItem("2") === "true") && (localStorage.getItem("3") === "true") && (localStorage.getItem("4") === "true")) {
+      setShowPopup(true);
+      localStorage.setItem("finish", true);
+      document.body.style.backgroundColor = '#ffffff';
+    }
+    window.location.reload();
   }
 
   const setErrorFunc = () => {
@@ -258,7 +262,100 @@ export default function App() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let current = urlParams.get("stp");
-        load(current);
+        
+          if(current !== 'reset'&&(!isIphone()))
+          window.location.href='/?stp=1';
+        else if(isIphone()&&current!=='1')
+        {
+          LoadingShow();
+
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          let current = urlParams.get("stp");
+          if (localStorage.getItem("lang") !== null) {
+            if (localStorage.getItem("lang") == 'false') {
+              setIsMainLang(false); 
+            }
+          }
+          
+          
+          if(current === null){
+            current = "1";
+          }
+      
+          if (current === null) {
+            console.log('첨부터');
+            localStorage.setItem("isLogin", "false");
+            setIsLogin(false);
+          }
+          else {
+            // 로그인 로직
+            if (localStorage.getItem("isLogin") === null) {
+              localStorage.setItem("isLogin", "false");
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('a');
+            } else if (localStorage.getItem("isLogin") === "false") {
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('b');
+            } else {
+              setIsLogin(true);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('c');
+            }
+      
+            console.log(localStorage.getItem("isLogin"));
+          }
+          load(current);      
+          window.location.href='/?stp=1';
+        }else if(isIphone()&&current==='1')
+        {
+          LoadingShow();
+
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          let current = urlParams.get("stp");
+          if (localStorage.getItem("lang") !== null) {
+            if (localStorage.getItem("lang") == 'false') {
+              setIsMainLang(false); 
+            }
+          }
+          
+          
+          if(current === null){
+            current = "1";
+          }
+      
+          if (current === null) {
+            console.log('첨부터');
+            localStorage.setItem("isLogin", "false");
+            setIsLogin(false);
+          }
+          else {
+            // 로그인 로직
+            if (localStorage.getItem("isLogin") === null) {
+              localStorage.setItem("isLogin", "false");
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('a');
+            } else if (localStorage.getItem("isLogin") === "false") {
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('b');
+            } else {
+              setIsLogin(true);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('c');
+            }
+      
+            console.log(localStorage.getItem("isLogin"));
+          }
+          load(current); 
+        }
+        // }
+
+        
       }
     };
 
@@ -269,6 +366,18 @@ export default function App() {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
   }, []);
+
+  checkData();
+  function checkData() {
+    const today = new Date().toDateString();
+    const savedDate = localStorage.getItem('dateSaved');
+    
+    if (today !== savedDate) {
+      console.log('날짜변경되어 초기화');
+        localStorage.clear();
+        localStorage.setItem('dateSaved', today);
+    }
+}
 
   useEffect(() => {
 
@@ -281,6 +390,10 @@ export default function App() {
         if (localStorage.getItem("lang") == 'false') {
           setIsMainLang(false);
         }
+      }
+      
+      if(current === null){
+        current = "1";
       }
 
       if (current === null) {
