@@ -417,10 +417,10 @@ export default function App() {
         !isError ? (
           <div className="bg-[#F5F5F5] flex justify-center">
 
-            <div
+            {/* <div
               className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
               onClick={debugClick}
-            ></div>
+            ></div> */}
             {/* <div
               className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
             ></div> */}
