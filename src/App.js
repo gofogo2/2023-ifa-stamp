@@ -378,7 +378,7 @@ export default function App() {
       }
       else
       {
-          if(navigator.language.includes('en')){
+          if(!navigator.language.includes('ko')){
             setIsMainLang(false);
           }
       }

@@ -23,10 +23,10 @@ const CRegisteration = (props) => {
 
   return (
     <div className="bg-white" >
+    
 {console.log(localStorage)}
       <div className="grid grid-cols-1 grid-rows-4 md:grid-rows-1 md:grid-cols-2">
-        <div className="relative">
-          {/* {navigator.language} */}
+        <div className="relative z-10000">
           {state === 0 ? (
             <img src={`login/${props.isMainLang ? "KR" : "EN"}_reg_01.png `} className="w-full" alt="" />
           ) : (
@@ -37,10 +37,10 @@ const CRegisteration = (props) => {
           </div> : ""} */}
 
         </div>
-
+        
         {state === 0 ? (
           <div className="relative flex flex-col items-center justify-start pt-10 ">
-
+  
             <input
               value={email}
               onChange={handleInputChange}
