@@ -285,10 +285,68 @@ export default function App() {
         // {
           if(current !== 'reset'&&(!isIphone()))
           window.location.href='/?stp=1';
+        else if(isIphone()&&current!=='1')
+        {
+          LoadingShow();
+
+          const queryString = window.location.search;
+          const urlParams = new URLSearchParams(queryString);
+          let current = urlParams.get("stp");
+          if (localStorage.getItem("lang") !== null) {
+            if (localStorage.getItem("lang") == 'false') {
+              setIsMainLang(false); 
+            }
+          }
+          setUrlCurrent(current);    
+          
+          if(current === null){
+            current = "1";
+          }
+      
+          if (current === null) {
+            console.log('첨부터');
+            localStorage.setItem("isLogin", "false");
+            setIsLogin(false);
+          }
+          else {
+            // 로그인 로직
+            if (localStorage.getItem("isLogin") === null) {
+              localStorage.setItem("isLogin", "false");
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('a');
+            } else if (localStorage.getItem("isLogin") === "false") {
+              setIsLogin(false);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('b');
+            } else {
+              setIsLogin(true);
+              document.body.style.backgroundColor = '#ffffff';
+              console.log('c');
+            }
+      
+            console.log(localStorage.getItem("isLogin"));
+          }
+          load(current);      
+          window.location.href='/?stp=1';
+        }
         // }
+
         
       }
     };
+    checkData();
+    function checkData() {
+      const today = new Date().toDateString();
+      
+      const savedDate = localStorage.getItem('dateSaved');
+      
+      if (today !== savedDate) {
+        console.log('날짜변경되어 초기화');
+          localStorage.clear();
+          localStorage.setItem('dateSaved', today);
+      }
+  }
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -298,8 +356,6 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-
-
     LoadingShow();
 
     const queryString = window.location.search;
@@ -342,7 +398,10 @@ export default function App() {
     }
     load(current);
 
-    window.location.replace("/");
+    // if(isIphone()){
+    // window.location.replace("/?stp=1");
+    // }
+    // alert('');
 
 
   }, []);
@@ -364,7 +423,7 @@ export default function App() {
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
               <div className="relative w-full" >
-                {/* <div className="fixed top-0" >{ navigator.userAgent}</div> */}
+                <div className="fixed top-0" >{ new Date().toDateString()}</div>
                 <div className=" flex items-center justify-center" >
                   <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 </div>
