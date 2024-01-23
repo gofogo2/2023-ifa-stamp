@@ -380,7 +380,7 @@ export default function App() {
     return () => {
       document.removeEventListener("visibilitychange", handleVisibilityChange);
     };
-  }, []);
+  }, []); 
 
   useEffect(() => {
     LoadingShow();
