@@ -180,7 +180,7 @@ const CRegisteration = (props) => {
             </div>
           </div>
           <div className="w-[80%] h-[80%] overflow-scroll mt-10">
-            <img src="login/KR_privacy.png" />
+            <img src={`login/${props.isMainLang ? "KR" : "EN"}_privacy.png`} />
           </div>
         </div>
       ) : (
@@ -194,7 +194,7 @@ const CRegisteration = (props) => {
             </div>
           </div>
           <div className="w-[80%] h-[80%] overflow-scroll mt-10">
-            <img src="login/KR_terms.png" />
+            <img src={`login/${props.isMainLang ? "KR" : "EN"}_terms.png`} />
           </div>
         </div>
       ) : (
