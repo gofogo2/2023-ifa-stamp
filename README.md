@@ -1,2 +1,2 @@
-ssh -i "ilp2023-eu-de.pem" ec2-user@ec2-3-121-208-21.eu-central-1.compute.amazonaws.com
+ssh -i "ilp2023-eu-es.pem" ec2-user@ec2-18-100-44-241.eu-south-2.compute.amazonaws.com
 sudo sh -c 'PORT=80 nohup npm run start &' 
