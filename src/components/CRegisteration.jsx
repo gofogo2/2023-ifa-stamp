@@ -23,6 +23,7 @@ const CRegisteration = (props) => {
 
   return (
     <div className="bg-white" >
+      {/* {navigator.language} */}
 {console.log(localStorage)}
       <div className="grid grid-cols-1 grid-rows-4 md:grid-rows-1 md:grid-cols-2">
         <div className="relative">

@@ -383,7 +383,7 @@ export default function App() {
       }
       else
       {
-          if(navigator.language.includes('de')){
+          if(navigator.language.includes('ca')){
             setIsMainLang(true);
           }else
           {
