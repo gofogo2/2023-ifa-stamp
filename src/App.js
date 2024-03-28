@@ -1,12 +1,19 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import CStampPanal from "./components/CStampPanal";
 import CDebugPopup from "./components/CDebugPopup";
 import CLogin from "./components/CLogin";
 import CPopup from "./components/CPopup";
-
+import ImageSlider from "./components/ImageSlider";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation } from "swiper/modules";
+import SwiperCore from "swiper";
+import "swiper/css";
+import "swiper/css/navigation";
+// import "./styles.css";
 export default function App() {
   //스탬프 카운트
   const maxLength = 5;
+  SwiperCore.use([Autoplay, Navigation]);
 
   //debug 활성화를 위한 클릭
   const clickCount = 3;
@@ -199,45 +206,115 @@ export default function App() {
     }
   }, []);
 
+  const sliderImages = [
+    "/test/2-1.png",
+    "/test/2-2.png",
+    "/test/2-3.png",
+    "/test/2-4.png",
+  ];
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
   return (
-    <>
-      {true ? (
-        isGuide ? (
-          <div className="relative flex justify-center bg-black">
-            <img className="relative" src="stamp/guide.png"></img>
-            {/* <button className="absolute w-full bg-blue-500 bottom-64 h-52 opacity-30 xs:bg-red-300 xxs:bg-amber-200 xxxs:bg-green-400 md:bg-purple-700 lg:bg-pink-400 "></button> */}
-            <button className="absolute bottom-0 w-full h-52 xxs:h-32 xs:h-52 md:h-72" onClick={()=>{setGuideFalse()}}></button>
+    <div className="flex flex-col items-center justify-start min-h-screen">
+      {/* 상단 이미지 */}
+      <div className="w-full sm:w-3/4 md:w-1/2 lg:w-2/4 xl:w-1/3 h-1/4">
+        <img src="/test/1.png" className="object-contain w-full h-full" />
+      </div>
+
+      {/* 배경 이미지와 Swiper 슬라이더를 포함하는 컨테이너 */}
+      <div className="relative w-full sm:w-3/4 md:w-1/2 lg:w-2/4 xl:w-1/3 h-2/4">
+        <img
+          src="/test/2.png"
+          className="absolute top-0 left-0 z-0 object-cover w-full h-full"
+        />
+
+        <Swiper
+          // ref={sliderRef}
+          loop={true}
+          slidesPerView={1}
+          modules={[Navigation, Autoplay]}
+          // autoplay={{delay:3000,disableOnInteraction:true}}
+          autoplay={{
+            delay: 3000, // 5초 지연
+            disableOnInteraction: false, // 사용자 스와이프 후에도 자동재생 계속
+          }}
+          navigation={{
+            nextEl: "",
+            prevEl: "",
+          }}
+          onInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.init();
+            swiper.navigation.update();
+          }}
+          className="absolute top-0 left-0 z-10 w-full h-full mySwiper"
+          // Swiper 설정
+        >
+          {sliderImages.map((value, index) => {
+            return (
+              <SwiperSlide>
+                <div>{index}</div>
+                <img
+                  src={`${value}`}
+                  className="object-contain w-full h-full"
+                  alt=""
+                />
+              </SwiperSlide>
+            );
+          })}
+          <div className="absolute bottom-0 flex justify-around w-full">
+            <div ref={prevRef} className="z-50 flex w-20 h-20 bg-red-50">
+              Prev
+            </div>
+            <div ref={nextRef} className="z-50 flex w-20 h-20 bg-red-50">
+              Next
+            </div>
           </div>
-        ) : (
-          <div className="bg-[#F5F5F5] flex justify-center">
-            <div
-              className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
-              onClick={debugClick}
-            ></div>
-            {showPopup ? (
-              <CPopup isSuc={isSuc} />
-            ) : (
-              <CStampPanal items={items} setShowPopupTrue={setShowPopupTrue} />
-            )}
-            <div className="flex items-center justify-center"></div>
-            {isDebug && (
-              <CDebugPopup
-                toggleDebug={toggleDebug}
-                clearData={clearData}
-                fillData={()=>fillData(maxLength)}
-                threeData={()=>fillData(3)}
-                changeFinish={changeFinish}
-              />
-            )}
-            <div
-              className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]"
-              onClick={() => toggleDebug()}
-            ></div>
-          </div>
-        )
-      ) : (
-        <CLogin setLoginTrue={setLoginTrue} />
-      )}
-    </>
+        </Swiper>
+      </div>
+      <div className="w-full sm:w-3/4 md:w-1/2 lg:w-2/4 xl:w-1/3 h-1/4">
+        <img src="/test/3.png" className="object-contain w-full h-full" />
+      </div>
+    </div>
+    // <>
+    //   {true ? (
+    //     isGuide ? (
+    //       <div className="relative flex justify-center bg-black">
+    //         <img className="relative" src="stamp/guide.png"></img>
+    //         {/* <button className="absolute w-full bg-blue-500 bottom-64 h-52 opacity-30 xs:bg-red-300 xxs:bg-amber-200 xxxs:bg-green-400 md:bg-purple-700 lg:bg-pink-400 "></button> */}
+    //         <button className="absolute bottom-0 w-full h-52 xxs:h-32 xs:h-52 md:h-72" onClick={()=>{setGuideFalse()}}></button>
+    //       </div>
+    //     ) : (
+    //       <div className="bg-[#F5F5F5] flex justify-center">
+    //         <div
+    //           className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
+    //           onClick={debugClick}
+    //         ></div>
+    //         {showPopup ? (
+    //           <CPopup isSuc={isSuc} />
+    //         ) : (
+    //           <CStampPanal items={items} setShowPopupTrue={setShowPopupTrue} />
+    //         )}
+    //         <div className="flex items-center justify-center"></div>
+    //         {isDebug && (
+    //           <CDebugPopup
+    //             toggleDebug={toggleDebug}
+    //             clearData={clearData}
+    //             fillData={()=>fillData(maxLength)}
+    //             threeData={()=>fillData(3)}
+    //             changeFinish={changeFinish}
+    //           />
+    //         )}
+    //         <div
+    //           className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]"
+    //           onClick={() => toggleDebug()}
+    //         ></div>
+    //       </div>
+    //     )
+    //   ) : (
+    //     <CLogin setLoginTrue={setLoginTrue} />
+    //   )}
+    // </>
   );
 }
