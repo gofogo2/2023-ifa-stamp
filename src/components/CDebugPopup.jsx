@@ -1,6 +1,36 @@
 import React from 'react'
+import { useRecoilState } from 'recoil';
+import { DebugState, LoginState, MaxLengthState } from '../atom';
 
 const CDebugPopup = (props) => {
+  const [maxLength, setMaxLength] = useRecoilState(MaxLengthState);
+  const [isLogin, setIsLogin] = useRecoilState(LoginState);
+  const [isDebug, setIsDebug] = useRecoilState(DebugState);
+  const setLoginFalse = () => {
+    setIsLogin(false);
+  };
+  const fillData = (count) => {
+    initData(count);
+    window.location.href = "/?stp=1";
+  };
+  const initData = (count) => {
+    for (let index = 0; index <= count; index++) {
+      localStorage.setItem(index.toString(), true);
+    }
+  };
+  const toggleDebug = () => {
+    setIsDebug(false);
+  };
+  const clearData = () => {
+    localStorage.clear();
+    setLoginFalse();
+    window.location.href = "/";
+  };
+
+  const changeFinish = () => {
+    initData(maxLength);
+    window.location.href = "/?stp=1";
+  };
   return (
     <div
     className="backdrop-blur-blur"
@@ -24,26 +54,26 @@ const CDebugPopup = (props) => {
       version : 0.19 - 10월 18일자 디자인 업데이트
     </div>
     <div
-    onClick={props.clearData}
+    onClick={()=>clearData()}
       className="py-5 text-center text-red-400 bg-green-400 "
     >
       클릭하면 데이터 초기화
     </div>
     <div
-    onClick={props.threeData}
+    onClick={()=>fillData(3)}
       className="py-5 text-center bg-teal-700 text-lime-500"
     >
       클릭하면 데이터 3개 채우기
     </div>
     <div
-    onClick={props.fillData}
+    onClick={()=>fillData(maxLength)}
       className="py-5 text-center text-lime-500 bg-fuchsia-400"
     >
       클릭하면 데이터 모두 채우기
     </div>
     <div>
       <div
-          onClick={props.changeFinish}
+          onClick={()=>changeFinish()}
         className="py-5 text-center text-yellow-400 bg-blue-400"
       >
         클릭하면 성공태그
@@ -51,7 +81,7 @@ const CDebugPopup = (props) => {
     </div>
     <div>
       <div
-          onClick={props.toggleDebug}
+          onClick={()=>toggleDebug()}
         className="py-5 text-center text-yellow-400 bg-purple-700"
       >
         닫기
