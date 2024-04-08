@@ -100,18 +100,18 @@ const CStampPanal = (props) => {
               </SwiperSlide>
             );
           })}
-          <div className="absolute flex items-center justify-between w-full top-8">
+          <div className="absolute top-0 flex items-center justify-between w-full h-full">
             <div
               ref={prevRef}
-              className="z-50 flex items-center justify-center w-20 h-20 bg-transparent opacity-50"
+              className="z-50 flex items-center justify-center w-10 bg-transparent opacity-50"
             >
-              <img src="/test/arrow_L.png" />
+              <img  src="/test/arrow_L.png" />
             </div>
             <div
               ref={nextRef}
-              className="z-50 flex items-center justify-center w-20 h-20 bg-transparent opacity-50"
+              className="z-50 flex items-center justify-center w-10 h-full bg-transparent opacity-50"
             >
-              <img src="/test/arrow_R.png" />
+              <img  src="/test/arrow_R.png" />
             </div>
           </div>
         </Swiper>
