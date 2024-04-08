@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 
 
@@ -21,7 +20,7 @@ const ImageSlider = ({ images }) => {
     return () => clearInterval(interval); // 컴포넌트가 언마운트될 때 인터벌 정리
   }, [currentIndex]);
   const [touchStart, setTouchStart] = useState(null); // 터치 시작 위치
-  const [ setTouchEnd] = useState(null); // 터치 끝 위치
+  const [touchEnd, setTouchEnd] = useState(null); // 터치 끝 위치
 
     // 터치 시작 이벤트 핸들러
     const handleTouchStart = (e) => {
@@ -53,7 +52,7 @@ const ImageSlider = ({ images }) => {
 
   return (
     <div className="relative flex flex-col items-center justify-center overflow-hidden">
-       <img className='absolute top-0' src="/test/2.png" alt="" />
+       <img className='absolute top-0' src="/test/2.png" />
        <div className="relative w-full overflow-hidden" onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
         <div className="flex transition-transform duration-500 ease-in-out" style={slideStyle}>
           {images.map((image, index) => (
@@ -61,7 +60,6 @@ const ImageSlider = ({ images }) => {
               key={index} // 이미지 URL이 유니크하지 않을 수 있으니 index를 key로 사용
               src={image} 
               className="object-cover w-full" // 이미지가 컨테이너를 꽉 채우도록 설정
-              alt=""
             />
           ))}
         </div>

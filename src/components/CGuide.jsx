@@ -3,7 +3,7 @@ import { useRecoilState } from "recoil";
 import { GuideState } from "../atom";
 
 const CGuide = () => {
-  const [ setIsGuide] = useRecoilState(GuideState);
+  const [isGuide, setIsGuide] = useRecoilState(GuideState);
   const setGuideFalse = () => {
     setIsGuide(false);
     localStorage.setItem("isGuide", "false");
@@ -11,7 +11,7 @@ const CGuide = () => {
 
   return (
     <div className="relative flex justify-center bg-black">
-      <img className="relative" src="test/guide.png" alt=""></img>
+      <img className="relative" src="test/guide.png"></img>
       <button
         className="absolute top-0 right-0 w-20 h-20 bg-transparent"
         onClick={() => {

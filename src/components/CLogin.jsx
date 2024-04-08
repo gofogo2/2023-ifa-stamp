@@ -1,11 +1,9 @@
-/* eslint-disable jsx-a11y/heading-has-content */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilState } from "recoil";
 import { LoginState } from "../atom";
 
 const CLogin = () => {
-  const [ setIsLogin] = useRecoilState(LoginState);
+  const [isLogin, setIsLogin] = useRecoilState(LoginState);
   const setLoginTrue = () => {
     setIsLogin(true);
     localStorage.setItem("islogin", "true");
