@@ -1,11 +1,11 @@
-import React from 'react'
-import { useRecoilState } from 'recoil';
-import { DebugState, LoginState, MaxLengthState } from '../atom';
+import React from "react";
+import { useRecoilState } from "recoil";
+import { DebugState, LoginState, MaxLengthState } from "../atom";
 
 const CDebugPopup = (props) => {
-  const [maxLength, setMaxLength] = useRecoilState(MaxLengthState);
-  const [isLogin, setIsLogin] = useRecoilState(LoginState);
-  const [isDebug, setIsDebug] = useRecoilState(DebugState);
+  const [maxLength] = useRecoilState(MaxLengthState);
+  const [setIsLogin] = useRecoilState(LoginState);
+  const [setIsDebug] = useRecoilState(DebugState);
   const setLoginFalse = () => {
     setIsLogin(false);
   };
@@ -33,63 +33,61 @@ const CDebugPopup = (props) => {
   };
   return (
     <div
-    className="backdrop-blur-blur"
-    style={{
-      position: "fixed",
-      top: "0",
-      height: "100%",
-      width: "100%",
-      backgroundColor: "#000000b0",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      padding: "0",
-      zIndex: 2000,
-    }}
-  >
-     <div className='w-full' >
-     <div
-      className="py-5 text-center text-yellow-400 bg-gray-800 font-extralight"
+      className="backdrop-blur-blur"
+      style={{
+        position: "fixed",
+        top: "0",
+        height: "100%",
+        width: "100%",
+        backgroundColor: "#000000b0",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        padding: "0",
+        zIndex: 2000,
+      }}
     >
-      version : 0.19 - 10월 18일자 디자인 업데이트
-    </div>
-    <div
-    onClick={()=>clearData()}
-      className="py-5 text-center text-red-400 bg-green-400 "
-    >
-      클릭하면 데이터 초기화
-    </div>
-    <div
-    onClick={()=>fillData(3)}
-      className="py-5 text-center bg-teal-700 text-lime-500"
-    >
-      클릭하면 데이터 3개 채우기
-    </div>
-    <div
-    onClick={()=>fillData(maxLength)}
-      className="py-5 text-center text-lime-500 bg-fuchsia-400"
-    >
-      클릭하면 데이터 모두 채우기
-    </div>
-    <div>
-      <div
-          onClick={()=>changeFinish()}
-        className="py-5 text-center text-yellow-400 bg-blue-400"
-      >
-        클릭하면 성공태그
+      <div className="w-full">
+        <div className="py-5 text-center text-yellow-400 bg-gray-800 font-extralight">
+          version : 0.5b - 2024년 04월 08일자 디자인 업데이트
+        </div>
+        <div
+          onClick={() => clearData()}
+          className="py-5 text-center text-red-400 bg-green-400 "
+        >
+          클릭하면 데이터 초기화
+        </div>
+        <div
+          onClick={() => fillData(3)}
+          className="py-5 text-center bg-teal-700 text-lime-500"
+        >
+          클릭하면 데이터 3개 채우기
+        </div>
+        <div
+          onClick={() => fillData(maxLength)}
+          className="py-5 text-center text-lime-500 bg-fuchsia-400"
+        >
+          클릭하면 데이터 모두 채우기
+        </div>
+        <div>
+          <div
+            onClick={() => changeFinish()}
+            className="py-5 text-center text-yellow-400 bg-blue-400"
+          >
+            클릭하면 성공태그
+          </div>
+        </div>
+        <div>
+          <div
+            onClick={() => toggleDebug()}
+            className="py-5 text-center text-yellow-400 bg-purple-700"
+          >
+            닫기
+          </div>
+        </div>
       </div>
     </div>
-    <div>
-      <div
-          onClick={()=>toggleDebug()}
-        className="py-5 text-center text-yellow-400 bg-purple-700"
-      >
-        닫기
-      </div>
-    </div>
-  </div>
-  </div>
-  )
-}
+  );
+};
 
-export default CDebugPopup
+export default CDebugPopup;
