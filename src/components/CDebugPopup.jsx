@@ -51,7 +51,7 @@ const CDebugPopup = (props) => {
      <div
       className="py-5 text-center text-yellow-400 bg-gray-800 font-extralight"
     >
-      version : 0.19 - 10월 18일자 디자인 업데이트
+      version : 0.1b - 04/08 update
     </div>
     <div
     onClick={()=>clearData()}
