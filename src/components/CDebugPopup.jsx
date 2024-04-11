@@ -6,21 +6,26 @@ const CDebugPopup = (props) => {
   const [maxLength, setMaxLength] = useRecoilState(MaxLengthState);
   const [isLogin, setIsLogin] = useRecoilState(LoginState);
   const [isDebug, setIsDebug] = useRecoilState(DebugState);
+  
   const setLoginFalse = () => {
     setIsLogin(false);
   };
+
   const fillData = (count) => {
     initData(count);
     window.location.href = "/?stp=1";
   };
+
   const initData = (count) => {
     for (let index = 0; index <= count; index++) {
       localStorage.setItem(index.toString(), true);
     }
   };
+
   const toggleDebug = () => {
     setIsDebug(false);
   };
+
   const clearData = () => {
     localStorage.clear();
     setLoginFalse();
