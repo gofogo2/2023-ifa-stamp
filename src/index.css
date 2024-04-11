@@ -21,3 +21,7 @@
   body{
     font-family: 'one';
   }
+
+  button, a, input, textarea,img {
+    -webkit-tap-highlight-color: transparent;
+  }
