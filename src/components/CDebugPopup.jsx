@@ -55,7 +55,7 @@ const CDebugPopup = (props) => {
     </div>
     <div
     onClick={()=>clearData()}
-      className="py-5 text-center text-red-400 bg-green-400 "
+      className="py-5 text-center text-red-400 bg-green-400"
     >
       클릭하면 데이터 초기화
     </div>
