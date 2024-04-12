@@ -158,7 +158,7 @@ export default function App() {
       <div
         className="fixed top-0 flex items-center justify-center w-full h-5 bg-transparent opacity-50"
         onClick={() => {
-          setIsDebug(true);
+          // setIsDebug(true);
         }}
       >
         
