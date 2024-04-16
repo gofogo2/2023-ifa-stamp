@@ -143,7 +143,6 @@ export default function App() {
 
   return (
     <div>
-      {" "}
       {isDebug ? (
         <CDebugPopup />
       ) : false ? (
@@ -161,7 +160,7 @@ export default function App() {
           // setIsDebug(true);
         }}
       >
-        
+
       </div>
     </div>
   );
