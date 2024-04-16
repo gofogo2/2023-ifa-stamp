@@ -146,7 +146,7 @@ export default function App() {
       {" "}
       {isDebug ? (
         <CDebugPopup />
-      ) : !isLogin ? (
+      ) : false ? (
         <CLogin />
       ) : isGuide ? (
         <CGuide />
