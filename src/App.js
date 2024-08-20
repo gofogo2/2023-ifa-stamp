@@ -6,7 +6,7 @@ import CPopup from "./components/CPopup";
 
 export default function App() {
   //스탬프 카운트
-  const maxLength = 4;
+  const maxLength = 5;
 
   //debug 활성화를 위한 클릭
   const clickCount = 3;
@@ -78,6 +78,7 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
+      localStorage.setItem("5", true);
       localStorage.setItem("finish", false);
       alert("all data fill");
       window.location.href = "/?stp=1";
@@ -107,6 +108,7 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("4", true);
+      localStorage.setItem("5", true);
       localStorage.setItem("finish", true);
       alert("go to finish");
       window.location.href = "/?stp=1";
@@ -131,6 +133,7 @@ export default function App() {
         case "2":
         case "3":
         case "4":
+        case "5":
           current = "7777";
           break;
 
@@ -146,6 +149,9 @@ export default function App() {
           break;
         case "6f8b2e77":
           current = "4";
+          break;
+        case "9d5f4w32":
+          current = "5";
           break;
         default:
           break;
