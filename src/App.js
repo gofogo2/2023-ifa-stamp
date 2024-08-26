@@ -124,9 +124,12 @@ export default function App() {
       const queryString = window.location.search;
       const urlParams = new URLSearchParams(queryString);
       let current = urlParams.get("stp");
+      
       if (current === null) {
-        setErrorFunc();
+        window.location.href = "/?stp=1";
       }
+  
+
       console.log(current);
       switch (current) {
         case "1":
@@ -185,6 +188,17 @@ export default function App() {
         }
       });
 
+      if(current === "finish" && cnt >= maxLength){
+        setShowPopup(true);
+        SetIsSuc(true);
+        return;
+      }
+      else if(current === "finish" && cnt < maxLength)
+      {
+        window.location.href = "/?stp=1";
+      }
+
+
       if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
         setShowPopup(true);
         SetIsSuc(true);
@@ -194,6 +208,10 @@ export default function App() {
       if (cnt >= maxLength) {
         setShowPopup(true);
       }
+
+
+  
+
     } catch (e) {
       console.error("useEffect 오류:", e);
       setErrorFunc();
