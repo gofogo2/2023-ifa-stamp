@@ -234,7 +234,7 @@ export default function App() {
             <CStampPanal items={items} />
           )}
           <div className="flex items-center justify-center"></div>
-          {isDebug && (
+          {/* {isDebug && (
             <CDebugPopup
               toggleDebug={toggleDebug}
               clearData={clearData}
@@ -242,7 +242,7 @@ export default function App() {
               threeData={threeData}
               changeFinish={changeFinish}
             />
-          )}
+          )} */}
           <div
             className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]"
             onClick={() => toggleDebug()}
