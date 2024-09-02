@@ -123,7 +123,7 @@ export default function App() {
 
        const currentDate = new Date().toISOString().split('T')[0];
        const lang = "de";
-      const response = await fetch('http://35.158.124.191:1234/writeLog', {
+      const response = await fetch('http://35.158.124.191:1234/writelog', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
