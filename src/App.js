@@ -6,7 +6,7 @@ import CPopup from "./components/CPopup";
 
 export default function App() {
   //스탬프 카운트
-  const maxLength = 4;
+  const maxLength = 3;
 
   //debug 활성화를 위한 클릭
   const clickCount = 3;
@@ -125,6 +125,10 @@ export default function App() {
       if (current === null) {
         setErrorFunc();
       }
+
+
+     
+
       console.log(current);
       switch (current) {
         case "1":
@@ -178,6 +182,12 @@ export default function App() {
           cnt++;
         }
       });
+
+      if(current === 'finish'&& cnt >= maxLength){
+        setShowPopup(true);
+        SetIsSuc(true);
+        return;
+      }
 
       if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
         setShowPopup(true);
