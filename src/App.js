@@ -18,6 +18,37 @@ export default function App() {
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
 
+
+  
+
+  const writeLog = async (stamp) => {
+    try {
+
+       const currentDate = new Date().toISOString().split('T')[0];
+       const lang = "en";
+      const response = await fetch('http://35.158.124.191:1234/writelogen', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          currentDate,
+          lang,
+          stamp,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to write log');
+      }
+
+      const data = await response.json();
+      console.log('Log written successfully:', data);
+    } catch (error) {
+      console.error('Error writing log:', error);
+    }
+  };
+
   const handleClick = () => {
     try {
       clearTimeout(timer);
@@ -143,18 +174,23 @@ export default function App() {
           //인덱스 암호화
         case "0c7dd660":
           current = "1";
+          writeLog(current);
           break;
         case "1c85f955":
           current = "2";
+          writeLog(current);
           break;
         case "4b9d8ac5":
           current = "3";
+          writeLog(current);
           break;
         case "6f8b2e77":
           current = "4";
+          writeLog(current);
           break;
         case "9d5f4w32":
           current = "5";
+          writeLog(current);
           break;
         default:
           break;
@@ -189,6 +225,7 @@ export default function App() {
       });
 
       if(current === "finish" && cnt >= maxLength){
+        writeLog(current);
         setShowPopup(true);
         SetIsSuc(true);
         return;
