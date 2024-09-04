@@ -224,6 +224,7 @@ export default function App() {
       });
 
       if(current === "finish" && cnt >= maxLength){
+        localStorage.setItem("finish", true);
         writeLog(current);
         setShowPopup(true);
         SetIsSuc(true);
