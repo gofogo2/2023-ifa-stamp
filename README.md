@@ -1,3 +1,7 @@
+
+#독일서버
+ssh -i "ifa2024.pem" ubuntu@ec2-3-127-81-52.eu-central-1.compute.amazonaws.com
+
 sudo apt update
 sudo apt install git -y
 
@@ -27,8 +31,8 @@ nginxCopyserver {
     }
 }
 
-bashCopysudo systemctl restart nginx
-bashCopysudo systemctl enable nginx
+sudo systemctl restart nginx
+sudo systemctl enable nginx
 
 배포시
 git pull
