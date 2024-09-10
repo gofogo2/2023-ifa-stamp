@@ -63,8 +63,8 @@ export default function App() {
   const clearData = () => {
     try {
       localStorage.clear();
-      alert("all data clear");
-      window.location.href = "/?stp=1";
+      // alert("all data clear");
+      // window.location.href = "/?stp=1";
     } catch (e) {
       console.error("clearData 오류:", e);
 
@@ -140,12 +140,21 @@ export default function App() {
 
           //인덱스 암호화
         case "0c7dd660":
+          if(localStorage.getItem("finish") === "true"){
+            clearData();
+          }
           current = "1";
           break;
         case "1c85f955":
+          if(localStorage.getItem("finish") === "true"){
+            clearData();
+          }
           current = "2";
           break;
         case "4b9d8ac5":
+          if(localStorage.getItem("finish") === "true"){
+            clearData();
+          }
           current = "3";
           break;
         // case "6f8b2e77":

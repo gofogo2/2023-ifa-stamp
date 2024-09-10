@@ -27,11 +27,11 @@ nginxCopyserver {
     }
 }
 
-bashCopysudo systemctl restart nginx
-bashCopysudo systemctl enable nginx
+sudo systemctl restart nginx
+sudo systemctl enable nginx
 
 배포시
 git pull
 npm run build
 sudo cp -R ./build/* /var/www/html/
-bashCopysudo systemctl restart nginx
+sudo systemctl restart nginx
