@@ -27,6 +27,11 @@ nginxCopyserver {
     }
 }
 
+
+cd c:\keys
+
+ssh -i "twitch2024.pem" ubuntu@ec2-54-177-65-157.us-west-1.compute.amazonaws.com
+
 sudo systemctl restart nginx
 sudo systemctl enable nginx
 
