@@ -134,7 +134,7 @@ export default function App() {
         case "1":
         case "2":
         case "3":
-        case "4":
+        // case "4":
           current = "7777";
           break;
 
@@ -148,9 +148,9 @@ export default function App() {
         case "4b9d8ac5":
           current = "3";
           break;
-        case "6f8b2e77":
-          current = "4";
-          break;
+        // case "6f8b2e77":
+        //   current = "4";
+        //   break;
         default:
           break;
       }
@@ -184,6 +184,8 @@ export default function App() {
       });
 
       if(current === 'finish'&& cnt >= maxLength){
+
+        localStorage.setItem("finish", true);
         setShowPopup(true);
         SetIsSuc(true);
         return;
