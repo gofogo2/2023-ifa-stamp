@@ -221,16 +221,17 @@ export default function App() {
         <div className="bg-[#F5F5F5] flex justify-center">
           <div
             className="fixed bottom-0 left-0 w-28 h-28 bg-red-200 opacity-0 z-[10000]"
-            onClick={debugClick}
+            // onClick={debugClick}
           ></div>
           <div
             className=" fixed top-[7%] w-[80%] h-28 bg-red-200 opacity-0 z-[10000]"
-            onClick={handleClick}
+            // onClick={handleClick}
           ></div>
           {showPopup ? <CPopup isSuc={isSuc} /> : (
             <CStampPanal items={items} />
           )}
           <div className="flex items-center justify-center"></div>
+          {/*  
           {isDebug && (
             <CDebugPopup
               toggleDebug={toggleDebug}
@@ -240,9 +241,10 @@ export default function App() {
               changeFinish={changeFinish}
             />
           )}
+            */}
           <div
             className="fixed top-0 z-[10000] w-5 h-5 bg-[#00000000]"
-            onClick={() => toggleDebug()}
+            // onClick={() => toggleDebug()}
           ></div>
         </div>
       ) : (
