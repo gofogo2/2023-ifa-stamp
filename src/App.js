@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import CStampPanal from "./components/CStampPanal";
-import CDebugPopup from "./components/CDebugPopup";
 import CError from "./components/CError";
 import CPopup from "./components/CPopup";
 
