@@ -38,6 +38,34 @@ export default function App() {
     }
   };
 
+  const writeLog = async (stamp) => {
+    try {
+
+       const currentDate = new Date().toISOString().split('T')[0];
+       const lang = "en";
+      const response = await fetch('http://54.177.65.157:1234/writelog', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          currentDate,
+          lang,
+          stamp,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to write log');
+      }
+
+      const data = await response.json();
+      console.log('Log written successfully:', data);
+    } catch (error) {
+      console.error('Error writing log:', error);
+    }
+  };
+
   const setErrorFunc = () => {
     setIsError(false);
   };
@@ -144,6 +172,7 @@ export default function App() {
             clearData();
           }
           current = "1";
+          writeLog(1);
           break;
         case "1c85f955":
           if(localStorage.getItem("finish") === "true"){
