@@ -172,19 +172,21 @@ export default function App() {
             clearData();
           }
           current = "1";
-          writeLog(1);
+          writeLog(current);
           break;
         case "1c85f955":
           if(localStorage.getItem("finish") === "true"){
             clearData();
           }
           current = "2";
+          writeLog(current);
           break;
         case "4b9d8ac5":
           if(localStorage.getItem("finish") === "true"){
             clearData();
           }
           current = "3";
+          writeLog(current);
           break;
         // case "6f8b2e77":
         //   current = "4";
@@ -226,6 +228,7 @@ export default function App() {
         localStorage.setItem("finish", true);
         setShowPopup(true);
         SetIsSuc(true);
+        writeLog(current);
         return;
       }
 
