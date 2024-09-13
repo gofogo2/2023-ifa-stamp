@@ -19,7 +19,6 @@ export default function App() {
   const [showPopup, setShowPopup] = useState(false);
   const [items, setItems] = useState(new Array(maxLength).fill(false));
   const [isError, setIsError] = useState(false);
-  const [isLogin, setIsLogin] = useState(true);
   const [count, setCount] = useState(false);
   const [isMainLang, setIsMainLang] = useState(true);
 
@@ -58,7 +57,6 @@ export default function App() {
   const clearData = () => {
     try {
       localStorage.clear();
-      localStorage.setItem("isLogin", false);
       // alert("all data clear");
       window.location.href = "/";
     } catch (e) {
@@ -78,8 +76,6 @@ export default function App() {
         case "1":
         case "2":
         case "3":
-        case "4":
-        case "5":
           current = "7777";
           break;
 
@@ -93,12 +89,6 @@ export default function App() {
         case "4b9d8ac5":
           current = "3";
           break;
-        case "6f8b2e77":
-          current = "4";
-          break;
-        case "7d8a2kv6":
-          current = "5";
-          break;
         default:
           break;
       }
@@ -107,7 +97,6 @@ export default function App() {
 
       items.forEach((val, i) => {
         const reval = localStorage.getItem(i + 1);
-        // console.log(reval);
         if (reval === null || reval === false) {
           modifyItems[i] = false;
         } else {
@@ -163,10 +152,7 @@ export default function App() {
       localStorage.setItem("1", true);
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
-      localStorage.setItem("4", true);
-      localStorage.setItem("5", true);
       localStorage.setItem("finish", false);
-      localStorage.setItem("isLogin", true);
       alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -181,7 +167,6 @@ export default function App() {
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
       localStorage.setItem("finish", false);
-      localStorage.setItem("isLogin", true);
       alert("all data fill");
       window.location.href = "/?stp=1";
     } catch (e) {
@@ -195,10 +180,7 @@ export default function App() {
       localStorage.setItem("1", true);
       localStorage.setItem("2", true);
       localStorage.setItem("3", true);
-      localStorage.setItem("4", true);
-      localStorage.setItem("5", true);
       localStorage.setItem("finish", true);
-      localStorage.setItem("isLogin", true);
       localStorage.setItem("isReset", false);
       localStorage.setItem("lang", true);
       alert("go to finish");
@@ -209,32 +191,6 @@ export default function App() {
     }
   };
 
-  const loginTrue = (email) => {
-    fetch(`http://${process.env.REACT_APP_URI}:3333/user/add`, {
-      method: "POST",
-      body: JSON.stringify({ email: email, region: process.env.REACT_APP_REGION }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setIsLogin(true);
-        localStorage.setItem("isLogin", true);
-        document.body.style.backgroundColor = '#f5f5f5';
-        return;
-      });
-  };
-
-  const loginFalse = () => {
-    setIsLogin(false);
-    clearData();
-    localStorage.setItem("isLogin", false);
-  };
-
-  const broswerLang=()=>{
-    console.log(navigator.language);
-  }
   function isIphone() {
     return navigator.userAgent.includes('iPhone');
 }
@@ -255,40 +211,9 @@ export default function App() {
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
           let current = urlParams.get("stp");
-          if (localStorage.getItem("lang") !== null) {
-            if (localStorage.getItem("lang") == 'false') {
-              setIsMainLang(false); 
-            }
-          }
-          // setUrlCurrent(current);    
-          
+
           if(current === null){
             current = "1";
-          }
-      
-          if (current === null) {
-            console.log('첨부터');
-            localStorage.setItem("isLogin", "false");
-            setIsLogin(false);
-          }
-          else {
-            // 로그인 로직
-            if (localStorage.getItem("isLogin") === null) {
-              localStorage.setItem("isLogin", "false");
-              setIsLogin(false);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('a');
-            } else if (localStorage.getItem("isLogin") === "false") {
-              setIsLogin(false);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('b');
-            } else {
-              setIsLogin(true);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('c');
-            }
-      
-            console.log(localStorage.getItem("isLogin"));
           }
           load(current);  
           
@@ -301,41 +226,10 @@ export default function App() {
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
           let current = urlParams.get("stp");
-          if (localStorage.getItem("lang") !== null) {
-            if (localStorage.getItem("lang") == 'false') {
-              setIsMainLang(false); 
-            }
-          }
-          // setUrlCurrent(current);    
-          
           if(current === null){
             current = "1";
           }
-      
-          if (current === null) {
-            console.log('첨부터');
-            localStorage.setItem("isLogin", "false");
-            setIsLogin(false);
-          }
-          else {
-            // 로그인 로직
-            if (localStorage.getItem("isLogin") === null) {
-              localStorage.setItem("isLogin", "false");
-              setIsLogin(false);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('a');
-            } else if (localStorage.getItem("isLogin") === "false") {
-              setIsLogin(false);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('b');
-            } else {
-              setIsLogin(true);
-              document.body.style.backgroundColor = '#ffffff';
-              console.log('c');
-            }
-      
-            console.log(localStorage.getItem("isLogin"));
-          }
+    
           load(current); 
         }
         // }
@@ -370,36 +264,10 @@ export default function App() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let current = urlParams.get("stp");
-      broswerLang();
-      if(localStorage.getItem("lang") !== null){
-         if(localStorage.getItem("lang") === 'false'){
-          setIsMainLang(false);
-         }
-      }
-      else
-      {
-          if(!navigator.language.includes('ko')){
-            setIsMainLang(false);
-          }
-      }
+     
       if(current === null){
         current = "1";
       }
-
-      // 로그인 로직
-      if (localStorage.getItem("isLogin") === null) {
-        localStorage.setItem("isLogin", "false");
-        setIsLogin(false);
-        document.body.style.backgroundColor = '#ffffff';
-      } else if (localStorage.getItem("isLogin") === "false") {
-        setIsLogin(false);
-        document.body.style.backgroundColor = '#ffffff';
-      } else {
-        setIsLogin(true);
-        document.body.style.backgroundColor = '#f5f5f5';
-      }
-
-      console.log(localStorage.getItem("isLogin"));
 
       load(current);
       if (current !== 'reset') {
@@ -413,22 +281,13 @@ export default function App() {
 
   return (
     <>
-      {isLogin ? (
+      {(
         !isError ? (
           <div className="bg-[#F5F5F5] flex justify-center">
-
-            {/* <div
-              className="fixed bottom-0 left-0 w-28 h-28  z-[10000]"
-              onClick={debugClick}
-            ></div> */}
-            {/* <div
-              className=" fixed top-[7%] w-[80%] h-28  z-[10000]"
-            ></div> */}
             {showPopup ? (
               <CPopup isSuc={isSuc} isMainLang={isMainLang} />
             ) : (
               <div className="relative" >
-                {/* <div className="top-0 fixed left-0 z-[10000] bg-red-100" >{navigator.language}</div> */}
                 <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
                 <img className="absolute top-0" onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
@@ -452,12 +311,11 @@ export default function App() {
                       ""
                     );
                   })}
-                  {count === 5 ? <img onClick={() => { goToFinished()}} src={`stamp2/btn_05_${isMainLang ? "KR" : "EN"}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img>}
+                  {count === 3 ? <img onClick={() => { goToFinished()}} src={`stamp2/btn_05_${isMainLang ? "KR" : "EN"}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img>}
                 </div>
                 
 
               </div>
-              // <CStampPanal items={items} />
             )}
             <div className="flex items-center justify-center "></div>
             {isDebug && (
@@ -467,7 +325,6 @@ export default function App() {
                 fillData={fillData}
                 threeData={threeData}
                 changeFinish={changeFinish}
-                loginFalse={loginFalse}
               />
             )}
             <div
@@ -478,9 +335,7 @@ export default function App() {
         ) : (
           <CError />
         )
-      ) : (
-        <CRegisteration isMainLang={isMainLang} loginTrue={loginTrue} />
-      )}
+      ) }
     </>
   );
 }
