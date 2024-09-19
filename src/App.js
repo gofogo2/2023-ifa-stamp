@@ -8,7 +8,7 @@ import CVerticle from "./components/CVerticle";
 
 export default function App() {
   //스탬프 카운트
-  const maxLength = 5;
+  const maxLength = 3;
 
   //debug 활성화를 위한 클릭
   const clickCount = 3;
@@ -23,14 +23,19 @@ export default function App() {
   const [isMainLang, setIsMainLang] = useState(true);
 
   const goToFinished = () => {
-    console.log('goto FNS');
-    if ((localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true") && (localStorage.getItem("1") === "true")) {
+    console.log("goto FNS");
+    if (
+      localStorage.getItem("1") === "true" &&
+      localStorage.getItem("1") === "true" &&
+      localStorage.getItem("1") === "true" &&
+      localStorage.getItem("1") === "true"
+    ) {
       setShowPopup(true);
       localStorage.setItem("finish", true);
-    document.body.style.backgroundColor = '#F4F7F5';
-     }
+      document.body.style.backgroundColor = "#F4F7F5";
+    }
     window.location.reload();
-  }
+  };
 
   const setErrorFunc = () => {
     setIsError(false);
@@ -66,9 +71,9 @@ export default function App() {
     }
   };
 
-  const load=(current)=>{
+  const load = (current) => {
     try {
-      if (localStorage.getItem("reset") === 'true' && current !== "reset") {
+      if (localStorage.getItem("reset") === "true" && current !== "reset") {
         clearData();
       }
 
@@ -120,16 +125,22 @@ export default function App() {
 
       setCount(cnt);
 
-      if (current === "reset" && cnt >= maxLength&&(localStorage.getItem("finish") === "true")) {
-        SetIsSuc(true);
-        document.body.style.backgroundColor = '#A0D6B4';
-        localStorage.setItem('reset', true);
-      }
+      // if (current === "reset" && cnt >= maxLength&&(localStorage.getItem("finish") === "true")) {
+      //   SetIsSuc(true);
+      //   document.body.style.backgroundColor = '#A0D6B4';
+      //   localStorage.setItem('reset', true);
+      // }
 
+      if (current === "finish" && cnt >= maxLength) {
+        localStorage.setItem("finish", true);
+        setShowPopup(true);
+        SetIsSuc(true);
+        return;
+      }
 
       if (localStorage.getItem("finish") === "true" && cnt >= maxLength) {
         setShowPopup(true);
-        document.body.style.backgroundColor = '#A0D6B4';
+        document.body.style.backgroundColor = "#A0D6B4";
         // SetIsSuc(true);
         return;
       }
@@ -141,11 +152,11 @@ export default function App() {
       console.error("useEffect 오류:", e);
       setErrorFunc();
     }
-  }
+  };
 
   function isIphone() {
-    return navigator.userAgent.includes('iPhone');
-}
+    return navigator.userAgent.includes("iPhone");
+  }
 
   const fillData = () => {
     try {
@@ -192,52 +203,46 @@ export default function App() {
   };
 
   function isIphone() {
-    return navigator.userAgent.includes('iPhone');
-}
-  
+    return navigator.userAgent.includes("iPhone");
+  }
+
   useEffect(() => {
     const handleVisibilityChange = () => {
-      if (document.visibilityState === 'visible') {
+      if (document.visibilityState === "visible") {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         let current = urlParams.get("stp");
-        
-          if(current !== 'reset'&&(!isIphone()))
-          window.location.href='/?stp=1';
-        else if(isIphone()&&current!=='1')
-        {
+
+        if (current !== "reset" && !isIphone())
+          window.location.href = "/?stp=1";
+        else if (isIphone() && current !== "1") {
           // LoadingShow();
 
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
           let current = urlParams.get("stp");
 
-          if(current === null){
+          if (current === null) {
             current = "1";
           }
-          load(current);  
-          
-          if(current !== 'reset')  
-          window.location.href='/?stp=1';
-        }else if(isIphone()&&current==='1')
-        {
+          load(current);
+
+          if (current !== "reset") window.location.href = "/?stp=1";
+        } else if (isIphone() && current === "1") {
           // LoadingShow();
 
           const queryString = window.location.search;
           const urlParams = new URLSearchParams(queryString);
           let current = urlParams.get("stp");
-          if(current === null){
+          if (current === null) {
             current = "1";
           }
-    
-          load(current); 
+
+          load(current);
         }
         // }
-
-        
       }
     };
-
 
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
@@ -249,93 +254,98 @@ export default function App() {
   checkData();
   function checkData() {
     const today = new Date().toDateString();
-    const savedDate = localStorage.getItem('dateSaved');
-    
-    if (today !== savedDate) {
-      console.log('날짜변경되어 초기화');
-        localStorage.clear();
-        localStorage.setItem('dateSaved', today);
-    }
-}
+    const savedDate = localStorage.getItem("dateSaved");
 
+    if (today !== savedDate) {
+      console.log("날짜변경되어 초기화");
+      localStorage.clear();
+      localStorage.setItem("dateSaved", today);
+    }
+  }
 
   useEffect(() => {
-    
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     let current = urlParams.get("stp");
-     
-      if(current === null){
-        current = "1";
-      }
 
-      load(current);
-      if (current !== 'reset') {
-        if (isIphone()) {
-          if (current !== "1")
-            window.location.href = "/?stp=1";
-        }
-      }
+    if (current === null) {
+      current = "1";
+    }
 
+    load(current);
+    if (current !== "reset") {
+      if (isIphone()) {
+        if (current !== "1") window.location.href = "/?stp=1";
+      }
+    }
   }, []);
 
   return (
     <>
-      {(
-        !isError ? (
-          <div className="bg-[#F5F5F5] flex justify-center">
-            {showPopup ? (
-              <CPopup isSuc={isSuc} isMainLang={isMainLang} />
-            ) : (
-              <div className="relative" >
-                <img src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`} className="w-full sm:max-w-sm" alt="" />
-                <img className="absolute top-0" onClick={() => {
+      {!isError ? (
+        <div className="bg-[#F5F5F5] flex justify-center">
+          {showPopup ? (
+            <CPopup isSuc={isSuc} isMainLang={isMainLang} />
+          ) : (
+            <div className="relative">
+              <img
+                src={`stamp2/${isMainLang ? "KR" : "EN"}_01_0${count}.png`}
+                className="w-full sm:max-w-sm"
+                alt=""
+              />
+              <img
+                className="absolute top-0"
+                onClick={() => {
                   localStorage.setItem("lang", !isMainLang);
                   setIsMainLang(!isMainLang);
-                }} src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`} />
-
-
-
-                <div className="relative flex items-center justify-center" >
-                  <img src={`stamp2/${count === maxLength ? "plate_full" : "plate"}.png`} className="w-full sm:max-w-sm" />
-
-                  {items.map((val, i) => {
-                    return val === true ? (
-                      <img
-                        key={i}
-                        alt=""
-                        src={`stamp2/${i + 1}.png`}
-                        className={`absolute w-full sm:max-w-sm top-0 z-${+(i + 1) * 10} `}
-                      />
-                    ) : (
-                      ""
-                    );
-                  })}
-                  {count === 3 ? <img onClick={() => { goToFinished()}} src={`stamp2/btn_05_${isMainLang ? "KR" : "EN"}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img>}
-                </div>
-                
-
-              </div>
-            )}
-            <div className="flex items-center justify-center "></div>
-            {isDebug && (
-              <CDebugPopup
-                toggleDebug={toggleDebug}
-                clearData={clearData}
-                fillData={fillData}
-                threeData={threeData}
-                changeFinish={changeFinish}
+                }}
+                src={`stamp2/lang_${isMainLang ? "KR" : "EN"}.png`}
               />
-            )}
-            <div
-              className="fixed -top-1 z-[10000] w-5 h-5 opacity-0"
-              onClick={() => toggleDebug()}
-            ></div>
-          </div>
-        ) : (
-          <CError />
-        )
-      ) }
+
+              <div className="relative flex items-center justify-center">
+                <img
+                  src={`stamp2/${
+                    count === maxLength ? "plate_full" : "plate"
+                  }.png`}
+                  className="w-full sm:max-w-sm"
+                />
+
+                {items.map((val, i) => {
+                  return val === true ? (
+                    <img
+                      key={i}
+                      alt=""
+                      src={`stamp2/${i + 1}.png`}
+                      className={`absolute w-full sm:max-w-sm top-0 z-${
+                        +(i + 1) * 10
+                      } `}
+                    />
+                  ) : (
+                    ""
+                  );
+                })}
+                {/* {count === 3 ? <img onClick={() => { goToFinished()}} src={`stamp2/btn_05_${isMainLang ? "KR" : "EN"}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img> : <img src={`stamp2/btn_0${count}.png`} className="absolute bottom-0 w-full sm:max-w-sm" ></img>} */}
+              </div>
+            </div>
+          )}
+          <div className="flex items-center justify-center "></div>
+          {isDebug && (
+            <CDebugPopup
+              toggleDebug={toggleDebug}
+              clearData={clearData}
+              fillData={fillData}
+              threeData={threeData}
+              changeFinish={changeFinish}
+            />
+          )}
+          <div
+            className="fixed -top-1 z-[10000] w-5 h-5 opacity-0"
+            onClick={() => toggleDebug()}
+          ></div>
+        </div>
+      ) : (
+        <CError />
+      )}
     </>
   );
 }
