@@ -240,6 +240,10 @@ export default function App() {
       if (cnt >= maxLength) {
         setShowPopup(true);
       }
+
+      if (current !== "0")
+      window.location.href = "/?stp=0";
+
     } catch (e) {
       console.error("useEffect 오류:", e);
       setErrorFunc();
