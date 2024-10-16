@@ -40,3 +40,23 @@ git pull
 npm run build
 sudo cp -R ./build/* /var/www/html/
 sudo systemctl restart nginx
+
+
+실행
+nohup node main.js > nohup.out 2>&1 &
+disown
+
+
+종료 및 확인
+ps aux | grep "node main.js"
+
+kill <PID>
+kill -9 <PID>
+ps aux | grep "node main.js"
+
+수정
+ mv stamp.json 09-21.json
+ touch stamp.json
+ nano stamp.json
+ cat stamp.json
+
